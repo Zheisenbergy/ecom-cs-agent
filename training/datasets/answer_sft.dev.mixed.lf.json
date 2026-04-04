@@ -1,0 +1,1302 @@
+[
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n你能帮我做什么\n\nroute:\ndirect\n\nintent:\ngeneral_direct_answer\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"我可以帮助处理商品信息、店铺规则、订单状态、物流进度和人工转接相关问题。如果你告诉我商品 ID、订单号，或者具体问题主题，我可以回答得更准确。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-001",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1002 发到哪一步了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"圆通\",\n      \"tracking_no\": \"YT987654321\",\n      \"status\": \"pending_shipment\",\n      \"latest_event\": \"订单已支付，等待仓库出库\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 当前物流状态为 pending_shipment，承运商是 圆通，最新物流信息是：订单已支付，等待仓库出库。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-002",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1002 运单号多少\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"圆通\",\n      \"tracking_no\": \"YT987654321\",\n      \"status\": \"pending_shipment\",\n      \"latest_event\": \"订单已支付，等待仓库出库\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 的运单号是 YT987654321，承运商是 圆通。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-003",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nStormShell 冲锋衣是什么材质\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_stormshell_001\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"StormShell 冲锋衣\",\n      \"category\": \"outerwear\",\n      \"material\": \"防泼水外层 + 轻量化内里\",\n      \"colors\": [\n        \"黑色\",\n        \"灰色\"\n      ],\n      \"sizes\": [\n        \"S\",\n        \"M\",\n        \"L\",\n        \"XL\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"防风\",\n        \"日常通勤\"\n      ],\n      \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-004",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这件衣服有啥颜色？\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-005",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nStormShell 冲锋衣\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_stormshell_001\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"StormShell 冲锋衣\",\n      \"category\": \"outerwear\",\n      \"material\": \"防泼水外层 + 轻量化内里\",\n      \"colors\": [\n        \"黑色\",\n        \"灰色\"\n      ],\n      \"sizes\": [\n        \"S\",\n        \"M\",\n        \"L\",\n        \"XL\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"防风\",\n        \"日常通勤\"\n      ],\n      \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"StormShell 冲锋衣 当前颜色有 黑色, 灰色。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-005",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n退货规则是什么\n\nroute:\ninternal_tool\n\nintent:\npolicy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-006",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1001 退款状态怎么样\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_stormshell_001\",\n      \"product_name\": \"StormShell 冲锋衣\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"杭州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 当前退款状态为 none。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-007",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我订单 A1001 那件衣服有啥颜色\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_stormshell_001\",\n      \"product_name\": \"StormShell 冲锋衣\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"杭州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_stormshell_001\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"StormShell 冲锋衣\",\n      \"category\": \"outerwear\",\n      \"material\": \"防泼水外层 + 轻量化内里\",\n      \"colors\": [\n        \"黑色\",\n        \"灰色\"\n      ],\n      \"sizes\": [\n        \"S\",\n        \"M\",\n        \"L\",\n        \"XL\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"防风\",\n        \"日常通勤\"\n      ],\n      \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 对应商品是 StormShell 冲锋衣。StormShell 冲锋衣 当前颜色有 黑色, 灰色。\", \"citations\": [\"get_order_status\", \"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-008",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我订单 A1001 那件衣服能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_stormshell_001\",\n      \"product_name\": \"StormShell 冲锋衣\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"杭州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 对应商品是 StormShell 冲锋衣。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-009",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个问题我就要人工来处理\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-010",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nThermoMug 保温杯怎么洗\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"ThermoMug 保温杯 的护理建议是：建议手洗并保持杯盖干燥，不建议长时间浸泡。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-011",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1006 到哪了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"韵达\",\n      \"tracking_no\": \"YD741852963\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已到达广州天河网点。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 当前物流状态为 in_transit，承运商是 韵达，最新物流信息是：包裹已到达广州天河网点。。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-012",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n电子发票怎么开\n\nroute:\ninternal_tool\n\nintent:\npolicy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"invoice_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"发票规则\",\n      \"summary\": \"支持开具电子发票，订单签收后可在订单详情页申请，通常会在 24 小时内开具完成。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"支持开具电子发票，订单签收后可在订单详情页申请，通常会在 24 小时内开具完成。\", \"citations\": [\"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-013",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1004 运到哪一步了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"京东物流\",\n      \"tracking_no\": \"JD321654987\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已从苏州分拣中心发出。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 当前物流状态为 in_transit，承运商是 京东物流，最新物流信息是：包裹已从苏州分拣中心发出。。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-014",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这款枕头有什么颜色\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-015",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nCloudRest 记忆枕\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_cloudrest_004\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"CloudRest 记忆枕\",\n      \"category\": \"home\",\n      \"material\": \"慢回弹记忆棉 + 透气针织枕套\",\n      \"colors\": [\n        \"云灰\",\n        \"米白\"\n      ],\n      \"sizes\": [\n        \"标准款\",\n        \"加高款\"\n      ],\n      \"features\": [\n        \"慢回弹\",\n        \"颈部支撑\",\n        \"可拆洗枕套\"\n      ],\n      \"care_instructions\": \"枕芯不可水洗，外枕套可轻柔机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"CloudRest 记忆枕 当前颜色有 云灰, 米白。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-015",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nFlexFit 运动裤有哪些尺码\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_flexfit_005\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"FlexFit 运动裤\",\n      \"category\": \"apparel\",\n      \"material\": \"锦纶混纺弹力面料\",\n      \"colors\": [\n        \"曜石黑\",\n        \"深海蓝\"\n      ],\n      \"sizes\": [\n        \"M\",\n        \"L\",\n        \"XL\",\n        \"2XL\"\n      ],\n      \"features\": [\n        \"弹力\",\n        \"速干\",\n        \"日常运动\"\n      ],\n      \"care_instructions\": \"建议反面冷水洗涤，避免高温烘干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"FlexFit 运动裤 当前尺码有 M, L, XL, 2XL。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-016",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n换货规则怎么说\n\nroute:\ninternal_tool\n\nintent:\npolicy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"exchange_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"换货规则\",\n      \"summary\": \"如商品存在尺码或颜色不合适等问题，可在签收后七个自然日内申请换货，具体以库存情况为准。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"如商品存在尺码或颜色不合适等问题，可在签收后七个自然日内申请换货，具体以库存情况为准。\", \"citations\": [\"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-017",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1005 现在支付成功了吗\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1005\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_flexfit_005\",\n      \"product_name\": \"FlexFit 运动裤\",\n      \"payment_status\": \"pending\",\n      \"fulfillment_status\": \"pending_payment\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"北京\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1005 当前支付状态为 pending。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-018",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我订单 A1006 那个包有保修吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"warranty_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"保修规则\",\n      \"summary\": \"箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 对应商品是 AeroPack 双肩包。箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-019",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我订单 A1003 那个杯子能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 对应商品是 ThermoMug 保温杯。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-020",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的那只杯子是什么颜色\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-021",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1003\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 对应商品是 ThermoMug 保温杯。ThermoMug 保温杯 当前颜色有 奶白, 深灰。\", \"citations\": [\"get_order_status\", \"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-021",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A9999 到哪一步了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"not_found\",\n    \"data\": {},\n    \"message\": \"未找到对应物流信息\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"未找到对应物流信息。请检查你提供的商品 ID、订单号或查询主题。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-022",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这件商品怎么洗\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"not_found\",\n    \"data\": {},\n    \"message\": \"未找到对应商品\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"未找到对应商品。请检查你提供的商品 ID、订单号或查询主题。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-023",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个事情我要人工介入处理\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-024",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004 的记忆枕是什么材质，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_cloudrest_004\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"CloudRest 记忆枕\",\n      \"category\": \"home\",\n      \"material\": \"慢回弹记忆棉 + 透气针织枕套\",\n      \"colors\": [\n        \"云灰\",\n        \"米白\"\n      ],\n      \"sizes\": [\n        \"标准款\",\n        \"加高款\"\n      ],\n      \"features\": [\n        \"慢回弹\",\n        \"颈部支撑\",\n        \"可拆洗枕套\"\n      ],\n      \"care_instructions\": \"枕芯不可水洗，外枕套可轻柔机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 对应商品是 CloudRest 记忆枕。CloudRest 记忆枕 的材质是 慢回弹记忆棉 + 透气针织枕套。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-025",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n售后扯皮太久了，给我转人工\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-026",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我查退款进度\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-027",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 当前退款状态为 approved。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-027",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的包有保修吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-028",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"warranty_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"保修规则\",\n      \"summary\": \"箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 对应商品是 AeroPack 双肩包。箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-028",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006 的双肩包是什么材质，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_aeropack_006\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"AeroPack 双肩包\",\n      \"category\": \"bags\",\n      \"material\": \"防泼水尼龙面料 + 加厚肩带\",\n      \"colors\": [\n        \"曜黑\",\n        \"雾蓝\"\n      ],\n      \"sizes\": [\n        \"18L\",\n        \"22L\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"多层收纳\",\n        \"15 寸电脑仓\"\n      ],\n      \"care_instructions\": \"建议湿布擦拭清洁，避免机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 对应商品是 AeroPack 双肩包。AeroPack 双肩包 的材质是 防泼水尼龙面料 + 加厚肩带。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-029",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我查运单号\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"顺丰\",\n      \"tracking_no\": \"SF456789123\",\n      \"status\": \"delivered\",\n      \"latest_event\": \"包裹已签收，签收人本人。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 的运单号是 SF456789123，承运商是 顺丰。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-030",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1002 那双鞋是什么材质，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 对应商品是 UrbanStep 休闲鞋。UrbanStep 休闲鞋 的材质是 织物鞋面 + 橡胶鞋底。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-031",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个退款我要求人工审核\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-032",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这条裤子是什么材质\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-033",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nFlexFit 运动裤\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_flexfit_005\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"FlexFit 运动裤\",\n      \"category\": \"apparel\",\n      \"material\": \"锦纶混纺弹力面料\",\n      \"colors\": [\n        \"曜石黑\",\n        \"深海蓝\"\n      ],\n      \"sizes\": [\n        \"M\",\n        \"L\",\n        \"XL\",\n        \"2XL\"\n      ],\n      \"features\": [\n        \"弹力\",\n        \"速干\",\n        \"日常运动\"\n      ],\n      \"care_instructions\": \"建议反面冷水洗涤，避免高温烘干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"FlexFit 运动裤 的材质是 锦纶混纺弹力面料。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-033",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我要升级投诉，直接人工处理\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-034",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个订单异常请人工介入\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-035",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我看下订单状态\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-036",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1005\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1005\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_flexfit_005\",\n      \"product_name\": \"FlexFit 运动裤\",\n      \"payment_status\": \"pending\",\n      \"fulfillment_status\": \"pending_payment\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"北京\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1005 当前支付状态为 pending，履约状态为 pending_payment，退款状态为 none。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-036",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的杯子有保修吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-037",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1003\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"warranty_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"保修规则\",\n      \"summary\": \"箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 对应商品是 ThermoMug 保温杯。箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-037",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006 的包能装多大电脑\n\nroute:\ndirect\n\nintent:\ngeneral_direct_answer\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"我可以帮助处理商品信息、店铺规则、订单状态、物流进度和人工转接相关问题。如果你告诉我商品 ID、订单号，或者具体问题主题，我可以回答得更准确。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-038",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1003 杯子怎么洗，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 对应商品是 ThermoMug 保温杯。ThermoMug 保温杯 的护理建议是：建议手洗并保持杯盖干燥，不建议长时间浸泡。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-039",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我查这单运单号\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-040",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1001\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"中通\",\n      \"tracking_no\": \"ZT123456789\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"已到达杭州转运中心\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 的运单号是 ZT123456789，承运商是 中通。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-040",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004 的记忆枕能换货吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"exchange_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"换货规则\",\n      \"summary\": \"如商品存在尺码或颜色不合适等问题，可在签收后七个自然日内申请换货，具体以库存情况为准。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 对应商品是 CloudRest 记忆枕。如商品存在尺码或颜色不合适等问题，可在签收后七个自然日内申请换货，具体以库存情况为准。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-041",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1001 那件衣服是什么材质\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_stormshell_001\",\n      \"product_name\": \"StormShell 冲锋衣\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"杭州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_stormshell_001\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"StormShell 冲锋衣\",\n      \"category\": \"outerwear\",\n      \"material\": \"防泼水外层 + 轻量化内里\",\n      \"colors\": [\n        \"黑色\",\n        \"灰色\"\n      ],\n      \"sizes\": [\n        \"S\",\n        \"M\",\n        \"L\",\n        \"XL\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"防风\",\n        \"日常通勤\"\n      ],\n      \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 对应商品是 StormShell 冲锋衣。StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。\", \"citations\": [\"get_order_status\", \"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-042",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个商品有什么颜色\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-043",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nThermoMug 保温杯\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"ThermoMug 保温杯 当前颜色有 奶白, 深灰。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-043",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002 的鞋是什么材质\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 对应商品是 UrbanStep 休闲鞋。UrbanStep 休闲鞋 的材质是 织物鞋面 + 橡胶鞋底。\", \"citations\": [\"get_order_status\", \"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-044",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n麻烦人工审核这个赔偿问题\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "dev-045",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的商品是什么材质，能退吗？\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-001",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1005\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1005\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_flexfit_005\",\n      \"product_name\": \"FlexFit 运动裤\",\n      \"payment_status\": \"pending\",\n      \"fulfillment_status\": \"pending_payment\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"北京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_flexfit_005\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"FlexFit 运动裤\",\n      \"category\": \"apparel\",\n      \"material\": \"锦纶混纺弹力面料\",\n      \"colors\": [\n        \"曜石黑\",\n        \"深海蓝\"\n      ],\n      \"sizes\": [\n        \"M\",\n        \"L\",\n        \"XL\",\n        \"2XL\"\n      ],\n      \"features\": [\n        \"弹力\",\n        \"速干\",\n        \"日常运动\"\n      ],\n      \"care_instructions\": \"建议反面冷水洗涤，避免高温烘干。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1005 对应商品是 FlexFit 运动裤。FlexFit 运动裤 的材质是 锦纶混纺弹力面料。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-001",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004 这单能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 对应商品是 CloudRest 记忆枕。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-002",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这件商品有什么颜色\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"UrbanStep 休闲鞋 当前颜色有 白色, 黑蓝。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-003",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个赔偿问题需要人工审核\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-004",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我看下订单状态\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-005",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 当前支付状态为 paid，履约状态为 shipped，退款状态为 none。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-005",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004 这件商品怎么洗，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_cloudrest_004\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"CloudRest 记忆枕\",\n      \"category\": \"home\",\n      \"material\": \"慢回弹记忆棉 + 透气针织枕套\",\n      \"colors\": [\n        \"云灰\",\n        \"米白\"\n      ],\n      \"sizes\": [\n        \"标准款\",\n        \"加高款\"\n      ],\n      \"features\": [\n        \"慢回弹\",\n        \"颈部支撑\",\n        \"可拆洗枕套\"\n      ],\n      \"care_instructions\": \"枕芯不可水洗，外枕套可轻柔机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 对应商品是 CloudRest 记忆枕。CloudRest 记忆枕 的护理建议是：枕芯不可水洗，外枕套可轻柔机洗。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-006",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的东西怎么洗，能退吗？\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-007",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1005\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1005\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_flexfit_005\",\n      \"product_name\": \"FlexFit 运动裤\",\n      \"payment_status\": \"pending\",\n      \"fulfillment_status\": \"pending_payment\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"北京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_flexfit_005\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"FlexFit 运动裤\",\n      \"category\": \"apparel\",\n      \"material\": \"锦纶混纺弹力面料\",\n      \"colors\": [\n        \"曜石黑\",\n        \"深海蓝\"\n      ],\n      \"sizes\": [\n        \"M\",\n        \"L\",\n        \"XL\",\n        \"2XL\"\n      ],\n      \"features\": [\n        \"弹力\",\n        \"速干\",\n        \"日常运动\"\n      ],\n      \"care_instructions\": \"建议反面冷水洗涤，避免高温烘干。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1005 对应商品是 FlexFit 运动裤。FlexFit 运动裤 的护理建议是：建议反面冷水洗涤，避免高温烘干。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-007",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004 的运单号是多少\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"京东物流\",\n      \"tracking_no\": \"JD321654987\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已从苏州分拣中心发出。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 的运单号是 JD321654987，承运商是 京东物流。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-008",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n退款进度现在怎样\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-009",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 当前退款状态为 none。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-009",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我查下退款状态\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-010",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 当前退款状态为 reviewing。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-010",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我这单发到哪一步了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-011",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"京东物流\",\n      \"tracking_no\": \"JD321654987\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已从苏州分拣中心发出。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 当前物流状态为 in_transit，承运商是 京东物流，最新物流信息是：包裹已从苏州分拣中心发出。。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-011",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n请人工协助处理这件事\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-012",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个问题请立刻转人工\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-013",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n退款进度怎么样\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1005\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_flexfit_005\",\n      \"product_name\": \"FlexFit 运动裤\",\n      \"payment_status\": \"pending\",\n      \"fulfillment_status\": \"pending_payment\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"北京\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1005 当前退款状态为 none。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-014",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我订单 A1003 买的保温杯是什么材质，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 对应商品是 ThermoMug 保温杯。ThermoMug 保温杯 的材质是 304 不锈钢内胆 + 防滑杯身。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-015",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我看下快递到哪了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-016",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"圆通\",\n      \"tracking_no\": \"YT987654321\",\n      \"status\": \"pending_shipment\",\n      \"latest_event\": \"订单已支付，等待仓库出库\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 当前物流状态为 pending_shipment，承运商是 圆通，最新物流信息是：订单已支付，等待仓库出库。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-016",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个商品怎么清洁\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-017",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nUrbanStep 休闲鞋\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"UrbanStep 休闲鞋 的材质是 织物鞋面 + 橡胶鞋底，当前颜色有 白色, 黑蓝，尺码有 39, 40, 41, 42, 43。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-017",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这件商品有什么颜色\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"ThermoMug 保温杯 当前颜色有 奶白, 深灰。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-018",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个赔偿申请我要人工审核\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-019",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002 的休闲鞋是什么材质，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 对应商品是 UrbanStep 休闲鞋。UrbanStep 休闲鞋 的材质是 织物鞋面 + 橡胶鞋底。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-020",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个售后问题必须人工跟进\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-021",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这件商品是什么材质，能换货吗？\n\nroute:\ninternal_tool\n\nintent:\npolicy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"exchange_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"换货规则\",\n      \"summary\": \"如商品存在尺码或颜色不合适等问题，可在签收后七个自然日内申请换货，具体以库存情况为准。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"如商品存在尺码或颜色不合适等问题，可在签收后七个自然日内申请换货，具体以库存情况为准。\", \"citations\": [\"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-022",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002\n\nroute:\ndirect\n\nintent:\ngeneral_direct_answer\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"我可以帮助处理商品信息、店铺规则、订单状态、物流进度和人工转接相关问题。如果你告诉我商品 ID、订单号，或者具体问题主题，我可以回答得更准确。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-022",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1005 这单能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1005\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_flexfit_005\",\n      \"product_name\": \"FlexFit 运动裤\",\n      \"payment_status\": \"pending\",\n      \"fulfillment_status\": \"pending_payment\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"北京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1005 对应商品是 FlexFit 运动裤。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-023",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个商品有哪些尺码\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-024",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nUrbanStep 休闲鞋\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"UrbanStep 休闲鞋 当前尺码有 39, 40, 41, 42, 43。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-024",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1004 现在到哪了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"京东物流\",\n      \"tracking_no\": \"JD321654987\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已从苏州分拣中心发出。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 当前物流状态为 in_transit，承运商是 京东物流，最新物流信息是：包裹已从苏州分拣中心发出。。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-025",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我看下快递到哪了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-026",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"韵达\",\n      \"tracking_no\": \"YD741852963\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已到达广州天河网点。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 当前物流状态为 in_transit，承运商是 韵达，最新物流信息是：包裹已到达广州天河网点。。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-026",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的商品是什么材质，能退吗？\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-027",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_cloudrest_004\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"CloudRest 记忆枕\",\n      \"category\": \"home\",\n      \"material\": \"慢回弹记忆棉 + 透气针织枕套\",\n      \"colors\": [\n        \"云灰\",\n        \"米白\"\n      ],\n      \"sizes\": [\n        \"标准款\",\n        \"加高款\"\n      ],\n      \"features\": [\n        \"慢回弹\",\n        \"颈部支撑\",\n        \"可拆洗枕套\"\n      ],\n      \"care_instructions\": \"枕芯不可水洗，外枕套可轻柔机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 对应商品是 CloudRest 记忆枕。CloudRest 记忆枕 的材质是 慢回弹记忆棉 + 透气针织枕套。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-027",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n投诉问题麻烦转人工\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-028",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006 的双肩包有什么颜色\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_aeropack_006\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"AeroPack 双肩包\",\n      \"category\": \"bags\",\n      \"material\": \"防泼水尼龙面料 + 加厚肩带\",\n      \"colors\": [\n        \"曜黑\",\n        \"雾蓝\"\n      ],\n      \"sizes\": [\n        \"18L\",\n        \"22L\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"多层收纳\",\n        \"15 寸电脑仓\"\n      ],\n      \"care_instructions\": \"建议湿布擦拭清洁，避免机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 对应商品是 AeroPack 双肩包。AeroPack 双肩包 当前颜色有 曜黑, 雾蓝。\", \"citations\": [\"get_order_status\", \"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-029",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n退款进度怎么样\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 当前退款状态为 none。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-030",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1006 这个双肩包能退吗，材质是什么\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_aeropack_006\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"AeroPack 双肩包\",\n      \"category\": \"bags\",\n      \"material\": \"防泼水尼龙面料 + 加厚肩带\",\n      \"colors\": [\n        \"曜黑\",\n        \"雾蓝\"\n      ],\n      \"sizes\": [\n        \"18L\",\n        \"22L\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"多层收纳\",\n        \"15 寸电脑仓\"\n      ],\n      \"care_instructions\": \"建议湿布擦拭清洁，避免机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 对应商品是 AeroPack 双肩包。AeroPack 双肩包 的材质是 防泼水尼龙面料 + 加厚肩带。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-031",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002 的休闲鞋是什么材质\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 对应商品是 UrbanStep 休闲鞋。UrbanStep 休闲鞋 的材质是 织物鞋面 + 橡胶鞋底。\", \"citations\": [\"get_order_status\", \"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-032",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1001 支付成功了吗\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_stormshell_001\",\n      \"product_name\": \"StormShell 冲锋衣\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"杭州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 当前支付状态为 paid。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-033",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我要人工客服处理退款争议\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-034",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的那件商品能退吗，材质是什么？\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-035",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1003\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 对应商品是 ThermoMug 保温杯。ThermoMug 保温杯 的材质是 304 不锈钢内胆 + 防滑杯身。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-035",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这件商品怎么洗\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_flexfit_005\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"FlexFit 运动裤\",\n      \"category\": \"apparel\",\n      \"material\": \"锦纶混纺弹力面料\",\n      \"colors\": [\n        \"曜石黑\",\n        \"深海蓝\"\n      ],\n      \"sizes\": [\n        \"M\",\n        \"L\",\n        \"XL\",\n        \"2XL\"\n      ],\n      \"features\": [\n        \"弹力\",\n        \"速干\",\n        \"日常运动\"\n      ],\n      \"care_instructions\": \"建议反面冷水洗涤，避免高温烘干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"FlexFit 运动裤 的护理建议是：建议反面冷水洗涤，避免高温烘干。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-036",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1003 这件商品怎么洗，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_thermomug_003\",\n      \"product_name\": \"ThermoMug 保温杯\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"delivered\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"南京\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_thermomug_003\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"ThermoMug 保温杯\",\n      \"category\": \"drinkware\",\n      \"material\": \"304 不锈钢内胆 + 防滑杯身\",\n      \"colors\": [\n        \"奶白\",\n        \"深灰\"\n      ],\n      \"sizes\": [\n        \"420ml\",\n        \"520ml\"\n      ],\n      \"features\": [\n        \"保温\",\n        \"防漏\",\n        \"通勤携带\"\n      ],\n      \"care_instructions\": \"建议手洗并保持杯盖干燥，不建议长时间浸泡。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 对应商品是 ThermoMug 保温杯。ThermoMug 保温杯 的护理建议是：建议手洗并保持杯盖干燥，不建议长时间浸泡。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-037",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1004 支付成功了吗\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 当前支付状态为 paid。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-038",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002 的运单号是多少\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"圆通\",\n      \"tracking_no\": \"YT987654321\",\n      \"status\": \"pending_shipment\",\n      \"latest_event\": \"订单已支付，等待仓库出库\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 的运单号是 YT987654321，承运商是 圆通。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-039",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我这单发到哪一步了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-040",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1001\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"中通\",\n      \"tracking_no\": \"ZT123456789\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"已到达杭州转运中心\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 当前物流状态为 in_transit，承运商是 中通，最新物流信息是：已到达杭州转运中心。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-040",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1001 这个商品退款进度怎么样\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1001\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_stormshell_001\",\n      \"product_name\": \"StormShell 冲锋衣\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"杭州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1001 当前退款状态为 none。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-041",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n物流进度帮我查一下\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-042",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"京东物流\",\n      \"tracking_no\": \"JD321654987\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已从苏州分拣中心发出。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 当前物流状态为 in_transit，承运商是 京东物流，最新物流信息是：包裹已从苏州分拣中心发出。。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-042",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我这单支付成功了吗\n\nroute:\ndirect\n\nintent:\ngeneral_direct_answer\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"我可以帮助处理商品信息、店铺规则、订单状态、物流进度和人工转接相关问题。如果你告诉我商品 ID、订单号，或者具体问题主题，我可以回答得更准确。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-043",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1001\n\nroute:\ndirect\n\nintent:\ngeneral_direct_answer\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"我可以帮助处理商品信息、店铺规则、订单状态、物流进度和人工转接相关问题。如果你告诉我商品 ID、订单号，或者具体问题主题，我可以回答得更准确。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-043",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1004 这个商品怎么洗\n\nroute:\ninternal_tool\n\nintent:\norder_product_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_cloudrest_004\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"CloudRest 记忆枕\",\n      \"category\": \"home\",\n      \"material\": \"慢回弹记忆棉 + 透气针织枕套\",\n      \"colors\": [\n        \"云灰\",\n        \"米白\"\n      ],\n      \"sizes\": [\n        \"标准款\",\n        \"加高款\"\n      ],\n      \"features\": [\n        \"慢回弹\",\n        \"颈部支撑\",\n        \"可拆洗枕套\"\n      ],\n      \"care_instructions\": \"枕芯不可水洗，外枕套可轻柔机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 对应商品是 CloudRest 记忆枕。CloudRest 记忆枕 的护理建议是：枕芯不可水洗，外枕套可轻柔机洗。\", \"citations\": [\"get_order_status\", \"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-044",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1002 这个商品有保修吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"warranty_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"保修规则\",\n      \"summary\": \"箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 对应商品是 UrbanStep 休闲鞋。箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-045",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我买的那件商品能退吗，材质是什么？\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-046",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1002\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_urbanstep_002\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"UrbanStep 休闲鞋\",\n      \"category\": \"shoes\",\n      \"material\": \"织物鞋面 + 橡胶鞋底\",\n      \"colors\": [\n        \"白色\",\n        \"黑蓝\"\n      ],\n      \"sizes\": [\n        \"39\",\n        \"40\",\n        \"41\",\n        \"42\",\n        \"43\"\n      ],\n      \"features\": [\n        \"轻便\",\n        \"透气\",\n        \"日常行走\"\n      ],\n      \"care_instructions\": \"建议局部擦拭，不建议整鞋机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 对应商品是 UrbanStep 休闲鞋。UrbanStep 休闲鞋 的材质是 织物鞋面 + 橡胶鞋底。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-046",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个商品能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1002\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_urbanstep_002\",\n      \"product_name\": \"UrbanStep 休闲鞋\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"processing\",\n      \"refund_status\": \"reviewing\",\n      \"recipient_city\": \"上海\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1002 对应商品是 UrbanStep 休闲鞋。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-047",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n订单 A1003 现在到哪了\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1003\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"顺丰\",\n      \"tracking_no\": \"SF456789123\",\n      \"status\": \"delivered\",\n      \"latest_event\": \"包裹已签收，签收人本人。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1003 当前物流状态为 delivered，承运商是 顺丰，最新物流信息是：包裹已签收，签收人本人。。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-048",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这件商品怎么洗\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_cloudrest_004\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"CloudRest 记忆枕\",\n      \"category\": \"home\",\n      \"material\": \"慢回弹记忆棉 + 透气针织枕套\",\n      \"colors\": [\n        \"云灰\",\n        \"米白\"\n      ],\n      \"sizes\": [\n        \"标准款\",\n        \"加高款\"\n      ],\n      \"features\": [\n        \"慢回弹\",\n        \"颈部支撑\",\n        \"可拆洗枕套\"\n      ],\n      \"care_instructions\": \"枕芯不可水洗，外枕套可轻柔机洗。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"CloudRest 记忆枕 的护理建议是：枕芯不可水洗，外枕套可轻柔机洗。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-049",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这款商品是什么材质\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-050",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nStormShell 冲锋衣\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_stormshell_001\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"StormShell 冲锋衣\",\n      \"category\": \"outerwear\",\n      \"material\": \"防泼水外层 + 轻量化内里\",\n      \"colors\": [\n        \"黑色\",\n        \"灰色\"\n      ],\n      \"sizes\": [\n        \"S\",\n        \"M\",\n        \"L\",\n        \"XL\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"防风\",\n        \"日常通勤\"\n      ],\n      \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-050",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我查下运单号\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要订单号才能继续查询，请先提供订单号。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-051",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1004\n\nroute:\ninternal_tool\n\nintent:\nlogistics_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_logistics_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"carrier\": \"京东物流\",\n      \"tracking_no\": \"JD321654987\",\n      \"status\": \"in_transit\",\n      \"latest_event\": \"包裹已从苏州分拣中心发出。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 的运单号是 JD321654987，承运商是 京东物流。\", \"citations\": [\"get_logistics_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-051",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n这个商品怎么清洁\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。\", \"citations\": [], \"grounded\": false, \"escalation_required\": false, \"waiting_for_user\": true, \"episode_done\": false}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-052",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nFlexFit 运动裤\n\nroute:\ninternal_tool\n\nintent:\nproduct_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_flexfit_005\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"FlexFit 运动裤\",\n      \"category\": \"apparel\",\n      \"material\": \"锦纶混纺弹力面料\",\n      \"colors\": [\n        \"曜石黑\",\n        \"深海蓝\"\n      ],\n      \"sizes\": [\n        \"M\",\n        \"L\",\n        \"XL\",\n        \"2XL\"\n      ],\n      \"features\": [\n        \"弹力\",\n        \"速干\",\n        \"日常运动\"\n      ],\n      \"care_instructions\": \"建议反面冷水洗涤，避免高温烘干。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"FlexFit 运动裤 的材质是 锦纶混纺弹力面料，当前颜色有 曜石黑, 深海蓝，尺码有 M, L, XL, 2XL。\", \"citations\": [\"get_product_info\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-052",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n帮我看下订单状态\n\nroute:\ninternal_tool\n\nintent:\norder_status\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1004\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_cloudrest_004\",\n      \"product_name\": \"CloudRest 记忆枕\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"approved\",\n      \"recipient_city\": \"苏州\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1004 当前支付状态为 paid，履约状态为 shipped，退款状态为 approved。\", \"citations\": [\"get_order_status\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-053",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\nA1006 的双肩包是什么材质，能退吗\n\nroute:\ninternal_tool\n\nintent:\norder_product_policy_lookup\n\ntool_steps:\n[\n  {\n    \"tool_name\": \"get_order_status\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"order_id\": \"A1006\",\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": \"sku_aeropack_006\",\n      \"product_name\": \"AeroPack 双肩包\",\n      \"payment_status\": \"paid\",\n      \"fulfillment_status\": \"shipped\",\n      \"refund_status\": \"none\",\n      \"recipient_city\": \"广州\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_product_info\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"product_id\": \"sku_aeropack_006\",\n      \"shop_id\": \"demo-shop\",\n      \"name\": \"AeroPack 双肩包\",\n      \"category\": \"bags\",\n      \"material\": \"防泼水尼龙面料 + 加厚肩带\",\n      \"colors\": [\n        \"曜黑\",\n        \"雾蓝\"\n      ],\n      \"sizes\": [\n        \"18L\",\n        \"22L\"\n      ],\n      \"features\": [\n        \"轻量\",\n        \"多层收纳\",\n        \"15 寸电脑仓\"\n      ],\n      \"care_instructions\": \"建议湿布擦拭清洁，避免机洗。\"\n    },\n    \"message\": \"\"\n  },\n  {\n    \"tool_name\": \"get_policy\",\n    \"status\": \"ok\",\n    \"data\": {\n      \"topic\": \"return_policy\",\n      \"shop_id\": \"demo-shop\",\n      \"title\": \"退货规则\",\n      \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n    },\n    \"message\": \"\"\n  }\n]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"订单 A1006 对应商品是 AeroPack 双肩包。AeroPack 双肩包 的材质是 防泼水尼龙面料 + 加厚肩带。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\", \"citations\": [\"get_order_status\", \"get_product_info\", \"get_policy\"], \"grounded\": true, \"escalation_required\": false, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-054",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "query:\n我不接受机器人处理，请转人工\n\nroute:\nhandoff\n\nintent:\ncomplaint_or_manual_support\n\ntool_steps:\n[]\n\n输出字段要求:\n- answer: string\n- citations: string[]\n- grounded: boolean\n- escalation_required: boolean\n- waiting_for_user: boolean\n- episode_done: boolean",
+    "output": "{\"answer\": \"这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。\", \"citations\": [], \"grounded\": false, \"escalation_required\": true, \"waiting_for_user\": false, \"episode_done\": true}",
+    "system": "你是电商客服场景下的回答模型。你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。输出必须遵守字段要求，不要输出解释，不要输出 markdown。",
+    "metadata": {
+      "episode_id": "syn-dev-055",
+      "turn_index": 1
+    }
+  }
+]

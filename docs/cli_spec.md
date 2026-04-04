@@ -274,6 +274,33 @@ ecom-cs-agent benchmark-answer \
 - `--timeout-seconds`：单条 benchmark 请求超时
 - `--max-tokens`：限制回答长度，减少 benchmark 波动
 
+### `ecom-cs-agent synthesize-episodes`
+
+按模板与槽位配置批量生成 `episode seed`。
+
+适合用来补：
+
+- `handoff`
+- `ask_user`
+- 多工具组合
+- 参数抽取变体
+
+示例：
+
+```bash
+ecom-cs-agent synthesize-episodes \
+  --config training/datasets/synthesis_templates.default.json \
+  --output-train training/datasets/episode_cases.synthetic.train.jsonl \
+  --output-dev training/datasets/episode_cases.synthetic.dev.jsonl
+```
+
+常用参数：
+
+- `--config`：合成模板配置
+- `--output-train`：导出的 train seed JSONL
+- `--output-dev`：导出的 dev seed JSONL
+- `--seed`：覆盖配置中的随机种子
+
 ## 输出语义
 
 默认文本输出包含：

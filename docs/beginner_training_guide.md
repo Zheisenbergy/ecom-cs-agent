@@ -481,6 +481,31 @@ ecom-cs-agent benchmark-answer \
 
 不要一开始就把两者都设成同一个大模型。
 
+## 13. 数据不够时怎么办
+
+当你发现：
+
+- `handoff_f1` 很差
+- `ask_user_f1` 很差
+- 参数抽取不稳
+
+最应该做的通常不是继续硬训，而是补数据。
+
+现在项目已经支持一个最小可用的数据合成流水线，文档见：
+
+- [数据合成流水线](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/data_synthesis_pipeline.md)
+
+最小示例：
+
+```bash
+ecom-cs-agent synthesize-episodes \
+  --config training/datasets/synthesis_templates.default.json \
+  --output-train training/datasets/episode_cases.synthetic.train.jsonl \
+  --output-dev training/datasets/episode_cases.synthetic.dev.jsonl
+```
+
+你可以先生成 synthetic seed，再和人工 seed 合并，然后继续跑 trace、导出训练集、重训 router。
+
 原因：
 
 - router 是结构化决策任务，小模型通常就够

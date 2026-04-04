@@ -18,6 +18,7 @@ from app.models import ChatRequest, ChatResponse, EpisodeRecord, EpisodeState, T
 from app.services.baseline_benchmark import BaselineBenchmarkService, OpenAICompatibleModelClient, load_jsonl
 from app.services.evaluator import EpisodeEvaluator
 from app.services.orchestrator import get_orchestrator
+from app.services.seed_synthesis import synthesize_episode_seeds
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -136,6 +137,16 @@ def build_parser() -> argparse.ArgumentParser:
     benchmark_answer_parser.add_argument("--max-tokens", type=int, default=256, help="模型最大输出 token 数")
     benchmark_answer_parser.add_argument("--output", default=None, help="可选，输出评测结果 JSON 路径")
     benchmark_answer_parser.add_argument("--limit", type=int, default=None, help="最多评测多少条样本")
+
+    synthesize_parser = subparsers.add_parser("synthesize-episodes", help="按模板与槽位配置批量生成 episode seed")
+    synthesize_parser.add_argument(
+        "--config",
+        default="training/datasets/synthesis_templates.default.json",
+        help="合成配置 JSON 路径",
+    )
+    synthesize_parser.add_argument("--output-train", required=True, help="导出的 train seed JSONL 路径")
+    synthesize_parser.add_argument("--output-dev", required=True, help="导出的 dev seed JSONL 路径")
+    synthesize_parser.add_argument("--seed", type=int, default=None, help="可选，覆盖配置中的随机种子")
 
     subparsers.add_parser("meta", help="查看当前系统配置")
     return parser
@@ -260,6 +271,16 @@ def main() -> None:
             max_tokens=args.max_tokens,
             output_path=Path(args.output) if args.output else None,
             limit=args.limit,
+        )
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
+        return
+
+    if args.command == "synthesize-episodes":
+        summary = synthesize_episode_seeds(
+            config_path=Path(args.config),
+            output_train_path=Path(args.output_train),
+            output_dev_path=Path(args.output_dev),
+            seed=args.seed,
         )
         print(json.dumps(summary, ensure_ascii=False, indent=2))
         return
@@ -582,6 +603,7 @@ def _meta_output() -> str:
             "export-answer-lf",
         ],
         "eval_commands": ["eval", "benchmark-router", "benchmark-answer"],
+        "data_commands": ["synthesize-episodes"],
     }
     return json.dumps(payload, ensure_ascii=False, indent=2)
 

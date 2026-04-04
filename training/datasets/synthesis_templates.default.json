@@ -1,0 +1,187 @@
+{
+  "shop_id": "demo-shop",
+  "seed": 20260404,
+  "episode_prefixes": {
+    "train": "syn-train",
+    "dev": "syn-dev"
+  },
+  "scenarios": [
+    {
+      "name": "handoff_manual_support",
+      "entity_source": "none",
+      "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "query_templates": [
+        "这个问题我要人工处理",
+        "请直接转人工客服",
+        "我要投诉商家，麻烦人工介入",
+        "退款争议请人工处理",
+        "这个赔偿问题需要人工审核",
+        "请人工协助处理这件事",
+        "我要求人工介入处理",
+        "这单售后麻烦人工跟进",
+        "我要升级投诉，直接转人工",
+        "这个订单异常请人工专员处理",
+        "请转人工处理我的投诉",
+        "这个售后问题必须人工跟进",
+        "我要人工客服来处理这件事",
+        "请给我转人工专员",
+        "这个赔偿申请我要人工审核",
+        "我不接受机器人处理，请转人工",
+        "请安排人工客服跟进这个订单",
+        "投诉问题麻烦转人工",
+        "这个争议单请人工处理",
+        "麻烦人工介入审核这单",
+        "我要人工客服处理退款争议",
+        "这件事请人工客服接手",
+        "这个工单请人工专员处理",
+        "我需要人工帮我处理售后",
+        "这个问题请立刻转人工"
+      ]
+    },
+    {
+      "name": "ask_order_id_logistics",
+      "entity_source": "order",
+      "counts": {
+        "train": 16,
+        "dev": 6
+      },
+      "turn_templates": [
+        ["帮我看下快递到哪了", "{order_id}"],
+        ["物流进度帮我查一下", "{order_id}"],
+        ["我这单发到哪一步了", "{order_id}"],
+        ["帮我查下运单号", "{order_id}"]
+      ]
+    },
+    {
+      "name": "ask_order_id_order_status",
+      "entity_source": "order",
+      "counts": {
+        "train": 14,
+        "dev": 4
+      },
+      "turn_templates": [
+        ["帮我看下订单状态", "{order_id}"],
+        ["我这单支付成功了吗", "{order_id}"],
+        ["退款进度现在怎样", "{order_id}"],
+        ["帮我查下退款状态", "{order_id}"]
+      ]
+    },
+    {
+      "name": "ask_order_id_order_product_policy",
+      "entity_source": "order",
+      "counts": {
+        "train": 18,
+        "dev": 6
+      },
+      "turn_templates": [
+        ["我买的商品是什么材质，能退吗？", "{order_id}"],
+        ["我买的东西怎么洗，能退吗？", "{order_id}"],
+        ["我买的那件商品能退吗，材质是什么？", "{order_id}"],
+        ["这件商品是什么材质，能换货吗？", "{order_id}"]
+      ]
+    },
+    {
+      "name": "ask_product_name_lookup",
+      "entity_source": "product",
+      "counts": {
+        "train": 12,
+        "dev": 4
+      },
+      "turn_templates": [
+        ["这件商品有什么颜色", "{product_name}"],
+        ["这款商品是什么材质", "{product_name}"],
+        ["这个商品怎么清洁", "{product_name}"],
+        ["这个商品有哪些尺码", "{product_name}"]
+      ]
+    },
+    {
+      "name": "context_only_order_queries",
+      "entity_source": "order",
+      "top_level_fields": ["order_id"],
+      "counts": {
+        "train": 12,
+        "dev": 4
+      },
+      "query_templates": [
+        "帮我查下运单号",
+        "帮我看下订单状态",
+        "退款进度怎么样",
+        "这个商品能退吗"
+      ]
+    },
+    {
+      "name": "context_only_product_queries",
+      "entity_source": "product",
+      "top_level_fields": ["product_id"],
+      "counts": {
+        "train": 10,
+        "dev": 4
+      },
+      "query_templates": [
+        "这件商品是什么材质",
+        "这件商品有什么颜色",
+        "这件商品怎么洗",
+        "这件商品有哪些尺码"
+      ]
+    },
+    {
+      "name": "explicit_order_product_policy",
+      "entity_source": "order",
+      "counts": {
+        "train": 18,
+        "dev": 6
+      },
+      "query_templates": [
+        "{order_id} 的{product_short_name}是什么材质，能退吗",
+        "订单 {order_id} 这个{product_short_name}能退吗，材质是什么",
+        "我订单 {order_id} 买的{product_short_name}是什么材质，能退吗",
+        "{order_id} 这件商品怎么洗，能退吗"
+      ]
+    },
+    {
+      "name": "explicit_order_policy",
+      "entity_source": "order",
+      "counts": {
+        "train": 12,
+        "dev": 4
+      },
+      "query_templates": [
+        "{order_id} 的{product_short_name}能换货吗",
+        "订单 {order_id} 这个商品有保修吗",
+        "{order_id} 这单能退吗",
+        "订单 {order_id} 这个商品退款进度怎么样"
+      ]
+    },
+    {
+      "name": "explicit_order_product_lookup",
+      "entity_source": "order",
+      "counts": {
+        "train": 10,
+        "dev": 3
+      },
+      "query_templates": [
+        "{order_id} 的{product_short_name}有什么颜色",
+        "订单 {order_id} 这个商品有哪些尺码",
+        "{order_id} 的{product_short_name}是什么材质",
+        "订单 {order_id} 这个商品怎么洗"
+      ]
+    },
+    {
+      "name": "explicit_order_status_and_logistics",
+      "entity_source": "order",
+      "counts": {
+        "train": 16,
+        "dev": 6
+      },
+      "query_templates": [
+        "订单 {order_id} 现在到哪了",
+        "{order_id} 的运单号是多少",
+        "订单 {order_id} 支付成功了吗",
+        "{order_id} 退款状态怎么样"
+      ]
+    }
+  ]
+}

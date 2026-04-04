@@ -23,3 +23,23 @@
 {"episode_id":"dev-023","shop_id":"demo-shop","query":"这件商品怎么洗","product_id":"sku_unknown_789"}
 {"episode_id":"dev-024","shop_id":"demo-shop","query":"这个事情我要人工介入处理"}
 {"episode_id":"dev-025","shop_id":"demo-shop","query":"A1004 的记忆枕是什么材质，能退吗"}
+{"episode_id":"dev-026","shop_id":"demo-shop","query":"售后扯皮太久了，给我转人工"}
+{"episode_id":"dev-027","shop_id":"demo-shop","turns":[{"query":"帮我查退款进度"},{"query":"A1004"}]}
+{"episode_id":"dev-028","shop_id":"demo-shop","turns":[{"query":"我买的包有保修吗"},{"query":"A1006"}]}
+{"episode_id":"dev-029","shop_id":"demo-shop","query":"A1006 的双肩包是什么材质，能退吗"}
+{"episode_id":"dev-030","shop_id":"demo-shop","query":"帮我查运单号","order_id":"A1003"}
+{"episode_id":"dev-031","shop_id":"demo-shop","query":"订单 A1002 那双鞋是什么材质，能退吗"}
+{"episode_id":"dev-032","shop_id":"demo-shop","query":"这个退款我要求人工审核"}
+{"episode_id":"dev-033","shop_id":"demo-shop","turns":[{"query":"这条裤子是什么材质"},{"query":"FlexFit 运动裤"}]}
+{"episode_id":"dev-034","shop_id":"demo-shop","query":"我要升级投诉，直接人工处理"}
+{"episode_id":"dev-035","shop_id":"demo-shop","query":"这个订单异常请人工介入"}
+{"episode_id":"dev-036","shop_id":"demo-shop","turns":[{"query":"帮我看下订单状态"},{"query":"A1005"}]}
+{"episode_id":"dev-037","shop_id":"demo-shop","turns":[{"query":"我买的杯子有保修吗"},{"query":"A1003"}]}
+{"episode_id":"dev-038","shop_id":"demo-shop","query":"A1006 的包能装多大电脑"}
+{"episode_id":"dev-039","shop_id":"demo-shop","query":"订单 A1003 杯子怎么洗，能退吗"}
+{"episode_id":"dev-040","shop_id":"demo-shop","turns":[{"query":"帮我查这单运单号"},{"query":"A1001"}]}
+{"episode_id":"dev-041","shop_id":"demo-shop","query":"A1004 的记忆枕能换货吗"}
+{"episode_id":"dev-042","shop_id":"demo-shop","query":"订单 A1001 那件衣服是什么材质"}
+{"episode_id":"dev-043","shop_id":"demo-shop","turns":[{"query":"这个商品有什么颜色"},{"query":"ThermoMug 保温杯"}]}
+{"episode_id":"dev-044","shop_id":"demo-shop","query":"A1002 的鞋是什么材质"}
+{"episode_id":"dev-045","shop_id":"demo-shop","query":"麻烦人工审核这个赔偿问题"}

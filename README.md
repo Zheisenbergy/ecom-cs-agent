@@ -211,6 +211,15 @@ ecom-cs-agent benchmark-answer \
 - `router`: `Qwen/Qwen3-1.7B`
 - `answer`: `Qwen/Qwen3-4B-Instruct-2507`
 
+如果你想系统性扩数据，项目现在也支持一条最小可用的数据合成流水线：
+
+```bash
+ecom-cs-agent synthesize-episodes \
+  --config training/datasets/synthesis_templates.default.json \
+  --output-train training/datasets/episode_cases.synthetic.train.jsonl \
+  --output-dev training/datasets/episode_cases.synthetic.dev.jsonl
+```
+
 ## 关键文档
 
 - [系统架构](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/architecture.md)
@@ -218,6 +227,7 @@ ecom-cs-agent benchmark-answer \
 - [训练计划](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/training_plan.md)
 - [新手训练指南](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/beginner_training_guide.md)
 - [数据规范](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/data_spec.md)
+- [数据合成流水线](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/data_synthesis_pipeline.md)
 - [数据构建策略](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/data_strategy.md)
 - [数据蓝图](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/dataset_blueprint.md)
 - [Trace 工作流](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/trace_workflow.md)

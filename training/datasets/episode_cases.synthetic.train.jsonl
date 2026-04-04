@@ -1,0 +1,162 @@
+{"shop_id": "demo-shop", "query": "我要人工客服处理退款争议", "episode_id": "syn-train-001"}
+{"shop_id": "demo-shop", "turns": [{"query": "物流进度帮我查一下"}, {"query": "A1002"}], "episode_id": "syn-train-002"}
+{"shop_id": "demo-shop", "query": "订单 A1004 现在到哪了", "episode_id": "syn-train-003"}
+{"shop_id": "demo-shop", "query": "这个问题请立刻转人工", "episode_id": "syn-train-004"}
+{"shop_id": "demo-shop", "query": "这个赔偿问题需要人工审核", "episode_id": "syn-train-005"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的那件商品能退吗，材质是什么？"}, {"query": "A1004"}], "episode_id": "syn-train-006"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的东西怎么洗，能退吗？"}, {"query": "A1003"}], "episode_id": "syn-train-007"}
+{"shop_id": "demo-shop", "turns": [{"query": "这件商品有什么颜色"}, {"query": "UrbanStep 休闲鞋"}], "episode_id": "syn-train-008"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下快递到哪了"}, {"query": "A1005"}], "episode_id": "syn-train-009"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的那件商品能退吗，材质是什么？"}, {"query": "A1003"}], "episode_id": "syn-train-010"}
+{"shop_id": "demo-shop", "query": "这件事请人工客服接手", "episode_id": "syn-train-011"}
+{"shop_id": "demo-shop", "query": "A1001 退款状态怎么样", "episode_id": "syn-train-012"}
+{"shop_id": "demo-shop", "query": "订单 A1002 现在到哪了", "episode_id": "syn-train-013"}
+{"shop_id": "demo-shop", "query": "A1003 的保温杯有什么颜色", "episode_id": "syn-train-014"}
+{"shop_id": "demo-shop", "query": "我要升级投诉，直接转人工", "episode_id": "syn-train-015"}
+{"shop_id": "demo-shop", "query": "这个问题我要人工处理", "episode_id": "syn-train-016"}
+{"shop_id": "demo-shop", "query": "订单 A1005 这个商品退款进度怎么样", "episode_id": "syn-train-017"}
+{"shop_id": "demo-shop", "turns": [{"query": "这个商品有哪些尺码"}, {"query": "StormShell 冲锋衣"}], "episode_id": "syn-train-018"}
+{"shop_id": "demo-shop", "query": "订单 A1006 这个双肩包能退吗，材质是什么", "episode_id": "syn-train-019"}
+{"shop_id": "demo-shop", "product_id": "sku_thermomug_003", "query": "这件商品有什么颜色", "episode_id": "syn-train-020"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我查下运单号"}, {"query": "A1003"}], "episode_id": "syn-train-021"}
+{"shop_id": "demo-shop", "order_id": "A1005", "query": "帮我查下运单号", "episode_id": "syn-train-022"}
+{"shop_id": "demo-shop", "query": "我订单 A1004 买的记忆枕是什么材质，能退吗", "episode_id": "syn-train-023"}
+{"shop_id": "demo-shop", "query": "A1006 退款状态怎么样", "episode_id": "syn-train-024"}
+{"shop_id": "demo-shop", "order_id": "A1006", "query": "退款进度怎么样", "episode_id": "syn-train-025"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我查下运单号"}, {"query": "A1002"}], "episode_id": "syn-train-026"}
+{"shop_id": "demo-shop", "query": "这个赔偿申请我要人工审核", "episode_id": "syn-train-027"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单支付成功了吗"}, {"query": "A1006"}], "episode_id": "syn-train-028"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单发到哪一步了"}, {"query": "A1002"}], "episode_id": "syn-train-029"}
+{"shop_id": "demo-shop", "query": "订单 A1002 这个商品退款进度怎么样", "episode_id": "syn-train-030"}
+{"shop_id": "demo-shop", "query": "退款争议请人工处理", "episode_id": "syn-train-031"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的东西怎么洗，能退吗？"}, {"query": "A1002"}], "episode_id": "syn-train-032"}
+{"shop_id": "demo-shop", "query": "A1003 这件商品怎么洗，能退吗", "episode_id": "syn-train-033"}
+{"shop_id": "demo-shop", "order_id": "A1003", "query": "退款进度怎么样", "episode_id": "syn-train-034"}
+{"shop_id": "demo-shop", "order_id": "A1002", "query": "帮我看下订单状态", "episode_id": "syn-train-035"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我查下退款状态"}, {"query": "A1006"}], "episode_id": "syn-train-036"}
+{"shop_id": "demo-shop", "product_id": "sku_cloudrest_004", "query": "这件商品是什么材质", "episode_id": "syn-train-037"}
+{"shop_id": "demo-shop", "query": "我订单 A1002 买的休闲鞋是什么材质，能退吗", "episode_id": "syn-train-038"}
+{"shop_id": "demo-shop", "query": "A1003 的运单号是多少", "episode_id": "syn-train-039"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的东西怎么洗，能退吗？"}, {"query": "A1001"}], "episode_id": "syn-train-040"}
+{"shop_id": "demo-shop", "query": "A1004 的记忆枕是什么材质，能退吗", "episode_id": "syn-train-041"}
+{"shop_id": "demo-shop", "query": "A1005 这件商品怎么洗，能退吗", "episode_id": "syn-train-042"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下快递到哪了"}, {"query": "A1006"}], "episode_id": "syn-train-043"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的那件商品能退吗，材质是什么？"}, {"query": "A1006"}], "episode_id": "syn-train-044"}
+{"shop_id": "demo-shop", "query": "A1005 的运动裤有什么颜色", "episode_id": "syn-train-045"}
+{"shop_id": "demo-shop", "query": "麻烦人工介入审核这单", "episode_id": "syn-train-046"}
+{"shop_id": "demo-shop", "query": "A1005 的运动裤是什么材质，能退吗", "episode_id": "syn-train-047"}
+{"shop_id": "demo-shop", "query": "订单 A1005 支付成功了吗", "episode_id": "syn-train-048"}
+{"shop_id": "demo-shop", "turns": [{"query": "这个商品怎么清洁"}, {"query": "AeroPack 双肩包"}], "episode_id": "syn-train-049"}
+{"shop_id": "demo-shop", "query": "A1001 的运单号是多少", "episode_id": "syn-train-050"}
+{"shop_id": "demo-shop", "query": "订单 A1003 现在到哪了", "episode_id": "syn-train-051"}
+{"shop_id": "demo-shop", "query": "A1005 退款状态怎么样", "episode_id": "syn-train-052"}
+{"shop_id": "demo-shop", "query": "我订单 A1006 买的双肩包是什么材质，能退吗", "episode_id": "syn-train-053"}
+{"shop_id": "demo-shop", "product_id": "sku_aeropack_006", "query": "这件商品是什么材质", "episode_id": "syn-train-054"}
+{"shop_id": "demo-shop", "query": "请给我转人工专员", "episode_id": "syn-train-055"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下订单状态"}, {"query": "A1003"}], "episode_id": "syn-train-056"}
+{"shop_id": "demo-shop", "query": "订单 A1002 这个休闲鞋能退吗，材质是什么", "episode_id": "syn-train-057"}
+{"shop_id": "demo-shop", "query": "订单 A1006 这个商品退款进度怎么样", "episode_id": "syn-train-058"}
+{"shop_id": "demo-shop", "turns": [{"query": "这个商品怎么清洁"}, {"query": "FlexFit 运动裤"}], "episode_id": "syn-train-059"}
+{"shop_id": "demo-shop", "query": "A1003 的保温杯是什么材质，能退吗", "episode_id": "syn-train-060"}
+{"shop_id": "demo-shop", "product_id": "sku_aeropack_006", "query": "这件商品怎么洗", "episode_id": "syn-train-061"}
+{"shop_id": "demo-shop", "product_id": "sku_thermomug_003", "query": "这件商品怎么洗", "episode_id": "syn-train-062"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下订单状态"}, {"query": "A1005"}], "episode_id": "syn-train-063"}
+{"shop_id": "demo-shop", "query": "A1002 的休闲鞋有什么颜色", "episode_id": "syn-train-064"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我查下退款状态"}, {"query": "A1002"}], "episode_id": "syn-train-065"}
+{"shop_id": "demo-shop", "turns": [{"query": "这款商品是什么材质"}, {"query": "StormShell 冲锋衣"}], "episode_id": "syn-train-066"}
+{"shop_id": "demo-shop", "query": "请直接转人工客服", "episode_id": "syn-train-067"}
+{"shop_id": "demo-shop", "query": "这个争议单请人工处理", "episode_id": "syn-train-068"}
+{"shop_id": "demo-shop", "query": "我需要人工帮我处理售后", "episode_id": "syn-train-069"}
+{"shop_id": "demo-shop", "order_id": "A1002", "query": "退款进度怎么样", "episode_id": "syn-train-070"}
+{"shop_id": "demo-shop", "product_id": "sku_urbanstep_002", "query": "这件商品有什么颜色", "episode_id": "syn-train-071"}
+{"shop_id": "demo-shop", "turns": [{"query": "这件商品是什么材质，能换货吗？"}, {"query": "A1004"}], "episode_id": "syn-train-072"}
+{"shop_id": "demo-shop", "query": "订单 A1003 这个商品有哪些尺码", "episode_id": "syn-train-073"}
+{"shop_id": "demo-shop", "turns": [{"query": "这件商品是什么材质，能换货吗？"}, {"query": "A1001"}], "episode_id": "syn-train-074"}
+{"shop_id": "demo-shop", "turns": [{"query": "这件商品有什么颜色"}, {"query": "FlexFit 运动裤"}], "episode_id": "syn-train-075"}
+{"shop_id": "demo-shop", "query": "A1001 的冲锋衣是什么材质，能退吗", "episode_id": "syn-train-076"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单支付成功了吗"}, {"query": "A1004"}], "episode_id": "syn-train-077"}
+{"shop_id": "demo-shop", "turns": [{"query": "这个商品怎么清洁"}, {"query": "ThermoMug 保温杯"}], "episode_id": "syn-train-078"}
+{"shop_id": "demo-shop", "query": "A1002 的休闲鞋是什么材质，能退吗", "episode_id": "syn-train-079"}
+{"shop_id": "demo-shop", "product_id": "sku_urbanstep_002", "query": "这件商品是什么材质", "episode_id": "syn-train-080"}
+{"shop_id": "demo-shop", "query": "A1006 这单能退吗", "episode_id": "syn-train-081"}
+{"shop_id": "demo-shop", "query": "A1006 的运单号是多少", "episode_id": "syn-train-082"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下快递到哪了"}, {"query": "A1003"}], "episode_id": "syn-train-083"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我查下退款状态"}, {"query": "A1004"}], "episode_id": "syn-train-084"}
+{"shop_id": "demo-shop", "query": "我订单 A1001 买的冲锋衣是什么材质，能退吗", "episode_id": "syn-train-085"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下快递到哪了"}, {"query": "A1002"}], "episode_id": "syn-train-086"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单支付成功了吗"}, {"query": "A1003"}], "episode_id": "syn-train-087"}
+{"shop_id": "demo-shop", "turns": [{"query": "物流进度帮我查一下"}, {"query": "A1004"}], "episode_id": "syn-train-088"}
+{"shop_id": "demo-shop", "query": "订单 A1004 这个商品退款进度怎么样", "episode_id": "syn-train-089"}
+{"shop_id": "demo-shop", "product_id": "sku_flexfit_005", "query": "这件商品有什么颜色", "episode_id": "syn-train-090"}
+{"shop_id": "demo-shop", "order_id": "A1005", "query": "这个商品能退吗", "episode_id": "syn-train-091"}
+{"shop_id": "demo-shop", "query": "这个工单请人工专员处理", "episode_id": "syn-train-092"}
+{"shop_id": "demo-shop", "query": "请转人工处理我的投诉", "episode_id": "syn-train-093"}
+{"shop_id": "demo-shop", "query": "订单 A1001 这个商品有哪些尺码", "episode_id": "syn-train-094"}
+{"shop_id": "demo-shop", "order_id": "A1004", "query": "退款进度怎么样", "episode_id": "syn-train-095"}
+{"shop_id": "demo-shop", "turns": [{"query": "这个商品怎么清洁"}, {"query": "CloudRest 记忆枕"}], "episode_id": "syn-train-096"}
+{"shop_id": "demo-shop", "product_id": "sku_urbanstep_002", "query": "这件商品有哪些尺码", "episode_id": "syn-train-097"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的商品是什么材质，能退吗？"}, {"query": "A1004"}], "episode_id": "syn-train-098"}
+{"shop_id": "demo-shop", "turns": [{"query": "退款进度现在怎样"}, {"query": "A1002"}], "episode_id": "syn-train-099"}
+{"shop_id": "demo-shop", "query": "订单 A1005 现在到哪了", "episode_id": "syn-train-100"}
+{"shop_id": "demo-shop", "turns": [{"query": "退款进度现在怎样"}, {"query": "A1001"}], "episode_id": "syn-train-101"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单发到哪一步了"}, {"query": "A1004"}], "episode_id": "syn-train-102"}
+{"shop_id": "demo-shop", "query": "A1003 的保温杯能换货吗", "episode_id": "syn-train-103"}
+{"shop_id": "demo-shop", "query": "A1005 这单能退吗", "episode_id": "syn-train-104"}
+{"shop_id": "demo-shop", "turns": [{"query": "物流进度帮我查一下"}, {"query": "A1003"}], "episode_id": "syn-train-105"}
+{"shop_id": "demo-shop", "query": "订单 A1003 支付成功了吗", "episode_id": "syn-train-106"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单发到哪一步了"}, {"query": "A1003"}], "episode_id": "syn-train-107"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的那件商品能退吗，材质是什么？"}, {"query": "A1002"}], "episode_id": "syn-train-108"}
+{"shop_id": "demo-shop", "query": "A1005 的运动裤能换货吗", "episode_id": "syn-train-109"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的商品是什么材质，能退吗？"}, {"query": "A1002"}], "episode_id": "syn-train-110"}
+{"shop_id": "demo-shop", "query": "订单 A1006 现在到哪了", "episode_id": "syn-train-111"}
+{"shop_id": "demo-shop", "query": "A1004 退款状态怎么样", "episode_id": "syn-train-112"}
+{"shop_id": "demo-shop", "product_id": "sku_aeropack_006", "query": "这件商品有什么颜色", "episode_id": "syn-train-113"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下订单状态"}, {"query": "A1004"}], "episode_id": "syn-train-114"}
+{"shop_id": "demo-shop", "order_id": "A1002", "query": "这个商品能退吗", "episode_id": "syn-train-115"}
+{"shop_id": "demo-shop", "query": "订单 A1004 支付成功了吗", "episode_id": "syn-train-116"}
+{"shop_id": "demo-shop", "turns": [{"query": "物流进度帮我查一下"}, {"query": "A1006"}], "episode_id": "syn-train-117"}
+{"shop_id": "demo-shop", "order_id": "A1002", "query": "帮我查下运单号", "episode_id": "syn-train-118"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单支付成功了吗"}, {"query": "A1001"}], "episode_id": "syn-train-119"}
+{"shop_id": "demo-shop", "query": "请安排人工客服跟进这个订单", "episode_id": "syn-train-120"}
+{"shop_id": "demo-shop", "query": "A1004 的运单号是多少", "episode_id": "syn-train-121"}
+{"shop_id": "demo-shop", "turns": [{"query": "退款进度现在怎样"}, {"query": "A1006"}], "episode_id": "syn-train-122"}
+{"shop_id": "demo-shop", "order_id": "A1006", "query": "这个商品能退吗", "episode_id": "syn-train-123"}
+{"shop_id": "demo-shop", "query": "订单 A1004 这个商品怎么洗", "episode_id": "syn-train-124"}
+{"shop_id": "demo-shop", "turns": [{"query": "这件商品是什么材质，能换货吗？"}, {"query": "A1003"}], "episode_id": "syn-train-125"}
+{"shop_id": "demo-shop", "query": "这个售后问题必须人工跟进", "episode_id": "syn-train-126"}
+{"shop_id": "demo-shop", "query": "投诉问题麻烦转人工", "episode_id": "syn-train-127"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的东西怎么洗，能退吗？"}, {"query": "A1006"}], "episode_id": "syn-train-128"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的商品是什么材质，能退吗？"}, {"query": "A1001"}], "episode_id": "syn-train-129"}
+{"shop_id": "demo-shop", "query": "我要求人工介入处理", "episode_id": "syn-train-130"}
+{"shop_id": "demo-shop", "turns": [{"query": "我这单发到哪一步了"}, {"query": "A1001"}], "episode_id": "syn-train-131"}
+{"shop_id": "demo-shop", "order_id": "A1003", "query": "帮我查下运单号", "episode_id": "syn-train-132"}
+{"shop_id": "demo-shop", "query": "订单 A1003 这个保温杯能退吗，材质是什么", "episode_id": "syn-train-133"}
+{"shop_id": "demo-shop", "query": "我要人工客服来处理这件事", "episode_id": "syn-train-134"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下订单状态"}, {"query": "A1002"}], "episode_id": "syn-train-135"}
+{"shop_id": "demo-shop", "query": "订单 A1002 这个商品有保修吗", "episode_id": "syn-train-136"}
+{"shop_id": "demo-shop", "query": "A1003 的保温杯是什么材质", "episode_id": "syn-train-137"}
+{"shop_id": "demo-shop", "query": "这单售后麻烦人工跟进", "episode_id": "syn-train-138"}
+{"shop_id": "demo-shop", "query": "请人工协助处理这件事", "episode_id": "syn-train-139"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我查下运单号"}, {"query": "A1006"}], "episode_id": "syn-train-140"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的东西怎么洗，能退吗？"}, {"query": "A1004"}], "episode_id": "syn-train-141"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的商品是什么材质，能退吗？"}, {"query": "A1006"}], "episode_id": "syn-train-142"}
+{"shop_id": "demo-shop", "query": "订单 A1001 这个商品有保修吗", "episode_id": "syn-train-143"}
+{"shop_id": "demo-shop", "query": "订单 A1001 这个商品怎么洗", "episode_id": "syn-train-144"}
+{"shop_id": "demo-shop", "query": "A1002 的休闲鞋是什么材质", "episode_id": "syn-train-145"}
+{"shop_id": "demo-shop", "query": "A1001 这件商品怎么洗，能退吗", "episode_id": "syn-train-146"}
+{"shop_id": "demo-shop", "query": "订单 A1006 这个商品有保修吗", "episode_id": "syn-train-147"}
+{"shop_id": "demo-shop", "turns": [{"query": "这款商品是什么材质"}, {"query": "ThermoMug 保温杯"}], "episode_id": "syn-train-148"}
+{"shop_id": "demo-shop", "turns": [{"query": "这款商品是什么材质"}, {"query": "FlexFit 运动裤"}], "episode_id": "syn-train-149"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的商品是什么材质，能退吗？"}, {"query": "A1005"}], "episode_id": "syn-train-150"}
+{"shop_id": "demo-shop", "query": "这个订单异常请人工专员处理", "episode_id": "syn-train-151"}
+{"shop_id": "demo-shop", "turns": [{"query": "这件商品有什么颜色"}, {"query": "AeroPack 双肩包"}], "episode_id": "syn-train-152"}
+{"shop_id": "demo-shop", "query": "A1006 这件商品怎么洗，能退吗", "episode_id": "syn-train-153"}
+{"shop_id": "demo-shop", "query": "A1004 的记忆枕是什么材质", "episode_id": "syn-train-154"}
+{"shop_id": "demo-shop", "turns": [{"query": "我买的那件商品能退吗，材质是什么？"}, {"query": "A1001"}], "episode_id": "syn-train-155"}
+{"shop_id": "demo-shop", "query": "订单 A1004 这个记忆枕能退吗，材质是什么", "episode_id": "syn-train-156"}
+{"shop_id": "demo-shop", "query": "A1004 这单能退吗", "episode_id": "syn-train-157"}
+{"shop_id": "demo-shop", "turns": [{"query": "这件商品有什么颜色"}, {"query": "ThermoMug 保温杯"}], "episode_id": "syn-train-158"}
+{"shop_id": "demo-shop", "query": "我订单 A1005 买的运动裤是什么材质，能退吗", "episode_id": "syn-train-159"}
+{"shop_id": "demo-shop", "query": "我要投诉商家，麻烦人工介入", "episode_id": "syn-train-160"}
+{"shop_id": "demo-shop", "order_id": "A1005", "query": "退款进度怎么样", "episode_id": "syn-train-161"}
+{"shop_id": "demo-shop", "turns": [{"query": "帮我看下快递到哪了"}, {"query": "A1001"}], "episode_id": "syn-train-162"}
