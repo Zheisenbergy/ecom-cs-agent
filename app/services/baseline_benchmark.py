@@ -251,7 +251,9 @@ class BaselineBenchmarkService:
 
     @staticmethod
     def _router_prompt(row: dict[str, Any]) -> str:
-        return f"""你是电商客服 agent 的路由器。请根据输入输出一个 JSON 对象，不要输出解释，不要输出 markdown。
+        return f"""/no_think
+
+你是电商客服 agent 的路由器。请根据输入输出一个 JSON 对象，不要输出解释，不要输出 markdown。
 
 可选 route:
 - direct
@@ -286,7 +288,9 @@ state_before: {json.dumps(row.get("state_before", {}), ensure_ascii=False)}
 
     @staticmethod
     def _answer_prompt(row: dict[str, Any]) -> str:
-        return f"""你是电商客服回答模块。请根据 query、route、intent 和结构化 tool_steps 输出 JSON，不要输出解释，不要输出 markdown。
+        return f"""/no_think
+
+你是电商客服回答模块。请根据 query、route、intent 和结构化 tool_steps 输出 JSON，不要输出解释，不要输出 markdown。
 
 要求：
 - answer 必须是用户可见回答
@@ -324,7 +328,7 @@ def load_jsonl(path: Path, limit: Optional[int] = None) -> List[dict[str, Any]]:
 
 
 def _extract_json_object(text: str) -> Optional[dict[str, Any]]:
-    stripped = text.strip()
+    stripped = _strip_thinking_blocks(text).strip()
     candidates = [stripped]
     fenced = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", stripped, flags=re.DOTALL)
     candidates.extend(fenced)
@@ -341,6 +345,12 @@ def _extract_json_object(text: str) -> Optional[dict[str, Any]]:
         except Exception:
             continue
     return None
+
+
+def _strip_thinking_blocks(text: str) -> str:
+    # Qwen reasoning models may emit visible thinking blocks before the final JSON.
+    without_tags = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
+    return without_tags.strip()
 
 
 def _accuracy(gold: List[str], pred: List[str]) -> dict[str, Any]:
