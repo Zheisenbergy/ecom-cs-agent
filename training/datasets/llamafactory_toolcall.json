@@ -1,0 +1,118 @@
+[
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "StormShell 冲锋衣是什么材质？"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_product_info\", \"arguments\": {\"product_id\": \"sku_stormshell_001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"product_id\": \"sku_stormshell_001\", \"shop_id\": \"demo-shop\", \"name\": \"StormShell 冲锋衣\", \"category\": \"outerwear\", \"material\": \"防泼水外层 + 轻量化内里\", \"colors\": [\"黑色\", \"灰色\"], \"sizes\": [\"S\", \"M\", \"L\", \"XL\"], \"features\": [\"轻量\", \"防风\", \"日常通勤\"], \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里，当前颜色有 黑色, 灰色，尺码有 S, M, L, XL。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  },
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "这件衣服是什么材质？"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_product_info\", \"arguments\": {\"product_id\": \"sku_stormshell_001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"product_id\": \"sku_stormshell_001\", \"shop_id\": \"demo-shop\", \"name\": \"StormShell 冲锋衣\", \"category\": \"outerwear\", \"material\": \"防泼水外层 + 轻量化内里\", \"colors\": [\"黑色\", \"灰色\"], \"sizes\": [\"S\", \"M\", \"L\", \"XL\"], \"features\": [\"轻量\", \"防风\", \"日常通勤\"], \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里，当前颜色有 黑色, 灰色，尺码有 S, M, L, XL。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  },
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "帮我查订单 A1001 到哪了"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_logistics_status\", \"arguments\": {\"order_id\": \"A1001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"order_id\": \"A1001\", \"shop_id\": \"demo-shop\", \"carrier\": \"中通\", \"tracking_no\": \"ZT123456789\", \"status\": \"in_transit\", \"latest_event\": \"已到达杭州转运中心\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "订单 A1001 当前物流状态为 in_transit，承运商是 中通，最新物流信息是：已到达杭州转运中心。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  },
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "我的订单到哪了？"
+      },
+      {
+        "from": "gpt",
+        "value": "这个问题需要订单号才能继续查询，请先提供订单号。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  },
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "这件商品七天后还能退吗？"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_policy\", \"arguments\": {\"topic\": \"return_policy\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"topic\": \"return_policy\", \"shop_id\": \"demo-shop\", \"title\": \"退货规则\", \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  },
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "我想投诉商家并申请赔偿"
+      },
+      {
+        "from": "gpt",
+        "value": "这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "topic": "return_policy",
+    "shop_id": "demo-shop",
+    "title": "退货规则",
+    "summary": "签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。"
+  },
+  {
+    "topic": "refund_policy",
+    "shop_id": "demo-shop",
+    "title": "退款规则",
+    "summary": "退款审核通过后，原路退款通常会在 1 到 3 个工作日内完成，具体到账时间以支付渠道为准。"
+  },
+  {
+    "topic": "shipping_policy",
+    "shop_id": "demo-shop",
+    "title": "发货规则",
+    "summary": "现货订单通常会在工作日 48 小时内发出，预售商品以商品详情页说明为准。"
+  },
+  {
+    "topic": "exchange_policy",
+    "shop_id": "demo-shop",
+    "title": "换货规则",
+    "summary": "如商品存在尺码或颜色不合适等问题，可在签收后七个自然日内申请换货，具体以库存情况为准。"
+  },
+  {
+    "topic": "warranty_policy",
+    "shop_id": "demo-shop",
+    "title": "保修规则",
+    "summary": "箱包与杯具类商品在非人为损坏情况下支持 180 天质保，具体问题需提交照片后审核。"
+  },
+  {
+    "topic": "invoice_policy",
+    "shop_id": "demo-shop",
+    "title": "发票规则",
+    "summary": "支持开具电子发票，订单签收后可在订单详情页申请，通常会在 24 小时内开具完成。"
+  }
+]

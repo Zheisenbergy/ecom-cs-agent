@@ -1,0 +1,261 @@
+# 训练计划
+
+## 1. 训练主线
+
+第一阶段不做 RL，不做 Web，不做 RAG。
+
+第一阶段也不建议立即上模型替换运行主链路。
+
+更合理的顺序是：
+
+1. 先把规则环境跑稳
+2. 先把 episode 训练集和评测集做出来
+3. 先训练路由与动作决策模型
+4. 再训练回答模型
+5. 最后再做端到端联调
+
+当前最合理的训练目标是：
+
+- 训练模型在一个受限工具环境里完成 episode 闭环
+- 训练模型在必要时完成受控多工具串联
+
+当前阶段最推荐的数据方法见：
+
+- [data_strategy.md](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/data_strategy.md)
+- [dataset_blueprint.md](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/dataset_blueprint.md)
+
+而不是：
+
+- 训练模型记住商品和订单事实
+- 训练长期会话记忆
+
+## 1.1 什么时候正式开始训练模型
+
+建议满足下面 5 个条件后再开始第一轮 SFT：
+
+- 工具 schema 基本稳定，不会今天一个字段、明天一个字段
+- episode trace 结构已经稳定
+- eval 指标已经覆盖 route、ask_user、handoff、tool chain、groundedness
+- 规则系统在小型 gold eval 集上基本跑通
+- 你已经能明确区分“route 数据”“answer 数据”“多工具 chain 数据”
+
+如果这 5 条还没满足，就先不要急着训模型。
+
+否则会出现两个问题：
+
+- 训练数据格式反复变，前面做的数据很快作废
+- 模型训出来后你也很难判断退化到底来自模型还是来自环境
+
+## 1.2 现在这个项目到了哪一步
+
+按当前状态看，这个项目已经接近“可以开始准备第一轮模型训练”的阶段，但还不建议立刻全量替换线上主链路。
+
+更准确地说：
+
+- 现在可以开始做 router SFT 数据
+- 现在可以开始做 answer SFT 数据
+- 现在还不建议直接做 RL
+- 现在还不建议直接做端到端大一统训练
+
+## 1.3 第一轮训练应该先训什么
+
+推荐按这个顺序：
+
+### 第一步：训 Router
+
+目标：
+
+- 学会 `direct / internal_tool / handoff`
+- 学会 `ask_user`
+- 学会工具选择
+- 学会参数填充
+
+推荐：
+
+- 先做 `Qwen3-1.7B` 或 `Qwen3-4B` 的 LoRA SFT
+- 训练输入优先使用 `export-router-sft` 导出的 JSONL
+
+### 第二步：训 Answer
+
+目标：
+
+- 学会基于 observation 输出 grounded answer
+- 学会 not_found 风格回答
+- 学会 handoff 风格回答
+
+推荐：
+
+- 直接做 `Qwen3-4B` 的 LoRA SFT
+- 训练输入优先使用 `export-answer-sft` 导出的 JSONL
+
+### 第三步：再做联调
+
+流程：
+
+- 规则 router + 模型 answer
+- 模型 router + 规则 answer
+- 模型 router + 模型 answer
+
+这样能快速定位问题到底出在哪一层。
+
+## 1.4 现在就可以开始做什么
+
+按当前项目状态，已经可以开始下面这些事情：
+
+1. 运行 `run` 生成更多 episode trace
+2. 运行 `export-router-sft` 导出 router 数据
+3. 运行 `export-answer-sft` 导出 answer 数据
+4. 先跑未后训练模型的 baseline benchmark
+5. 手工清洗一版 train / dev
+6. 开始第一轮 LoRA SFT
+
+也就是说：
+
+- 现在可以开始“准备训练数据”
+- 现在也应该开始“记录未后训练基线指标”
+- 很快可以开始“第一轮模型训练”
+- 但还不建议直接把规则系统完全删掉
+
+## 2. 应该训练什么
+
+### 路由与动作决策
+
+训练目标：
+
+- direct / internal_tool / handoff
+- 是否 ask_user
+- 工具选择
+- 工具参数填充
+
+推荐模型：
+
+- `Qwen3-1.7B`
+- `Qwen3-4B`
+
+### 基于 observation 的回答
+
+训练目标：
+
+- 基于结构化 tool result 回答
+- 不要脱离 observation 编造
+- 客服风格对齐
+- 风险边界控制
+
+推荐模型：
+
+- `Qwen3-4B`
+
+## 3. 一条完整训练数据怎么定义
+
+建议按 episode 存，不按单轮存。
+
+一个典型 episode 包括：
+
+1. 用户发起问题
+2. 模型判断需要 ask_user 或 tool_call
+3. 如果 ask_user，则用户补充信息
+4. 模型继续 tool_call
+5. 工具返回 observation
+6. 模型输出 final answer 或 handoff
+
+## 4. 当前最值得补的数据类型
+
+- 直接回答型
+- 单工具闭环型
+- 澄清后闭环型
+- 转人工型
+
+如果后面想更突出 agentic，再补：
+
+- 多工具串联型
+
+例如：
+
+- `我订单 A1001 买的那件衣服是什么材质，能退吗？`
+
+这类样本要求模型学会：
+
+1. 先查订单
+2. 从订单结果拿 `product_id`
+3. 再查商品
+4. 再查规则
+5. 合成最终回答
+
+## 5. 优先评测项
+
+- 路由准确率
+- ask_user 准确率
+- 工具选择准确率
+- 参数填充准确率
+- groundedness
+- handoff 准确率
+- episode 完成率
+- 多工具链正确率
+- citation 命中率
+- 关键答案字段覆盖率
+
+建议先用规则系统在一份小型 gold eval 集上跑通这些指标，再接模型训练。
+
+当前评测器已经支持：
+
+- `auto_groundedness_accuracy` 自动诊断
+- `failure_summary` 失败桶摘要
+- `episode_pass_rate` 整条任务通过率
+
+在正式开始 Qwen LoRA SFT 前，建议额外记录两份未后训练 benchmark：
+
+- `benchmark-router`：关注 `route_macro_f1`、`intent_macro_f1`、`tool_macro_f1`、`ask_user_f1`、`handoff_f1`
+- `benchmark-answer`：关注 `answer_token_f1`、`grounded_f1`、`escalation_f1`
+
+推荐链路：
+
+- `AutoDL + LLaMA-Factory` 做训练
+- `AutoDL + vLLM(OpenAI-compatible)` 做训练前后 benchmark
+- 本项目 benchmark 不再依赖 `Ollama`
+
+这样训练后你就能直接比较：
+
+- 规则系统 eval
+- 未后训练 Qwen baseline
+- LoRA 后 Qwen
+
+## 5.1 第一轮训练数据量建议
+
+如果只是做项目学习和第一轮可用验证，不需要一开始就追求几万条。
+
+更实际的起步量级是：
+
+- router 数据：300 到 800 条高质量 episode
+- answer 数据：300 到 1000 条 observation-answer 样本
+- 多工具 chain 数据：至少 100 到 200 条
+- 独立 eval 集：50 到 150 条
+
+如果你只是想先把流程跑通，甚至可以先用：
+
+- 200 条 router
+- 200 条 answer
+- 30 条 eval
+
+先验证模型有没有学到，再决定是否扩数据。
+
+## 5.2 什么时候把模型真正接入运行时
+
+建议满足下面条件后，再把模型接入默认运行链路：
+
+- router 模型在 dev eval 上明显优于当前规则基线，或者至少覆盖更广
+- answer 模型的 groundedness 不能明显下降
+- not_found / handoff / ask_user 三类边界样本必须稳定
+- 多工具 chain 不能出现明显的循环调用或乱填参数
+
+如果这些条件没满足，就继续让规则系统充当教师和回退机制。
+
+## 6. 为什么现在不做 RL
+
+因为当前瓶颈不是偏好对齐，而是：
+
+- agent loop 是否稳定
+- 工具调用是否可靠
+- 结束条件是否清晰
+- 最终答案是否 grounded
+
+这些问题更适合先用 SFT 和规则环境打稳。

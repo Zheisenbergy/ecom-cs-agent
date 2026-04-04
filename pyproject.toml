@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecom-cs-agent"
+version = "0.1.0"
+description = "Terminal-based e-commerce customer support QA system"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "pydantic>=2.8.0,<3.0.0",
+]
+
+[project.scripts]
+ecom-cs-agent = "app.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+app = ["knowledge_base/*.json"]

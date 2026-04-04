@@ -1,0 +1,20 @@
+{
+  "ecom_cs_router_sft_train": {
+    "file_name": "router_sft.train.lf.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system"
+    }
+  },
+  "ecom_cs_router_sft_dev": {
+    "file_name": "router_sft.dev.lf.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system"
+    }
+  }
+}

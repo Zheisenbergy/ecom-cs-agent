@@ -1,0 +1,3 @@
+{"query":"七天后退货运费谁承担？","tool_name":"get_policy","tool_result":{"topic":"return_policy","summary":"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。"},"response":"根据当前店铺退货规则，签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。","grounded":true,"should_handoff":false,"style":"customer_support"}
+{"query":"帮我查订单 A1001 到哪了","tool_name":"get_logistics_status","tool_result":{"order_id":"A1001","carrier":"中通","status":"in_transit","latest_event":"已到达杭州转运中心"},"response":"订单 A1001 当前物流状态为 in_transit，承运商是中通，最新物流信息是：已到达杭州转运中心。","grounded":true,"should_handoff":false,"style":"customer_support"}
+{"query":"我想投诉商家并要求赔偿","tool_name":"","tool_result":{},"response":"这个问题涉及投诉与赔偿判断，建议转接人工客服进一步处理，我先帮你记录诉求。","grounded":false,"should_handoff":true,"style":"customer_support"}

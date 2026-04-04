@@ -1,0 +1,3 @@
+{"user_query":"这件衣服是什么材质？","route":"internal_tool","intent":"product_lookup","time_sensitive":false,"need_clarification":false,"rewrite_query":"查询 商品 材质","tool_name":"get_product_info","tool_arguments":{"product_id":"sku_stormshell_001"},"risk_level":"low"}
+{"user_query":"帮我查订单 A1001 到哪了","route":"internal_tool","intent":"logistics_status","time_sensitive":false,"need_clarification":false,"rewrite_query":"查询 订单 A1001 物流状态","tool_name":"get_logistics_status","tool_arguments":{"order_id":"A1001"},"risk_level":"low"}
+{"user_query":"我想投诉商家并申请赔偿","route":"handoff","intent":"complaint_or_manual_support","time_sensitive":false,"need_clarification":false,"rewrite_query":"投诉 商家 赔偿 人工处理","tool_name":"","tool_arguments":{},"risk_level":"high"}

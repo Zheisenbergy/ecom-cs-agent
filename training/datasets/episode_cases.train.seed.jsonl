@@ -1,0 +1,80 @@
+{"episode_id":"train-001","shop_id":"demo-shop","query":"你能帮我处理哪些问题？"}
+{"episode_id":"train-002","shop_id":"demo-shop","query":"帮我查订单 A1001 到哪了"}
+{"episode_id":"train-003","shop_id":"demo-shop","query":"A1001 的运单号是多少"}
+{"episode_id":"train-004","shop_id":"demo-shop","turns":[{"query":"我的快递到哪了？"},{"query":"A1002"}]}
+{"episode_id":"train-005","shop_id":"demo-shop","query":"StormShell 冲锋衣有啥颜色"}
+{"episode_id":"train-006","shop_id":"demo-shop","query":"UrbanStep 休闲鞋有哪些尺码"}
+{"episode_id":"train-007","shop_id":"demo-shop","turns":[{"query":"这双鞋怎么洗？"},{"query":"UrbanStep 休闲鞋"}]}
+{"episode_id":"train-008","shop_id":"demo-shop","query":"这件商品还能退吗"}
+{"episode_id":"train-009","shop_id":"demo-shop","query":"退款规则是什么"}
+{"episode_id":"train-010","shop_id":"demo-shop","query":"订单 A1002 退款状态怎么样"}
+{"episode_id":"train-011","shop_id":"demo-shop","query":"订单 A1001 支付了吗"}
+{"episode_id":"train-012","shop_id":"demo-shop","query":"订单 A1002 现在是什么状态"}
+{"episode_id":"train-013","shop_id":"demo-shop","query":"我订单 A1002 买的鞋怎么洗？"}
+{"episode_id":"train-014","shop_id":"demo-shop","query":"我订单 A1002 能退吗？"}
+{"episode_id":"train-015","shop_id":"demo-shop","query":"我订单 A1001 买的那件衣服是什么材质，能退吗？"}
+{"episode_id":"train-016","shop_id":"demo-shop","turns":[{"query":"我买的那件衣服是什么材质，能退吗？"},{"query":"A1001"}]}
+{"episode_id":"train-017","shop_id":"demo-shop","turns":[{"query":"我买的那双鞋怎么洗？"},{"query":"A1002"}]}
+{"episode_id":"train-018","shop_id":"demo-shop","query":"商家一直不处理，我要投诉并申请赔偿"}
+{"episode_id":"train-019","shop_id":"demo-shop","query":"帮我查订单 A9999 到哪了"}
+{"episode_id":"train-020","shop_id":"demo-shop","product_id":"sku_missing_999","query":"这件商品是什么材质？"}
+{"episode_id":"train-021","shop_id":"demo-shop","query":"ThermoMug 保温杯有什么颜色"}
+{"episode_id":"train-022","shop_id":"demo-shop","query":"CloudRest 记忆枕怎么清洁"}
+{"episode_id":"train-023","shop_id":"demo-shop","query":"FlexFit 运动裤是什么材质"}
+{"episode_id":"train-024","shop_id":"demo-shop","query":"AeroPack 双肩包有哪些尺寸"}
+{"episode_id":"train-025","shop_id":"demo-shop","query":"订单 A1003 到哪了"}
+{"episode_id":"train-026","shop_id":"demo-shop","query":"订单 A1004 退款状态怎么样"}
+{"episode_id":"train-027","shop_id":"demo-shop","query":"订单 A1005 支付了吗"}
+{"episode_id":"train-028","shop_id":"demo-shop","query":"发票规则是什么"}
+{"episode_id":"train-029","shop_id":"demo-shop","query":"保修规则是什么"}
+{"episode_id":"train-030","shop_id":"demo-shop","query":"我订单 A1006 买的双肩包是什么材质，能退吗？"}
+{"episode_id":"train-031","shop_id":"demo-shop","query":"我能查物流、订单和退货规则吗"}
+{"episode_id":"train-032","shop_id":"demo-shop","query":"A1004 物流现在到哪了"}
+{"episode_id":"train-033","shop_id":"demo-shop","query":"A1003 的运单号给我一下"}
+{"episode_id":"train-034","shop_id":"demo-shop","turns":[{"query":"物流进度帮我看下"},{"query":"A1006"}]}
+{"episode_id":"train-035","shop_id":"demo-shop","turns":[{"query":"订单发到哪了"},{"query":"A1004"}]}
+{"episode_id":"train-036","shop_id":"demo-shop","query":"CloudRest 记忆枕有哪些颜色"}
+{"episode_id":"train-037","shop_id":"demo-shop","query":"AeroPack 双肩包怎么清洁"}
+{"episode_id":"train-038","shop_id":"demo-shop","query":"ThermoMug 保温杯是什么材质"}
+{"episode_id":"train-039","shop_id":"demo-shop","query":"FlexFit 运动裤有啥颜色"}
+{"episode_id":"train-040","shop_id":"demo-shop","turns":[{"query":"这个杯子有多大容量"},{"query":"ThermoMug 保温杯"}]}
+{"episode_id":"train-041","shop_id":"demo-shop","turns":[{"query":"这款枕头是什么材质"},{"query":"CloudRest 记忆枕"}]}
+{"episode_id":"train-042","shop_id":"demo-shop","turns":[{"query":"这包能装多大电脑"},{"query":"AeroPack 双肩包"}]}
+{"episode_id":"train-043","shop_id":"demo-shop","query":"换货规则是什么"}
+{"episode_id":"train-044","shop_id":"demo-shop","query":"发货一般多久"}
+{"episode_id":"train-045","shop_id":"demo-shop","query":"杯子有保修吗"}
+{"episode_id":"train-046","shop_id":"demo-shop","query":"订单 A1004 退款进度怎样"}
+{"episode_id":"train-047","shop_id":"demo-shop","query":"A1003 支付了吗"}
+{"episode_id":"train-048","shop_id":"demo-shop","query":"A1002 订单现在什么状态"}
+{"episode_id":"train-049","shop_id":"demo-shop","query":"订单 A1006 退款状态怎么样"}
+{"episode_id":"train-050","shop_id":"demo-shop","query":"订单 A1004 到哪里了"}
+{"episode_id":"train-051","shop_id":"demo-shop","query":"我订单 A1003 买的杯子是什么颜色"}
+{"episode_id":"train-052","shop_id":"demo-shop","query":"订单 A1004 的枕头怎么洗"}
+{"episode_id":"train-053","shop_id":"demo-shop","query":"我订单 A1005 那条裤子是什么材质"}
+{"episode_id":"train-054","shop_id":"demo-shop","query":"A1006 那个包有哪些尺寸"}
+{"episode_id":"train-055","shop_id":"demo-shop","query":"我订单 A1003 的保温杯能退吗"}
+{"episode_id":"train-056","shop_id":"demo-shop","query":"我订单 A1004 的记忆枕能换货吗"}
+{"episode_id":"train-057","shop_id":"demo-shop","query":"订单 A1006 那个双肩包有保修吗"}
+{"episode_id":"train-058","shop_id":"demo-shop","query":"我订单 A1002 的鞋能退吗"}
+{"episode_id":"train-059","shop_id":"demo-shop","query":"订单 A1003 的杯子是什么材质，能退吗"}
+{"episode_id":"train-060","shop_id":"demo-shop","query":"A1004 那个枕头是什么材质，能退吗"}
+{"episode_id":"train-061","shop_id":"demo-shop","turns":[{"query":"我买的杯子是什么颜色，能退吗？"},{"query":"A1003"}]}
+{"episode_id":"train-062","shop_id":"demo-shop","turns":[{"query":"我买的包有保修吗"},{"query":"A1006"}]}
+{"episode_id":"train-063","shop_id":"demo-shop","turns":[{"query":"我买的裤子是什么材质"},{"query":"A1005"}]}
+{"episode_id":"train-064","shop_id":"demo-shop","query":"订单 A8888 到哪了"}
+{"episode_id":"train-065","shop_id":"demo-shop","query":"订单 A7777 支付了吗"}
+{"episode_id":"train-066","shop_id":"demo-shop","query":"订单 A6666 退款状态怎么样"}
+{"episode_id":"train-067","shop_id":"demo-shop","product_id":"sku_unknown_123","query":"这件商品怎么洗"}
+{"episode_id":"train-068","shop_id":"demo-shop","product_id":"sku_unknown_456","query":"这件商品有哪些尺码"}
+{"episode_id":"train-069","shop_id":"demo-shop","query":"我想找人工处理退款争议"}
+{"episode_id":"train-070","shop_id":"demo-shop","query":"我要投诉商家，麻烦人工介入"}
+{"episode_id":"train-071","shop_id":"demo-shop","query":"这个问题必须人工审核"}
+{"episode_id":"train-072","shop_id":"demo-shop","query":"我想申请赔偿，直接给我转人工"}
+{"episode_id":"train-073","shop_id":"demo-shop","turns":[{"query":"这个商品有啥颜色"},{"query":"ThermoMug 保温杯"}]}
+{"episode_id":"train-074","shop_id":"demo-shop","turns":[{"query":"这条裤子有哪些尺码"},{"query":"FlexFit 运动裤"}]}
+{"episode_id":"train-075","shop_id":"demo-shop","turns":[{"query":"这个包是什么材质，能退吗"},{"query":"A1006"}]}
+{"episode_id":"train-076","shop_id":"demo-shop","turns":[{"query":"我的订单退款怎么样了"},{"query":"A1004"}]}
+{"episode_id":"train-077","shop_id":"demo-shop","query":"A1001 那件冲锋衣怎么洗"}
+{"episode_id":"train-078","shop_id":"demo-shop","query":"A1003 那个杯子怎么洗"}
+{"episode_id":"train-079","shop_id":"demo-shop","query":"A1005 那条裤子怎么洗"}
+{"episode_id":"train-080","shop_id":"demo-shop","query":"订单 A1006 的运单号是多少"}

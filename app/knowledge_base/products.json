@@ -1,0 +1,68 @@
+[
+  {
+    "product_id": "sku_stormshell_001",
+    "shop_id": "demo-shop",
+    "name": "StormShell 冲锋衣",
+    "category": "outerwear",
+    "material": "防泼水外层 + 轻量化内里",
+    "colors": ["黑色", "灰色"],
+    "sizes": ["S", "M", "L", "XL"],
+    "features": ["轻量", "防风", "日常通勤"],
+    "care_instructions": "建议冷水轻柔洗涤，自然晾干。"
+  },
+  {
+    "product_id": "sku_urbanstep_002",
+    "shop_id": "demo-shop",
+    "name": "UrbanStep 休闲鞋",
+    "category": "shoes",
+    "material": "织物鞋面 + 橡胶鞋底",
+    "colors": ["白色", "黑蓝"],
+    "sizes": ["39", "40", "41", "42", "43"],
+    "features": ["轻便", "透气", "日常行走"],
+    "care_instructions": "建议局部擦拭，不建议整鞋机洗。"
+  },
+  {
+    "product_id": "sku_thermomug_003",
+    "shop_id": "demo-shop",
+    "name": "ThermoMug 保温杯",
+    "category": "drinkware",
+    "material": "304 不锈钢内胆 + 防滑杯身",
+    "colors": ["奶白", "深灰"],
+    "sizes": ["420ml", "520ml"],
+    "features": ["保温", "防漏", "通勤携带"],
+    "care_instructions": "建议手洗并保持杯盖干燥，不建议长时间浸泡。"
+  },
+  {
+    "product_id": "sku_cloudrest_004",
+    "shop_id": "demo-shop",
+    "name": "CloudRest 记忆枕",
+    "category": "home",
+    "material": "慢回弹记忆棉 + 透气针织枕套",
+    "colors": ["云灰", "米白"],
+    "sizes": ["标准款", "加高款"],
+    "features": ["慢回弹", "颈部支撑", "可拆洗枕套"],
+    "care_instructions": "枕芯不可水洗，外枕套可轻柔机洗。"
+  },
+  {
+    "product_id": "sku_flexfit_005",
+    "shop_id": "demo-shop",
+    "name": "FlexFit 运动裤",
+    "category": "apparel",
+    "material": "锦纶混纺弹力面料",
+    "colors": ["曜石黑", "深海蓝"],
+    "sizes": ["M", "L", "XL", "2XL"],
+    "features": ["弹力", "速干", "日常运动"],
+    "care_instructions": "建议反面冷水洗涤，避免高温烘干。"
+  },
+  {
+    "product_id": "sku_aeropack_006",
+    "shop_id": "demo-shop",
+    "name": "AeroPack 双肩包",
+    "category": "bags",
+    "material": "防泼水尼龙面料 + 加厚肩带",
+    "colors": ["曜黑", "雾蓝"],
+    "sizes": ["18L", "22L"],
+    "features": ["轻量", "多层收纳", "15 寸电脑仓"],
+    "care_instructions": "建议湿布擦拭清洁，避免机洗。"
+  }
+]

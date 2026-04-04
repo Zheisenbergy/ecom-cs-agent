@@ -1,0 +1,124 @@
+[
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "我的订单到哪了？"
+      },
+      {
+        "from": "gpt",
+        "value": "这个问题需要订单号才能继续查询，请先提供订单号。"
+      },
+      {
+        "from": "human",
+        "value": "A1001"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_logistics_status\", \"arguments\": {\"order_id\": \"A1001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"order_id\": \"A1001\", \"shop_id\": \"demo-shop\", \"carrier\": \"中通\", \"tracking_no\": \"ZT123456789\", \"status\": \"in_transit\", \"latest_event\": \"已到达杭州转运中心\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "订单 A1001 当前物流状态为 in_transit，承运商是 中通，最新物流信息是：已到达杭州转运中心。"
+      },
+      {
+        "from": "human",
+        "value": "那退款状态呢"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_order_status\", \"arguments\": {\"order_id\": \"A1001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"order_id\": \"A1001\", \"shop_id\": \"demo-shop\", \"product_id\": \"sku_stormshell_001\", \"product_name\": \"StormShell 冲锋衣\", \"payment_status\": \"paid\", \"fulfillment_status\": \"shipped\", \"refund_status\": \"none\", \"recipient_city\": \"杭州\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "订单 A1001 当前退款状态为 none。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并在多轮对话中记住上下文，基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  },
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "这件衣服是什么材质？"
+      },
+      {
+        "from": "gpt",
+        "value": "这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。"
+      },
+      {
+        "from": "human",
+        "value": "StormShell 冲锋衣"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_product_info\", \"arguments\": {\"product_id\": \"sku_stormshell_001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"product_id\": \"sku_stormshell_001\", \"shop_id\": \"demo-shop\", \"name\": \"StormShell 冲锋衣\", \"category\": \"outerwear\", \"material\": \"防泼水外层 + 轻量化内里\", \"colors\": [\"黑色\", \"灰色\"], \"sizes\": [\"S\", \"M\", \"L\", \"XL\"], \"features\": [\"轻量\", \"防风\", \"日常通勤\"], \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里，当前颜色有 黑色, 灰色，尺码有 S, M, L, XL。"
+      },
+      {
+        "from": "human",
+        "value": "还有什么颜色"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_product_info\", \"arguments\": {\"product_id\": \"sku_stormshell_001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"product_id\": \"sku_stormshell_001\", \"shop_id\": \"demo-shop\", \"name\": \"StormShell 冲锋衣\", \"category\": \"outerwear\", \"material\": \"防泼水外层 + 轻量化内里\", \"colors\": [\"黑色\", \"灰色\"], \"sizes\": [\"S\", \"M\", \"L\", \"XL\"], \"features\": [\"轻量\", \"防风\", \"日常通勤\"], \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "StormShell 冲锋衣 当前颜色有 黑色, 灰色。"
+      },
+      {
+        "from": "human",
+        "value": "怎么洗"
+      },
+      {
+        "from": "function_call",
+        "value": "{\"name\": \"get_product_info\", \"arguments\": {\"product_id\": \"sku_stormshell_001\"}}"
+      },
+      {
+        "from": "observation",
+        "value": "{\"status\": \"ok\", \"data\": {\"product_id\": \"sku_stormshell_001\", \"shop_id\": \"demo-shop\", \"name\": \"StormShell 冲锋衣\", \"category\": \"outerwear\", \"material\": \"防泼水外层 + 轻量化内里\", \"colors\": [\"黑色\", \"灰色\"], \"sizes\": [\"S\", \"M\", \"L\", \"XL\"], \"features\": [\"轻量\", \"防风\", \"日常通勤\"], \"care_instructions\": \"建议冷水轻柔洗涤，自然晾干。\"}, \"message\": \"\"}"
+      },
+      {
+        "from": "gpt",
+        "value": "StormShell 冲锋衣 的护理建议是：建议冷水轻柔洗涤，自然晾干。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并在多轮对话中记住上下文，基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  },
+  {
+    "conversations": [
+      {
+        "from": "human",
+        "value": "我想投诉商家并申请赔偿"
+      },
+      {
+        "from": "gpt",
+        "value": "这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。"
+      }
+    ],
+    "system": "你是电商客服场景下的工具调用助手。你需要根据用户问题选择合适的工具、补齐参数、在缺参时要求澄清，并在多轮对话中记住上下文，基于工具返回结果生成简洁准确的客服回复。",
+    "tools": "[{\"name\": \"get_product_info\", \"description\": \"查询店铺中某个商品的属性信息，例如材质、颜色、尺码和卖点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"product_id\": {\"type\": \"string\", \"description\": \"商品 ID，例如 sku_stormshell_001。\"}}, \"required\": [\"product_id\"]}}, {\"name\": \"get_policy\", \"description\": \"查询店铺规则，例如退货、退款、换货、保修和发货规则。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"topic\": {\"type\": \"string\", \"description\": \"规则主题，例如 return_policy、refund_policy、shipping_policy。\"}}, \"required\": [\"topic\"]}}, {\"name\": \"get_order_status\", \"description\": \"查询订单状态，例如支付状态、履约状态和退款状态。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}, {\"name\": \"get_logistics_status\", \"description\": \"查询订单物流信息，例如承运商、运单号和最新物流节点。\", \"parameters\": {\"type\": \"object\", \"properties\": {\"order_id\": {\"type\": \"string\", \"description\": \"订单号，例如 A1001。\"}}, \"required\": [\"order_id\"]}}]"
+  }
+]

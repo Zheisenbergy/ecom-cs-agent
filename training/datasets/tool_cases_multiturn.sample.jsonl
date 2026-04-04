@@ -1,0 +1,8 @@
+{"session_id":"dialogue-001","query":"我的订单到哪了？","shop_id":"demo-shop"}
+{"session_id":"dialogue-001","query":"A1001","shop_id":"demo-shop"}
+{"session_id":"dialogue-001","query":"那退款状态呢","shop_id":"demo-shop"}
+{"session_id":"dialogue-002","query":"这件衣服是什么材质？","shop_id":"demo-shop"}
+{"session_id":"dialogue-002","query":"StormShell 冲锋衣","shop_id":"demo-shop"}
+{"session_id":"dialogue-002","query":"还有什么颜色","shop_id":"demo-shop"}
+{"session_id":"dialogue-002","query":"怎么洗","shop_id":"demo-shop"}
+{"session_id":"dialogue-003","query":"我想投诉商家并申请赔偿","shop_id":"demo-shop"}

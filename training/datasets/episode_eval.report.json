@@ -1,0 +1,700 @@
+{
+  "num_cases": 11,
+  "summary": {
+    "route_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "intent_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "completed_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "any_ask_user_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "handoff_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "tool_chain_exact_match_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "turn_count_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "citation_set_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "answer_contains_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "answer_not_contains_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    },
+    "auto_groundedness_accuracy": {
+      "correct": 11,
+      "total": 11,
+      "accuracy": 1.0
+    }
+  },
+  "episode_pass_rate": {
+    "correct": 11,
+    "total": 11,
+    "accuracy": 1.0
+  },
+  "failure_summary": {},
+  "details": [
+    {
+      "episode_id": "eval-001",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "logistics_status",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_logistics_status"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_logistics_status"
+        ],
+        "answer_contains_accuracy": [
+          "A1001",
+          "中通",
+          "杭州转运中心"
+        ],
+        "answer_not_contains_accuracy": [
+          "未找到",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "logistics_status",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_logistics_status"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_logistics_status"
+        ],
+        "answer_contains_accuracy": "订单 A1001 当前物流状态为 in_transit，承运商是 中通，最新物流信息是：已到达杭州转运中心。",
+        "answer_not_contains_accuracy": "订单 A1001 当前物流状态为 in_transit，承运商是 中通，最新物流信息是：已到达杭州转运中心。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-002",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "logistics_status",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_logistics_status"
+        ],
+        "turn_count_accuracy": 2,
+        "citation_set_accuracy": [
+          "get_logistics_status"
+        ],
+        "answer_contains_accuracy": [
+          "A1001",
+          "中通",
+          "杭州转运中心"
+        ],
+        "answer_not_contains_accuracy": [
+          "未找到",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "logistics_status",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_logistics_status"
+        ],
+        "turn_count_accuracy": 2,
+        "citation_set_accuracy": [
+          "get_logistics_status"
+        ],
+        "answer_contains_accuracy": "订单 A1001 当前物流状态为 in_transit，承运商是 中通，最新物流信息是：已到达杭州转运中心。",
+        "answer_not_contains_accuracy": "订单 A1001 当前物流状态为 in_transit，承运商是 中通，最新物流信息是：已到达杭州转运中心。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-003",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "product_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_product_info"
+        ],
+        "turn_count_accuracy": 2,
+        "citation_set_accuracy": [
+          "get_product_info"
+        ],
+        "answer_contains_accuracy": [
+          "StormShell 冲锋衣",
+          "防泼水外层"
+        ],
+        "answer_not_contains_accuracy": [
+          "未找到",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "product_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_product_info"
+        ],
+        "turn_count_accuracy": 2,
+        "citation_set_accuracy": [
+          "get_product_info"
+        ],
+        "answer_contains_accuracy": "StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里，当前颜色有 黑色, 灰色，尺码有 S, M, L, XL。",
+        "answer_not_contains_accuracy": "StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里，当前颜色有 黑色, 灰色，尺码有 S, M, L, XL。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-004",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_policy"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_policy"
+        ],
+        "answer_contains_accuracy": [
+          "七个自然日",
+          "退货运费"
+        ],
+        "answer_not_contains_accuracy": [
+          "未找到",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_policy"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_policy"
+        ],
+        "answer_contains_accuracy": "签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "answer_not_contains_accuracy": "签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-005",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_product_policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "answer_contains_accuracy": [
+          "A1001",
+          "StormShell 冲锋衣",
+          "防泼水外层",
+          "七个自然日"
+        ],
+        "answer_not_contains_accuracy": [
+          "未找到",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_product_policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "answer_contains_accuracy": "订单 A1001 对应商品是 StormShell 冲锋衣。StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "answer_not_contains_accuracy": "订单 A1001 对应商品是 StormShell 冲锋衣。StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-006",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_product_policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "turn_count_accuracy": 2,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "answer_contains_accuracy": [
+          "A1001",
+          "StormShell 冲锋衣",
+          "防泼水外层",
+          "七个自然日"
+        ],
+        "answer_not_contains_accuracy": [
+          "未找到",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_product_policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "turn_count_accuracy": 2,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_product_info",
+          "get_policy"
+        ],
+        "answer_contains_accuracy": "订单 A1001 对应商品是 StormShell 冲锋衣。StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "answer_not_contains_accuracy": "订单 A1001 对应商品是 StormShell 冲锋衣。StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-007",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "handoff",
+        "intent_accuracy": "complaint_or_manual_support",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": [],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [],
+        "answer_contains_accuracy": [
+          "转接人工客服"
+        ],
+        "answer_not_contains_accuracy": [
+          "get_",
+          "未找到"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "handoff",
+        "intent_accuracy": "complaint_or_manual_support",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": [],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [],
+        "answer_contains_accuracy": "这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。",
+        "answer_not_contains_accuracy": "这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-008",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_product_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_product_info"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_product_info"
+        ],
+        "answer_contains_accuracy": [
+          "A1002",
+          "UrbanStep 休闲鞋",
+          "不建议整鞋机洗"
+        ],
+        "answer_not_contains_accuracy": [
+          "get_policy",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_product_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_product_info"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_product_info"
+        ],
+        "answer_contains_accuracy": "订单 A1002 对应商品是 UrbanStep 休闲鞋。UrbanStep 休闲鞋 的护理建议是：建议局部擦拭，不建议整鞋机洗。",
+        "answer_not_contains_accuracy": "订单 A1002 对应商品是 UrbanStep 休闲鞋。UrbanStep 休闲鞋 的护理建议是：建议局部擦拭，不建议整鞋机洗。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-009",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_policy"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_policy"
+        ],
+        "answer_contains_accuracy": [
+          "A1002",
+          "UrbanStep 休闲鞋",
+          "七个自然日"
+        ],
+        "answer_not_contains_accuracy": [
+          "get_product_info",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "order_policy_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_order_status",
+          "get_policy"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [
+          "get_order_status",
+          "get_policy"
+        ],
+        "answer_contains_accuracy": "订单 A1002 对应商品是 UrbanStep 休闲鞋。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "answer_not_contains_accuracy": "订单 A1002 对应商品是 UrbanStep 休闲鞋。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-010",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "logistics_status",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_logistics_status"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [],
+        "answer_contains_accuracy": [
+          "未找到对应物流信息",
+          "检查"
+        ],
+        "answer_not_contains_accuracy": [
+          "杭州转运中心",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "logistics_status",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_logistics_status"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [],
+        "answer_contains_accuracy": "未找到对应物流信息。请检查你提供的商品 ID、订单号或查询主题。",
+        "answer_not_contains_accuracy": "未找到对应物流信息。请检查你提供的商品 ID、订单号或查询主题。",
+        "auto_groundedness_accuracy": true
+      }
+    },
+    {
+      "episode_id": "eval-011",
+      "passed": true,
+      "failed_metrics": [],
+      "checks": {
+        "route_accuracy": true,
+        "intent_accuracy": true,
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": true,
+        "handoff_accuracy": true,
+        "tool_chain_exact_match_accuracy": true,
+        "turn_count_accuracy": true,
+        "citation_set_accuracy": true,
+        "answer_contains_accuracy": true,
+        "answer_not_contains_accuracy": true
+      },
+      "expected": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "product_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_product_info"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [],
+        "answer_contains_accuracy": [
+          "未找到对应商品",
+          "检查"
+        ],
+        "answer_not_contains_accuracy": [
+          "StormShell",
+          "转人工"
+        ]
+      },
+      "predicted": {
+        "route_accuracy": "internal_tool",
+        "intent_accuracy": "product_lookup",
+        "completed_accuracy": true,
+        "any_ask_user_accuracy": false,
+        "handoff_accuracy": false,
+        "tool_chain_exact_match_accuracy": [
+          "get_product_info"
+        ],
+        "turn_count_accuracy": 1,
+        "citation_set_accuracy": [],
+        "answer_contains_accuracy": "未找到对应商品。请检查你提供的商品 ID、订单号或查询主题。",
+        "answer_not_contains_accuracy": "未找到对应商品。请检查你提供的商品 ID、订单号或查询主题。",
+        "auto_groundedness_accuracy": true
+      }
+    }
+  ],
+  "input": "training/datasets/episode_eval.sample.jsonl"
+}

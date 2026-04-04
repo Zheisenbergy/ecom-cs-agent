@@ -1,0 +1,25 @@
+{"episode_id":"dev-001","shop_id":"demo-shop","query":"你能帮我做什么"}
+{"episode_id":"dev-002","shop_id":"demo-shop","query":"订单 A1002 发到哪一步了"}
+{"episode_id":"dev-003","shop_id":"demo-shop","query":"订单 A1002 运单号多少"}
+{"episode_id":"dev-004","shop_id":"demo-shop","query":"StormShell 冲锋衣是什么材质"}
+{"episode_id":"dev-005","shop_id":"demo-shop","turns":[{"query":"这件衣服有啥颜色？"},{"query":"StormShell 冲锋衣"}]}
+{"episode_id":"dev-006","shop_id":"demo-shop","query":"退货规则是什么"}
+{"episode_id":"dev-007","shop_id":"demo-shop","query":"订单 A1001 退款状态怎么样"}
+{"episode_id":"dev-008","shop_id":"demo-shop","query":"我订单 A1001 那件衣服有啥颜色"}
+{"episode_id":"dev-009","shop_id":"demo-shop","query":"我订单 A1001 那件衣服能退吗"}
+{"episode_id":"dev-010","shop_id":"demo-shop","query":"这个问题我就要人工来处理"}
+{"episode_id":"dev-011","shop_id":"demo-shop","query":"ThermoMug 保温杯怎么洗"}
+{"episode_id":"dev-012","shop_id":"demo-shop","query":"订单 A1006 到哪了"}
+{"episode_id":"dev-013","shop_id":"demo-shop","query":"电子发票怎么开"}
+{"episode_id":"dev-014","shop_id":"demo-shop","query":"订单 A1004 运到哪一步了"}
+{"episode_id":"dev-015","shop_id":"demo-shop","turns":[{"query":"这款枕头有什么颜色"},{"query":"CloudRest 记忆枕"}]}
+{"episode_id":"dev-016","shop_id":"demo-shop","query":"FlexFit 运动裤有哪些尺码"}
+{"episode_id":"dev-017","shop_id":"demo-shop","query":"换货规则怎么说"}
+{"episode_id":"dev-018","shop_id":"demo-shop","query":"订单 A1005 现在支付成功了吗"}
+{"episode_id":"dev-019","shop_id":"demo-shop","query":"我订单 A1006 那个包有保修吗"}
+{"episode_id":"dev-020","shop_id":"demo-shop","query":"我订单 A1003 那个杯子能退吗"}
+{"episode_id":"dev-021","shop_id":"demo-shop","turns":[{"query":"我买的那只杯子是什么颜色"},{"query":"A1003"}]}
+{"episode_id":"dev-022","shop_id":"demo-shop","query":"订单 A9999 到哪一步了"}
+{"episode_id":"dev-023","shop_id":"demo-shop","query":"这件商品怎么洗","product_id":"sku_unknown_789"}
+{"episode_id":"dev-024","shop_id":"demo-shop","query":"这个事情我要人工介入处理"}
+{"episode_id":"dev-025","shop_id":"demo-shop","query":"A1004 的记忆枕是什么材质，能退吗"}

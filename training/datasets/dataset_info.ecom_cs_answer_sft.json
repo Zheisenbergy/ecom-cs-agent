@@ -1,0 +1,20 @@
+{
+  "ecom_cs_answer_sft_dev": {
+    "file_name": "answer_sft.dev.lf.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system"
+    }
+  },
+  "ecom_cs_answer_sft_train": {
+    "file_name": "answer_sft.train.lf.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system"
+    }
+  }
+}

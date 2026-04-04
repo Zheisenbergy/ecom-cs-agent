@@ -1,0 +1,42 @@
+[
+  {
+    "order_id": "A1001",
+    "shop_id": "demo-shop",
+    "carrier": "中通",
+    "tracking_no": "ZT123456789",
+    "status": "in_transit",
+    "latest_event": "已到达杭州转运中心"
+  },
+  {
+    "order_id": "A1002",
+    "shop_id": "demo-shop",
+    "carrier": "圆通",
+    "tracking_no": "YT987654321",
+    "status": "pending_shipment",
+    "latest_event": "订单已支付，等待仓库出库"
+  },
+  {
+    "order_id": "A1003",
+    "shop_id": "demo-shop",
+    "carrier": "顺丰",
+    "tracking_no": "SF456789123",
+    "status": "delivered",
+    "latest_event": "包裹已签收，签收人本人。"
+  },
+  {
+    "order_id": "A1004",
+    "shop_id": "demo-shop",
+    "carrier": "京东物流",
+    "tracking_no": "JD321654987",
+    "status": "in_transit",
+    "latest_event": "包裹已从苏州分拣中心发出。"
+  },
+  {
+    "order_id": "A1006",
+    "shop_id": "demo-shop",
+    "carrier": "韵达",
+    "tracking_no": "YD741852963",
+    "status": "in_transit",
+    "latest_event": "包裹已到达广州天河网点。"
+  }
+]

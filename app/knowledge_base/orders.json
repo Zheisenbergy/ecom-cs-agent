@@ -1,0 +1,62 @@
+[
+  {
+    "order_id": "A1001",
+    "shop_id": "demo-shop",
+    "product_id": "sku_stormshell_001",
+    "product_name": "StormShell 冲锋衣",
+    "payment_status": "paid",
+    "fulfillment_status": "shipped",
+    "refund_status": "none",
+    "recipient_city": "杭州"
+  },
+  {
+    "order_id": "A1002",
+    "shop_id": "demo-shop",
+    "product_id": "sku_urbanstep_002",
+    "product_name": "UrbanStep 休闲鞋",
+    "payment_status": "paid",
+    "fulfillment_status": "processing",
+    "refund_status": "reviewing",
+    "recipient_city": "上海"
+  },
+  {
+    "order_id": "A1003",
+    "shop_id": "demo-shop",
+    "product_id": "sku_thermomug_003",
+    "product_name": "ThermoMug 保温杯",
+    "payment_status": "paid",
+    "fulfillment_status": "delivered",
+    "refund_status": "none",
+    "recipient_city": "南京"
+  },
+  {
+    "order_id": "A1004",
+    "shop_id": "demo-shop",
+    "product_id": "sku_cloudrest_004",
+    "product_name": "CloudRest 记忆枕",
+    "payment_status": "paid",
+    "fulfillment_status": "shipped",
+    "refund_status": "approved",
+    "recipient_city": "苏州"
+  },
+  {
+    "order_id": "A1005",
+    "shop_id": "demo-shop",
+    "product_id": "sku_flexfit_005",
+    "product_name": "FlexFit 运动裤",
+    "payment_status": "pending",
+    "fulfillment_status": "pending_payment",
+    "refund_status": "none",
+    "recipient_city": "北京"
+  },
+  {
+    "order_id": "A1006",
+    "shop_id": "demo-shop",
+    "product_id": "sku_aeropack_006",
+    "product_name": "AeroPack 双肩包",
+    "payment_status": "paid",
+    "fulfillment_status": "shipped",
+    "refund_status": "none",
+    "recipient_city": "广州"
+  }
+]

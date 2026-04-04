@@ -1,0 +1,7 @@
+{"episode_id":"ep-001","shop_id":"demo-shop","query":"帮我查订单 A1001 到哪了"}
+{"episode_id":"ep-002","shop_id":"demo-shop","turns":[{"query":"我的订单到哪了？"},{"query":"A1001"}]}
+{"episode_id":"ep-003","shop_id":"demo-shop","turns":[{"query":"这件衣服是什么材质？"},{"query":"StormShell 冲锋衣"}]}
+{"episode_id":"ep-004","shop_id":"demo-shop","query":"这件商品七天后还能退吗？"}
+{"episode_id":"ep-005","shop_id":"demo-shop","query":"我订单 A1001 买的那件衣服是什么材质，能退吗？"}
+{"episode_id":"ep-006","shop_id":"demo-shop","turns":[{"query":"我买的那件衣服是什么材质，能退吗？"},{"query":"A1001"}]}
+{"episode_id":"ep-007","shop_id":"demo-shop","query":"我想投诉商家并申请赔偿"}

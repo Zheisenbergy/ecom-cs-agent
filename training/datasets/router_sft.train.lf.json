@@ -1,0 +1,962 @@
+[
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n你能帮我处理哪些问题？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"你能帮我处理哪些问题\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-001",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n帮我查订单 A1001 到哪了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1001\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"帮我查订单 A1001 到哪了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-002",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1001 的运单号是多少\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1001\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1001 的运单号是多少\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-003",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我的快递到哪了？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我的快递到哪了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-004",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1002\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"我的快递到哪了？\",\n    \"intent\": \"logistics_status\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_logistics_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"我的快递到哪了？\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1002\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-004",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nStormShell 冲锋衣有啥颜色\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_stormshell_001\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"StormShell 冲锋衣有啥颜色\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-005",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nUrbanStep 休闲鞋有哪些尺码\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_urbanstep_002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"UrbanStep 休闲鞋有哪些尺码\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-006",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这双鞋怎么洗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {}, \"missing_slots\": [\"product_id\"], \"need_clarification\": true, \"rewrite_query\": \"这双鞋怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-007",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nUrbanStep 休闲鞋\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"这双鞋怎么洗？\",\n    \"intent\": \"product_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_product_info\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"product_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"这双鞋怎么洗？\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_urbanstep_002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"UrbanStep 休闲鞋\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-007",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这件商品还能退吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"policy_lookup\", \"tool_name\": \"get_policy\", \"tool_arguments\": {\"topic\": \"return_policy\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这件商品还能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-008",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n退款规则是什么\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"policy_lookup\", \"tool_name\": \"get_policy\", \"tool_arguments\": {\"topic\": \"refund_policy\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"退款规则是什么\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-009",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1002 退款状态怎么样\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1002 退款状态怎么样\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-010",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1001 支付了吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1001\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1001 支付了吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-011",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1002 现在是什么状态\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1002 现在是什么状态\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-012",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1002 买的鞋怎么洗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1002 买的鞋怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-013",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1002 能退吗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1002 能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-014",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1001 买的那件衣服是什么材质，能退吗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1001\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1001 买的那件衣服是什么材质，能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-015",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我买的那件衣服是什么材质，能退吗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我买的那件衣服是什么材质，能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-016",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1001\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"我买的那件衣服是什么材质，能退吗？\",\n    \"intent\": \"order_product_policy_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_order_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"我买的那件衣服是什么材质，能退吗？\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1001\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1001\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-016",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我买的那双鞋怎么洗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我买的那双鞋怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-017",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1002\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"我买的那双鞋怎么洗？\",\n    \"intent\": \"order_product_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_order_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"我买的那双鞋怎么洗？\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1002\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-017",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n商家一直不处理，我要投诉并申请赔偿\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"handoff\", \"intent\": \"complaint_or_manual_support\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"商家一直不处理，我要投诉并申请赔偿\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-018",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n帮我查订单 A9999 到哪了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A9999\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"帮我查订单 A9999 到哪了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-019",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这件商品是什么材质？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"product_id\": \"sku_missing_999\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_missing_999\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这件商品是什么材质\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-020",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nThermoMug 保温杯有什么颜色\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_thermomug_003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"ThermoMug 保温杯有什么颜色\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-021",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nCloudRest 记忆枕怎么清洁\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_cloudrest_004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"CloudRest 记忆枕怎么清洁\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-022",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nFlexFit 运动裤是什么材质\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_flexfit_005\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"FlexFit 运动裤是什么材质\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-023",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nAeroPack 双肩包有哪些尺寸\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"AeroPack 双肩包有哪些尺寸\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-024",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1003 到哪了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1003 到哪了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-025",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1004 退款状态怎么样\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1004 退款状态怎么样\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-026",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1005 支付了吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1005\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1005 支付了吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-027",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n发票规则是什么\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"policy_lookup\", \"tool_name\": \"get_policy\", \"tool_arguments\": {\"topic\": \"invoice_policy\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"发票规则是什么\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-028",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n保修规则是什么\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"policy_lookup\", \"tool_name\": \"get_policy\", \"tool_arguments\": {\"topic\": \"warranty_policy\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"保修规则是什么\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-029",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1006 买的双肩包是什么材质，能退吗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1006\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1006 买的双肩包是什么材质，能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-030",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我能查物流、订单和退货规则吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我能查物流、订单和退货规则吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-031",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1004 物流现在到哪了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1004 物流现在到哪了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-032",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1003 的运单号给我一下\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1003 的运单号给我一下\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-033",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n物流进度帮我看下\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"物流进度帮我看下\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-034",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1006\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"物流进度帮我看下\",\n    \"intent\": \"logistics_status\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_logistics_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"物流进度帮我看下\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1006\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1006\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-034",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单发到哪了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"订单发到哪了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-035",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1004\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"订单发到哪了\",\n    \"intent\": \"logistics_status\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_logistics_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"订单发到哪了\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1004\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-035",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nCloudRest 记忆枕有哪些颜色\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_cloudrest_004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"CloudRest 记忆枕有哪些颜色\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-036",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nAeroPack 双肩包怎么清洁\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_aeropack_006\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"AeroPack 双肩包怎么清洁\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-037",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nThermoMug 保温杯是什么材质\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_thermomug_003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"ThermoMug 保温杯是什么材质\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-038",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nFlexFit 运动裤有啥颜色\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_flexfit_005\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"FlexFit 运动裤有啥颜色\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-039",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这个杯子有多大容量\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这个杯子有多大容量\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-040",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nThermoMug 保温杯\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"这个杯子有多大容量\",\n    \"intent\": \"general_direct_answer\",\n    \"route\": \"direct\",\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"completed\"\n  },\n  \"recent_queries\": [\n    \"这个杯子有多大容量\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"ThermoMug 保温杯\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-040",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这款枕头是什么材质\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {}, \"missing_slots\": [\"product_id\"], \"need_clarification\": true, \"rewrite_query\": \"这款枕头是什么材质\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-041",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nCloudRest 记忆枕\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"这款枕头是什么材质\",\n    \"intent\": \"product_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_product_info\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"product_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"这款枕头是什么材质\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_cloudrest_004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"CloudRest 记忆枕\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-041",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这包能装多大电脑\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这包能装多大电脑\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-042",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nAeroPack 双肩包\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"这包能装多大电脑\",\n    \"intent\": \"general_direct_answer\",\n    \"route\": \"direct\",\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"completed\"\n  },\n  \"recent_queries\": [\n    \"这包能装多大电脑\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"AeroPack 双肩包\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-042",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n换货规则是什么\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"policy_lookup\", \"tool_name\": \"get_policy\", \"tool_arguments\": {\"topic\": \"exchange_policy\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"换货规则是什么\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-043",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n发货一般多久\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"发货一般多久\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-044",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n杯子有保修吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"policy_lookup\", \"tool_name\": \"get_policy\", \"tool_arguments\": {\"topic\": \"warranty_policy\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"杯子有保修吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-045",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1004 退款进度怎样\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1004 退款进度怎样\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-046",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1003 支付了吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1003 支付了吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-047",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1002 订单现在什么状态\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1002 订单现在什么状态\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-048",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1006 退款状态怎么样\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1006\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1006 退款状态怎么样\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-049",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1004 到哪里了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1004 到哪里了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-050",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1003 买的杯子是什么颜色\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1003 买的杯子是什么颜色\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-051",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1004 的枕头怎么洗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1004 的枕头怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-052",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1005 那条裤子是什么材质\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1005\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1005 那条裤子是什么材质\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-053",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1006 那个包有哪些尺寸\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1006 那个包有哪些尺寸\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-054",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1003 的保温杯能退吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1003 的保温杯能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-055",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1004 的记忆枕能换货吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1004 的记忆枕能换货吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-056",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1006 那个双肩包有保修吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1006\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1006 那个双肩包有保修吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-057",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我订单 A1002 的鞋能退吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1002\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我订单 A1002 的鞋能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-058",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1003 的杯子是什么材质，能退吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1003 的杯子是什么材质，能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-059",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1004 那个枕头是什么材质，能退吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1004 那个枕头是什么材质，能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-060",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我买的杯子是什么颜色，能退吗？\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我买的杯子是什么颜色，能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-061",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1003\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"我买的杯子是什么颜色，能退吗？\",\n    \"intent\": \"order_product_policy_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_order_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"我买的杯子是什么颜色，能退吗？\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1003\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-061",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我买的包有保修吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我买的包有保修吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-062",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1006\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"我买的包有保修吗\",\n    \"intent\": \"order_policy_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_order_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"我买的包有保修吗\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1006\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1006\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-062",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我买的裤子是什么材质\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我买的裤子是什么材质\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-063",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1005\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"我买的裤子是什么材质\",\n    \"intent\": \"order_product_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_order_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"我买的裤子是什么材质\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1005\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1005\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-063",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A8888 到哪了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A8888\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A8888 到哪了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-064",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A7777 支付了吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A7777\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A7777 支付了吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-065",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A6666 退款状态怎么样\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_status\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A6666\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A6666 退款状态怎么样\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-066",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这件商品怎么洗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"product_id\": \"sku_unknown_123\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_unknown_123\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这件商品怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-067",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这件商品有哪些尺码\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"product_id\": \"sku_unknown_456\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_unknown_456\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这件商品有哪些尺码\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-068",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我想找人工处理退款争议\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"handoff\", \"intent\": \"complaint_or_manual_support\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我想找人工处理退款争议\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-069",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我要投诉商家，麻烦人工介入\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"handoff\", \"intent\": \"complaint_or_manual_support\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我要投诉商家，麻烦人工介入\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-070",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这个问题必须人工审核\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"handoff\", \"intent\": \"complaint_or_manual_support\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这个问题必须人工审核\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-071",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我想申请赔偿，直接给我转人工\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"handoff\", \"intent\": \"complaint_or_manual_support\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"我想申请赔偿，直接给我转人工\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-072",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这个商品有啥颜色\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {}, \"missing_slots\": [\"product_id\"], \"need_clarification\": true, \"rewrite_query\": \"这个商品有啥颜色\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-073",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nThermoMug 保温杯\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"这个商品有啥颜色\",\n    \"intent\": \"product_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_product_info\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"product_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"这个商品有啥颜色\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_thermomug_003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"ThermoMug 保温杯\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-073",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这条裤子有哪些尺码\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {}, \"missing_slots\": [\"product_id\"], \"need_clarification\": true, \"rewrite_query\": \"这条裤子有哪些尺码\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-074",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nFlexFit 运动裤\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"这条裤子有哪些尺码\",\n    \"intent\": \"product_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_product_info\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"product_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"这条裤子有哪些尺码\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"product_lookup\", \"tool_name\": \"get_product_info\", \"tool_arguments\": {\"product_id\": \"sku_flexfit_005\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"FlexFit 运动裤\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-074",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n这个包是什么材质，能退吗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"policy_lookup\", \"tool_name\": \"get_policy\", \"tool_arguments\": {\"topic\": \"return_policy\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"这个包是什么材质，能退吗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-075",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1006\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"这个包是什么材质，能退吗\",\n    \"intent\": \"policy_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_policy\",\n    \"planned_arguments\": {\n      \"topic\": \"return_policy\"\n    },\n    \"missing_slots\": [],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"completed\"\n  },\n  \"recent_queries\": [\n    \"这个包是什么材质，能退吗\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"direct\", \"intent\": \"general_direct_answer\", \"tool_name\": \"\", \"tool_arguments\": {}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1006\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-075",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n我的订单退款怎么样了\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {}, \"missing_slots\": [\"order_id\"], \"need_clarification\": true, \"rewrite_query\": \"我的订单退款怎么样了\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-076",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1004\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": \"我的订单退款怎么样了\",\n    \"intent\": \"order_policy_lookup\",\n    \"route\": \"internal_tool\",\n    \"planned_tool_name\": \"get_order_status\",\n    \"planned_arguments\": {},\n    \"missing_slots\": [\n      \"order_id\"\n    ],\n    \"resolved_slots\": {\n      \"shop_id\": \"demo-shop\",\n      \"product_id\": null,\n      \"order_id\": null\n    },\n    \"status\": \"pending_clarification\"\n  },\n  \"recent_queries\": [\n    \"我的订单退款怎么样了\"\n  ],\n  \"turn_index\": 1\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_policy_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1004\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1004\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-076",
+      "turn_index": 2
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1001 那件冲锋衣怎么洗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1001\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1001 那件冲锋衣怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-077",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1003 那个杯子怎么洗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1003\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1003 那个杯子怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-078",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\nA1005 那条裤子怎么洗\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"order_product_lookup\", \"tool_name\": \"get_order_status\", \"tool_arguments\": {\"order_id\": \"A1005\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"A1005 那条裤子怎么洗\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-079",
+      "turn_index": 1
+    }
+  },
+  {
+    "instruction": "请根据用户问题和当前状态，输出电商客服 router JSON。只允许输出 JSON 对象，不要输出解释。",
+    "input": "user_query:\n订单 A1006 的运单号是多少\n\nstate_before:\n{\n  \"shop_id\": \"demo-shop\",\n  \"current_task\": {\n    \"task_query\": null,\n    \"intent\": null,\n    \"route\": null,\n    \"planned_tool_name\": null,\n    \"planned_arguments\": {},\n    \"missing_slots\": [],\n    \"resolved_slots\": {},\n    \"status\": \"idle\"\n  },\n  \"turn_index\": 0\n}\n\n输出字段要求:\n- route: direct|internal_tool|handoff\n- intent: string\n- tool_name: string\n- tool_arguments: object\n- missing_slots: string[]\n- need_clarification: boolean\n- rewrite_query: string",
+    "output": "{\"route\": \"internal_tool\", \"intent\": \"logistics_status\", \"tool_name\": \"get_logistics_status\", \"tool_arguments\": {\"order_id\": \"A1006\"}, \"missing_slots\": [], \"need_clarification\": false, \"rewrite_query\": \"订单 A1006 的运单号是多少\"}",
+    "system": "你是电商客服场景下的路由与动作决策模型。你需要根据用户问题和当前任务状态，判断 route、intent、是否需要 ask_user、是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。",
+    "metadata": {
+      "episode_id": "train-080",
+      "turn_index": 1
+    }
+  }
+]

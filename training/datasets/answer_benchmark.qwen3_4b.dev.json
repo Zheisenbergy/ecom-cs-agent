@@ -1,0 +1,304 @@
+{
+  "task": "answer_baseline",
+  "num_cases": 14,
+  "parse_failure_rate": {
+    "correct": 1,
+    "total": 14,
+    "accuracy": 0.0714
+  },
+  "answer_token_f1": {
+    "score": 0.3128
+  },
+  "answer_exact_match": {
+    "correct": 1,
+    "total": 14,
+    "accuracy": 0.0714
+  },
+  "citation_set_accuracy": {
+    "correct": 12,
+    "total": 14,
+    "accuracy": 0.8571
+  },
+  "grounded_f1": {
+    "precision": 1.0,
+    "recall": 0.8182,
+    "f1": 0.9,
+    "support": 11
+  },
+  "escalation_f1": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "support": 1
+  },
+  "details": [
+    {
+      "query": "你能帮我做什么",
+      "gold": {
+        "answer": "我可以帮助处理商品信息、店铺规则、订单状态、物流进度和人工转接相关问题。如果你告诉我商品 ID、订单号，或者具体问题主题，我可以回答得更准确。",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "您好！我是您的电商客服小助手，可以帮您查询订单、退款、优惠券、商品信息等。请告诉我您需要什么帮助？",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"您好！我是您的电商客服小助手，可以帮您查询订单、退款、优惠券、商品信息等。请告诉我您需要什么帮助？\",\n  \"citations\": [],\n  \"grounded\": false,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "订单 A1002 发到哪一步了",
+      "gold": {
+        "answer": "订单 A1002 当前物流状态为 pending_shipment，承运商是 圆通，最新物流信息是：订单已支付，等待仓库出库。",
+        "citations": [
+          "get_logistics_status"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "订单 A1002 当前状态为：等待仓库出库",
+        "citations": [
+          "get_logistics_status"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"订单 A1002 当前状态为：等待仓库出库\",\n  \"citations\": [\"get_logistics_status\"],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "订单 A1002 运单号多少",
+      "gold": {
+        "answer": "订单 A1002 的运单号是 YT987654321，承运商是 圆通。",
+        "citations": [
+          "get_logistics_status"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "订单 A1002 的运单号是 YT987654321",
+        "citations": [
+          "get_logistics_status"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"订单 A1002 的运单号是 YT987654321\",\n  \"citations\": [\"get_logistics_status\"],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "StormShell 冲锋衣是什么材质",
+      "gold": {
+        "answer": "StormShell 冲锋衣 的材质是 防泼水外层 + 轻量化内里。",
+        "citations": [
+          "get_product_info"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "StormShell 冲锋衣采用防泼水外层搭配轻量化内里材质，适合日常通勤，颜色有黑色和灰色，尺码包括S、M、L、XL。建议冷水轻柔洗涤，自然晾干。",
+        "citations": [
+          "get_product_info"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"StormShell 冲锋衣采用防泼水外层搭配轻量化内里材质，适合日常通勤，颜色有黑色和灰色，尺码包括S、M、L、XL。建议冷水轻柔洗涤，自然晾干。\",\n  \"citations\": [\"get_product_info\"],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "这件衣服有啥颜色？",
+      "gold": {
+        "answer": "这个问题需要具体商品才能查询，请提供商品 ID 或商品名称。",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "这件衣服有蓝色、黑色和白色三种颜色。",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"这件衣服有蓝色、黑色和白色三种颜色。\",\n  \"citations\": [],\n  \"grounded\": false,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "StormShell 冲锋衣",
+      "gold": {
+        "answer": "StormShell 冲锋衣 当前颜色有 黑色, 灰色。",
+        "citations": [
+          "get_product_info"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "StormShell 冲锋衣（SKU: sku_stormshell_001）是我们的轻量化通勤外衣，采用防泼水外层+轻量化内里设计，支持黑色和灰色两种颜色，尺码范围为S、M、L、XL。产品特点包括轻量、防风和日常通勤适用。建议使用冷水轻柔洗涤并自然晾干。",
+        "citations": [
+          "get_product_info"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"StormShell 冲锋衣（SKU: sku_stormshell_001）是我们的轻量化通勤外衣，采用防泼水外层+轻量化内里设计，支持黑色和灰色两种颜色，尺码范围为S、M、L、XL。产品特点包括轻量、防风和日常通勤适用。建议使用冷水轻柔洗涤并自然晾干。\",\n  \"citations\": [\"get_product_info\"],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "退货规则是什么",
+      "gold": {
+        "answer": "签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "citations": [
+          "get_policy"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "citations": [
+          "get_policy"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\",\n  \"citations\": [\n    \"get_policy\"\n  ],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "订单 A1001 退款状态怎么样",
+      "gold": {
+        "answer": "订单 A1001 当前退款状态为 none。",
+        "citations": [
+          "get_order_status"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "订单 A1001 的退款状态为：未退款（none）。",
+        "citations": [
+          "get_order_status"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"订单 A1001 的退款状态为：未退款（none）。\",\n  \"citations\": [\"get_order_status\"],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "我订单 A1001 那件衣服有啥颜色",
+      "gold": {
+        "answer": "订单 A1001 对应商品是 StormShell 冲锋衣。StormShell 冲锋衣 当前颜色有 黑色, 灰色。",
+        "citations": [
+          "get_order_status",
+          "get_product_info"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "{\n  \"query\": \"我订单 A10: 那件衣服有啥颜色\",\n  \"route\": \"internal_tool\",\n  \"intent\": \"order_product_lookup\",\n  \"tool_steps\": [\n    {\n      \"tool_name\": \"get_order_status\",\n      \"status\": \"ok\",\n      \"data\": {\n        \"order_id\": \"A1001\",\n        \"shop_id\": \"demo-shop\",\n        \"product_id\": \"sku_stormshell_001\",\n        \"product_name\": \"StormShell 冲锋衣\",\n        \"payment_status\": \"paid\",\n        \"fulfillment_status\": \"shipped\",\n        \"refund_status\": \"none\",\n        \"recipient_city\": \"杭州\"\n      },\n      \"message\": \"\"\n    },\n    {\n      \"tool_name\": \"get_product_info\",\n      \"status\": \"ok\",\n      \"data\": {\n        \"product_id\": \"sku_stormshell_001\",\n        \"shop_id\": \"demo-shop\",\n        \"name\": \"StormShell 冲锋衣\",\n        \"category\": \"outerwear\",\n        \"material\": \"防泼水外层 + 轻量化内里\",\n        \"colors\": [\"黑色\", \"",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": false,
+        "raw_output": "{\n  \"query\": \"我订单 A10: 那件衣服有啥颜色\",\n  \"route\": \"internal_tool\",\n  \"intent\": \"order_product_lookup\",\n  \"tool_steps\": [\n    {\n      \"tool_name\": \"get_order_status\",\n      \"status\": \"ok\",\n      \"data\": {\n        \"order_id\": \"A1001\",\n        \"shop_id\": \"demo-shop\",\n        \"product_id\": \"sku_stormshell_001\",\n        \"product_name\": \"StormShell 冲锋衣\",\n        \"payment_status\": \"paid\",\n        \"fulfillment_status\": \"shipped\",\n        \"refund_status\": \"none\",\n        \"recipient_city\": \"杭州\"\n      },\n      \"message\": \"\"\n    },\n    {\n      \"tool_name\": \"get_product_info\",\n      \"status\": \"ok\",\n      \"data\": {\n        \"product_id\": \"sku_stormshell_001\",\n        \"shop_id\": \"demo-shop\",\n        \"name\": \"StormShell 冲锋衣\",\n        \"category\": \"outerwear\",\n        \"material\": \"防泼水外层 + 轻量化内里\",\n        \"colors\": [\"黑色\", \""
+      }
+    },
+    {
+      "query": "我订单 A1001 那件衣服能退吗",
+      "gold": {
+        "answer": "订单 A1001 对应商品是 StormShell 冲锋衣。签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。",
+        "citations": [
+          "get_order_status",
+          "get_policy"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": false,
+        "raw_output": "{\n  \"query\": \"我订单 A10: 那件衣服能退吗\",\n  \"route\": \"internal_tool\",\n  \"intent\": \"order_policy_lookup\",\n  \"tool_steps\": [\n    {\n      \"tool_name\": \"get_order_status\",\n      \"status\": \"ok\",\n      \"data\": {\n        \"order_id\": \"A1001\",\n        \"shop_id\": \"demo-shop\",\n        \"product_id\": \"sku_stormshell_001\",\n        \"product_name\": \"StormShell 冲锋衣\",\n        \"payment_status\": \"paid\",\n        \"fulfillment_status\": \"shipped\",\n        \"refund_status\": \"none\",\n        \"recipient_city\": \"杭州\"\n      },\n      \"message\": \"\"\n    },\n    {\n      \"tool_name\": \"get_policy\",\n      \"status\": \"ok\",\n      \"data\": {\n        \"topic\": \"return_policy\",\n        \"shop_id\": \"demo-shop\",\n        \"title\": \"退货规则\",\n        \"summary\": \"签收后七个自然日内可以申请退货。质量问题由商家承担退货运费，非质量问题由买家承担退货运费。\"\n      },\n      \"message\": \"\"\n    }\n  ]\n}"
+      }
+    },
+    {
+      "query": "这个问题我就要人工来处理",
+      "gold": {
+        "answer": "这个问题建议转接人工客服处理，因为它可能涉及投诉、赔偿、规则风险，或者需要人工审核后才能继续处理。",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": true
+      },
+      "predicted": {
+        "answer": "用户已明确表示需要人工处理，将立即转接人工客服",
+        "citations": [],
+        "grounded": false,
+        "escalation_required": true,
+        "raw_output": "{\n  \"answer\": \"用户已明确表示需要人工处理，将立即转接人工客服\",\n  \"citations\": [],\n  \"grounded\": false,\n  \"escalation_required\": true\n}"
+      }
+    },
+    {
+      "query": "ThermoMug 保温杯怎么洗",
+      "gold": {
+        "answer": "ThermoMug 保温杯 的护理建议是：建议手洗并保持杯盖干燥，不建议长时间浸泡。",
+        "citations": [
+          "get_product_info"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "ThermoMug 保温杯建议手洗并保持杯盖干燥，不建议长时间浸泡。",
+        "citations": [
+          "get_product_info"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"ThermoMug 保温杯建议手洗并保持杯盖干燥，不建议长时间浸泡。\",\n  \"citations\": [\n    \"get_product_info\"\n  ],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "订单 A1006 到哪了",
+      "gold": {
+        "answer": "订单 A1006 当前物流状态为 in_transit，承运商是 韵达，最新物流信息是：包裹已到达广州天河网点。。",
+        "citations": [
+          "get_logistics_status"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "您的订单 A1006 已经在运输中，最新动态是：包裹已到达广州天河网点。",
+        "citations": [
+          "get_logistics_status"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"您的订单 A1006 已经在运输中，最新动态是：包裹已到达广州天河网点。\",\n  \"citations\": [\n    \"get_logistics_status\"\n  ],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    },
+    {
+      "query": "电子发票怎么开",
+      "gold": {
+        "answer": "支持开具电子发票，订单签收后可在订单详情页申请，通常会在 24 小时内开具完成。",
+        "citations": [
+          "get_policy"
+        ],
+        "grounded": true,
+        "escalation_required": false
+      },
+      "predicted": {
+        "answer": "您好！根据我们的政策，您可以在订单签收后，通过订单详情页申请开具电子发票，通常会在 24 小时内完成开具。请确保在订单签收后及时操作。",
+        "citations": [
+          "get_policy"
+        ],
+        "grounded": true,
+        "escalation_required": false,
+        "raw_output": "{\n  \"answer\": \"您好！根据我们的政策，您可以在订单签收后，通过订单详情页申请开具电子发票，通常会在 24 小时内完成开具。请确保在订单签收后及时操作。\",\n  \"citations\": [\"get_policy\"],\n  \"grounded\": true,\n  \"escalation_required\": false\n}"
+      }
+    }
+  ],
+  "input": "training/datasets/answer_sft.dev.generated.jsonl",
+  "model": "qwen3:4b"
+}
