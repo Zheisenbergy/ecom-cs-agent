@@ -6,10 +6,25 @@ PROJECT_ROOT=$(cd "$SCRIPT_DIR/../.." && pwd)
 
 LLAMAFACTORY_CLI=${LLAMAFACTORY_CLI:-llamafactory-cli}
 BASE_MODEL=${BASE_MODEL:-Qwen/Qwen3-1.7B}
-DATASET_DIR=${DATASET_DIR:-"$SCRIPT_DIR/lf_data/router"}
-OUTPUT_DIR=${OUTPUT_DIR:-"$PROJECT_ROOT/outputs/router-qwen3-1.7b-lora"}
+DATA_VARIANT=${DATA_VARIANT:-seed}
 
-"$SCRIPT_DIR/prepare_llamafactory_data.sh"
+if [[ -z "${DATASET_DIR:-}" ]]; then
+  if [[ "$DATA_VARIANT" == "mixed" ]]; then
+    DATASET_DIR="$SCRIPT_DIR/lf_data/router_mixed"
+  else
+    DATASET_DIR="$SCRIPT_DIR/lf_data/router"
+  fi
+fi
+
+if [[ -z "${OUTPUT_DIR:-}" ]]; then
+  if [[ "$DATA_VARIANT" == "mixed" ]]; then
+    OUTPUT_DIR="$PROJECT_ROOT/outputs/router-qwen3-1.7b-lora-mixed"
+  else
+    OUTPUT_DIR="$PROJECT_ROOT/outputs/router-qwen3-1.7b-lora"
+  fi
+fi
+
+DATA_VARIANT="$DATA_VARIANT" ROUTER_DATA_DIR="$DATASET_DIR" "$SCRIPT_DIR/prepare_llamafactory_data.sh"
 
 "$LLAMAFACTORY_CLI" train \
   --stage sft \

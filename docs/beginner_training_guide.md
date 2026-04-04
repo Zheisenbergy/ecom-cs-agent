@@ -116,6 +116,144 @@ Answer 负责把 observation 变成用户能看的回答。
 - 你维护的是 episode
 - 真正喂给模型训练的，常常是由 episode 导出的 turn 样本
 
+### 5.1 单轮和多轮在这个项目里长什么样
+
+这个项目离线造数时，单轮和多轮不是后面自动变出来的，而是 seed 结构一开始就不同。
+
+单轮 seed 长这样：
+
+```json
+{
+  "shop_id": "demo-shop",
+  "query": "A1004 的记忆枕是什么材质，能退吗"
+}
+```
+
+它只有一个 `query` 字段，所以表示：
+
+- 这个 episode 只有一轮用户输入
+
+多轮 seed 长这样：
+
+```json
+{
+  "shop_id": "demo-shop",
+  "turns": [
+    {"query": "物流进度帮我查一下"},
+    {"query": "A1002"}
+  ]
+}
+```
+
+它有一个 `turns` 数组，所以表示：
+
+- 这个 episode 有多轮用户输入
+- 第一轮先问问题
+- 第二轮再补信息
+
+一句话记忆：
+
+- `query` = 单轮
+- `turns` = 多轮
+
+### 5.2 离线造数据时，单轮和多轮是怎么生成的
+
+生成逻辑在：
+
+- [seed_synthesis.py](/Users/zheisenbergy/code/agent/ecom-cs-agent/app/services/seed_synthesis.py)
+
+配置文件在：
+
+- [synthesis_templates.default.json](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/synthesis_templates.default.json)
+
+这个生成器会看每个 `scenario` 里写的是哪一种模板。
+
+如果配置里写的是：
+
+- `query_templates`
+
+就生成单轮 seed。
+
+例如：
+
+```json
+{
+  "query_templates": [
+    "{order_id} 的{product_short_name}是什么材质，能退吗"
+  ]
+}
+```
+
+生成器会：
+
+1. 从知识库里抽一个订单
+2. 拿到 `order_id`、`product_short_name`
+3. 把模板填满
+4. 写成一个 `query`
+
+如果配置里写的是：
+
+- `turn_templates`
+
+就生成多轮 seed。
+
+例如：
+
+```json
+{
+  "turn_templates": [
+    ["帮我看下快递到哪了", "{order_id}"]
+  ]
+}
+```
+
+生成器会：
+
+1. 从知识库里抽一个订单
+2. 取出它的 `order_id`
+3. 把第一轮写成“缺槽位问题”
+4. 把第二轮写成真正补上的 `order_id`
+5. 写成 `turns`
+
+注意：
+
+- 第二轮不是运行时临时编出来的
+- 而是 seed 生成阶段就已经写好了
+
+### 5.3 为什么要专门造多轮数据
+
+因为多轮数据主要不是为了“聊天更自然”，而是为了训练这些能力：
+
+- `ask_user`
+- `missing_slots`
+- 挂起未完成任务
+- 下一轮补槽位后继续执行
+
+例如：
+
+第一轮用户说：
+
+```text
+帮我查下物流到哪了
+```
+
+这时系统会发现：
+
+- 这是 `logistics_status`
+- 但缺 `order_id`
+
+第二轮用户再说：
+
+```text
+A1002
+```
+
+系统才会继续把原来的工具调用做完。
+
+所以多轮 seed 的价值是：
+
+- 把“缺信息 -> 追问 -> 用户补信息 -> 继续执行”这条链路变成训练样本
+
 ## 6. train、dev、hard eval 分别是什么
 
 ### 6.1 Train
@@ -313,6 +451,158 @@ ecom-cs-agent run \
   --output training/datasets/episode_traces.train.seed.generated.jsonl
 ```
 
+这里非常重要的一点是：
+
+- `run` 不是简单做字符串改写
+- 它是真的按 episode 一轮一轮跑
+
+如果 seed 是单轮：
+
+- 就只跑一轮
+
+如果 seed 是多轮：
+
+- 就会按 `turns` 里的顺序依次执行
+- 第一轮可能先进入 `waiting_for_user`
+- 第二轮再补槽位
+- 最后才完成工具调用与答案生成
+
+### 第二步补充：`missing_slots` 在代码里是怎么流动的
+
+这里的关键不是“系统自己补参数”，而是“系统先记住缺什么，等用户下一轮提供后再补进去”。
+
+相关代码在：
+
+- [router.py](/Users/zheisenbergy/code/agent/ecom-cs-agent/app/services/router.py)
+- [orchestrator.py](/Users/zheisenbergy/code/agent/ecom-cs-agent/app/services/orchestrator.py)
+- [models.py](/Users/zheisenbergy/code/agent/ecom-cs-agent/app/models.py)
+
+代码层的真实流程是：
+
+1. `RouterService.route()` 判断当前问题属于哪个 intent
+2. `_tool_plan()` 决定要调哪个工具
+3. 如果缺 `order_id` 或 `product_id`
+   - 返回 `missing_slots`
+   - 同时把 `need_clarification` 设为 `true`
+4. `QueryOrchestrator._update_state()` 把这个未完成任务存进 `EpisodeState.current_task`
+5. 下一轮用户输入进来后，如果发现当前 task 仍然挂起
+   - 就走 `RouterService.continue_pending()`
+6. `continue_pending()` 会从这一轮输入里提取 `order_id` 或 `product_id`
+7. 只有补齐以后，系统才真的去执行工具
+
+所以你要特别记住：
+
+- 规则系统不会凭空猜出缺失槽位的值
+- 它只能补“用户后来真的提供的值”
+- 或者补“request / context 里本来就带着的值”
+
+### 第二步补充：一条缺槽位 episode 的代码级时序图
+
+下面用这条典型多轮 seed 来看整条链路：
+
+```json
+{
+  "shop_id": "demo-shop",
+  "turns": [
+    {"query": "物流进度帮我查一下"},
+    {"query": "A1002"}
+  ]
+}
+```
+
+你可以把它理解成：
+
+- 第一轮故意不给订单号
+- 第二轮再补 `order_id`
+
+代码级时序图如下：
+
+```text
+第 1 轮用户输入: "物流进度帮我查一下"
+    |
+    v
+QueryOrchestrator.handle_trace()
+    |
+    |-- _should_continue_pending(state_before) = false
+    |
+    v
+RouterService.route()
+    |
+    |-- _resolve_route() -> intent = logistics_status
+    |-- _tool_plan() -> tool_name = get_logistics_status
+    |                   tool_arguments = {}
+    |                   missing_slots = ["order_id"]
+    v
+RouteDecision(
+  route = internal_tool,
+  need_clarification = true,
+  missing_slots = ["order_id"]
+)
+    |
+    |-- 因为 still missing_slots，不执行工具
+    v
+QueryOrchestrator._update_state()
+    |
+    |-- current_task.planned_tool_name = get_logistics_status
+    |-- current_task.planned_arguments = {}
+    |-- current_task.missing_slots = ["order_id"]
+    |-- current_task.status = pending_clarification
+    v
+返回第 1 轮 trace
+    |
+    |-- waiting_for_user = true
+    |-- episode_done = false
+
+
+第 2 轮用户输入: "A1002"
+    |
+    v
+QueryOrchestrator.handle_trace()
+    |
+    |-- _should_continue_pending(state_before) = true
+    |
+    v
+RouterService.continue_pending()
+    |
+    |-- extract_slots("A1002") -> {"order_id": "A1002"}
+    |-- merged_arguments["order_id"] = "A1002"
+    |-- remaining_slots = []
+    v
+RouteDecision(
+  route = internal_tool,
+  tool_name = get_logistics_status,
+  tool_arguments = {"order_id": "A1002"},
+  missing_slots = []
+)
+    |
+    |-- 因为 missing_slots 已空，开始执行工具
+    v
+QueryOrchestrator._execute_tool_chain()
+    |
+    v
+get_logistics_status(order_id = "A1002")
+    |
+    v
+AnswerService.generate()
+    |
+    v
+返回第 2 轮 trace
+    |
+    |-- waiting_for_user = false
+    |-- episode_done = true
+```
+
+这张图最重要的两个结论是：
+
+1. 第一轮缺槽位时，系统不会执行一个“不完整参数”的工具调用。
+2. 第二轮补槽位时，系统不是重新理解成一个全新的任务，而是延续上一轮挂起的 task。
+
+所以多轮训练数据真正教模型学到的是：
+
+- 什么时候该 ask_user
+- 缺了什么槽位
+- 下一轮用户补完以后，应该如何继续原任务
+
 ### 第三步：导出 router / answer 训练数据
 
 如果是普通 JSONL：
@@ -456,6 +746,56 @@ ecom-cs-agent benchmark-answer \
 - router：`route_macro_f1`、`intent_macro_f1`、`tool_macro_f1`、`ask_user_f1`、`handoff_f1`
 - answer：`answer_token_f1`、`grounded_f1`、`escalation_f1`
 
+### 12.2.1 benchmark 到底是不是“带答案考试”
+
+是的，可以这样理解：
+
+- benchmark 输入文件本身是带 gold 的
+- 但 gold 不会发给模型
+- gold 只保留在评测程序内部做对比
+
+以 router benchmark 为例，一条样本文件里本来同时就有：
+
+- `user_query`
+- `state_before`
+- `route`
+- `intent`
+- `tool_name`
+- `tool_arguments`
+- `missing_slots`
+
+但是发给模型时，只会给：
+
+- `user_query`
+- `state_before`
+
+模型看不到 gold 的：
+
+- `route`
+- `intent`
+- `tool_name`
+- `tool_arguments`
+
+模型输出自己的预测 JSON 之后，benchmark 程序再拿：
+
+- 模型预测
+- 文件里原本自带的 gold
+
+做逐项比对，然后算出：
+
+- `route_macro_f1`
+- `intent_macro_f1`
+- `tool_macro_f1`
+- `ask_user_f1`
+- `handoff_f1`
+
+所以 benchmark 本质上就是：
+
+- 数据集带标准答案
+- 但考试时把答案遮住
+- 让模型自己答
+- 然后评测器再对答案
+
 ### 12.3 训练后 benchmark 怎么跑
 
 训练后逻辑完全一样，只是把 `--model` 改成你在 `vLLM` 里挂载的 LoRA alias。
@@ -512,7 +852,132 @@ ecom-cs-agent synthesize-episodes \
 - answer 是生成任务，4B 更稳
 - 这样训练和推理成本也更合理
 
-## 13. 一个适合你的现实建议
+### 13.1 大模型 teacher 到底是怎么用的
+
+是可以直接用提示词让大模型生成数据，但不建议你一上来就这么干。
+
+更稳的做法是把大模型拆成几个角色，而不是把它当成一个“自由写作机器”。
+
+最常见的 4 种角色是：
+
+1. `scenario generator`
+   - 负责想场景
+   - 例如生成“用户可能怎么问物流、退款、人工介入”
+2. `paraphraser`
+   - 负责改写表达
+   - 让同一个意图出现更多自然说法、口语说法、错别字说法
+3. `weak labeler`
+   - 负责先给一版标签
+   - 例如先猜 `intent`、`route`、`tool_name`
+4. `judge / critic`
+   - 负责筛错
+   - 看样本是否自洽、标签和问题是否匹配、格式是否合规
+
+### 13.2 为什么不能直接让大模型随便吐几千条
+
+因为它很容易出现这些问题：
+
+- 看起来很像真数据，其实标签错了
+- 工具参数名写错
+- route 和 tool_name 对不上
+- 把不该 handoff 的写成 handoff
+- 把缺槽位问题直接编成能回答
+
+这类错误最麻烦的地方不是“肉眼看不出来”，而是：
+
+- 你拿去训练以后，模型会认真学坏
+
+所以大模型 teacher 最好负责：
+
+- 扩表达
+- 扩场景
+- 造 harder cases
+
+而不是直接决定最终 gold。
+
+### 13.3 对你这个项目，更推荐的大模型 teacher 用法
+
+你现在这个项目最稳的顺序是：
+
+1. 模板系统先生成 `episode seed`
+2. 规则系统跑出 `teacher trace`
+3. 大模型只做用户表达改写、场景扩写、困难样本扩写
+4. 再把这些新输入重新喂回规则系统
+5. 只有通过规则校验的样本才进入训练集
+
+也就是说：
+
+- 大模型负责“出更多题”
+- 规则 teacher 负责“给标准答案”
+
+这就是为什么我前面一直建议你先做：
+
+- 模板 / 槽位
+- rule teacher
+- synthetic pipeline
+
+而不是先做“完全自由的大模型造数”。
+
+### 13.4 如果以后你要真的把大模型接进流水线
+
+一个很实用的版本是这样：
+
+1. 先挑一个已有高质量 seed
+2. 给大模型一个改写 prompt
+3. 让它一次生成 5 到 10 个不同说法
+4. 只保留 query，不让它直接写 gold label
+5. 再用规则系统重新跑 trace
+6. 最后用 judge 规则或人工 spot check 过滤明显脏数据
+
+例如：
+
+- 原始 seed：`帮我看下 A1002 到哪了`
+- 大模型改写后可能变成：
+  - `A1002 现在配送到哪一步了`
+  - `订单 A1002 物流更新了吗`
+  - `A1002 什么时候能到`
+  - `查下 A1002 快递进度`
+
+这些改写后的 query，本质上还是同一个任务。
+
+你不是让大模型告诉你“应该调用哪个工具”，而是让规则系统重新判断：
+
+- route
+- intent
+- tool_name
+- tool_arguments
+
+这样更稳。
+
+### 13.5 工业界通常怎么做
+
+大方向通常也是这几层：
+
+1. 先有一层可靠 teacher
+   - 可能是规则系统
+   - 可能是已有线上策略
+   - 可能是人工标注
+2. 再用模板、日志、知识库、大模型去扩输入分布
+3. 再用 judge、规则校验、人工抽检做过滤
+4. 最后再把干净样本送进训练
+
+也就是说，工业界一般不是：
+
+- 直接 prompt 一个大模型
+- 让它自由吐几万条
+- 原样拿去训练
+
+而是：
+
+- `生成`
+- `打标`
+- `校验`
+- `抽检`
+- `回流 benchmark`
+
+一层一层过。
+
+## 14. 一个适合你的现实建议
 
 如果你是小白，我建议不要把目标定成“先训出一个很强的模型”。
 
@@ -554,7 +1019,7 @@ ecom-cs-agent synthesize-episodes \
 
 - 150 到 400 条 train episode
 
-## 14. 你现在最该做什么
+## 15. 你现在最该做什么
 
 如果按当前仓库状态，我建议你下一步做这个：
 
@@ -565,7 +1030,7 @@ ecom-cs-agent synthesize-episodes \
 5. 再跑第一轮 router LoRA
 6. router benchmark 看提升后，再训 answer
 
-## 15. 你可以把这份文档当成最短记忆版
+## 16. 你可以把这份文档当成最短记忆版
 
 只记住这几句就够了：
 

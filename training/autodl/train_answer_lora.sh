@@ -6,10 +6,25 @@ PROJECT_ROOT=$(cd "$SCRIPT_DIR/../.." && pwd)
 
 LLAMAFACTORY_CLI=${LLAMAFACTORY_CLI:-llamafactory-cli}
 BASE_MODEL=${BASE_MODEL:-Qwen/Qwen3-4B-Instruct-2507}
-DATASET_DIR=${DATASET_DIR:-"$SCRIPT_DIR/lf_data/answer"}
-OUTPUT_DIR=${OUTPUT_DIR:-"$PROJECT_ROOT/outputs/answer-qwen3-4b-lora"}
+DATA_VARIANT=${DATA_VARIANT:-seed}
 
-"$SCRIPT_DIR/prepare_llamafactory_data.sh"
+if [[ -z "${DATASET_DIR:-}" ]]; then
+  if [[ "$DATA_VARIANT" == "mixed" ]]; then
+    DATASET_DIR="$SCRIPT_DIR/lf_data/answer_mixed"
+  else
+    DATASET_DIR="$SCRIPT_DIR/lf_data/answer"
+  fi
+fi
+
+if [[ -z "${OUTPUT_DIR:-}" ]]; then
+  if [[ "$DATA_VARIANT" == "mixed" ]]; then
+    OUTPUT_DIR="$PROJECT_ROOT/outputs/answer-qwen3-4b-lora-mixed"
+  else
+    OUTPUT_DIR="$PROJECT_ROOT/outputs/answer-qwen3-4b-lora"
+  fi
+fi
+
+DATA_VARIANT="$DATA_VARIANT" ANSWER_DATA_DIR="$DATASET_DIR" "$SCRIPT_DIR/prepare_llamafactory_data.sh"
 
 "$LLAMAFACTORY_CLI" train \
   --stage sft \

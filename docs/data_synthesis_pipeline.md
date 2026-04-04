@@ -119,6 +119,113 @@ ecom-cs-agent synthesize-episodes \
 - 第二轮用户再补 `order_id`
 - 这类数据专门用于训练 `ask_user`
 
+### 4.1 单轮和多轮到底是怎么区分的
+
+这个项目离线合成 seed 时，单轮和多轮不是后处理自动扩出来的，而是配置本身决定的。
+
+如果一个 `scenario` 里使用：
+
+- `query_templates`
+
+那么生成器会产出单轮 seed，例如：
+
+```json
+{
+  "shop_id": "demo-shop",
+  "query": "A1004 的记忆枕是什么材质，能退吗"
+}
+```
+
+如果一个 `scenario` 里使用：
+
+- `turn_templates`
+
+那么生成器会产出多轮 seed，例如：
+
+```json
+{
+  "shop_id": "demo-shop",
+  "turns": [
+    {"query": "物流进度帮我查一下"},
+    {"query": "A1002"}
+  ]
+}
+```
+
+所以最短记忆法就是：
+
+- `query_templates` -> 单轮
+- `turn_templates` -> 多轮
+- 单轮输出 `query`
+- 多轮输出 `turns`
+
+### 4.2 第二轮“用户补信息”是怎么来的
+
+很多人第一次看到多轮数据时会困惑：
+
+- 这不是离线造数吗
+- 为什么会出现“用户第二轮补回答”
+
+答案是：
+
+- 第二轮不是运行时随机编出来的
+- 而是模板里一开始就写好了
+
+例如：
+
+```json
+["帮我看下快递到哪了", "{order_id}"]
+```
+
+这就等于在离线数据里提前定义：
+
+1. 第一轮用户先问一个缺 `order_id` 的问题
+2. 第二轮用户再补上真正的 `order_id`
+
+生成器只是在做：
+
+- 从知识库里抽一个真实订单
+- 把 `{order_id}` 替换成比如 `A1002`
+
+最终得到：
+
+```json
+{
+  "shop_id": "demo-shop",
+  "turns": [
+    {"query": "帮我看下快递到哪了"},
+    {"query": "A1002"}
+  ]
+}
+```
+
+### 4.3 `missing_slots` 在 teacher trace 里是怎么起作用的
+
+规则系统在跑 episode 时，如果发现缺关键参数，并不会自己瞎猜。
+
+它会先输出：
+
+- `need_clarification = true`
+- `missing_slots = ["order_id"]` 或 `["product_id"]`
+
+然后把未完成任务挂到当前 `EpisodeState.current_task` 上。
+
+等到下一轮用户输入进来后，编排器才会：
+
+1. 检查当前 task 是否还在 `pending_clarification`
+2. 从新输入里抽 `order_id` / `product_id`
+3. 补回之前挂起的 `planned_arguments`
+4. 继续原来的工具调用
+
+所以这里真正发生的不是：
+
+- 系统自动脑补缺失槽位
+
+而是：
+
+- 系统先记住“缺什么”
+- 用户下一轮真的提供后再补进去
+
 ## 5. `entity_source` 是什么
 
 它表示模板里要从哪种实体池里取槽位。
