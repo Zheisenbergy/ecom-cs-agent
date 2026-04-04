@@ -94,8 +94,8 @@
       "name": "ask_order_id_logistics",
       "entity_source": "order",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 30,
+        "dev": 10
       },
       "turn_templates": [
         ["帮我看下快递到哪了", "{order_id}"],
@@ -112,8 +112,8 @@
       "name": "ask_order_id_order_status",
       "entity_source": "order",
       "counts": {
-        "train": 20,
-        "dev": 6
+        "train": 26,
+        "dev": 8
       },
       "turn_templates": [
         ["帮我看下订单状态", "{order_id}"],
@@ -129,8 +129,8 @@
       "name": "ask_order_id_order_product_policy",
       "entity_source": "order",
       "counts": {
-        "train": 28,
-        "dev": 10
+        "train": 36,
+        "dev": 12
       },
       "turn_templates": [
         ["我买的商品是什么材质，能退吗？", "{order_id}"],
@@ -146,8 +146,8 @@
       "name": "ask_order_id_order_policy_short",
       "entity_source": "order",
       "counts": {
-        "train": 18,
-        "dev": 6
+        "train": 24,
+        "dev": 8
       },
       "turn_templates": [
         ["我买的这件能退吗", "{order_id}"],
@@ -162,8 +162,8 @@
       "name": "ask_order_id_order_product_lookup_short",
       "entity_source": "order",
       "counts": {
-        "train": 18,
-        "dev": 6
+        "train": 24,
+        "dev": 8
       },
       "turn_templates": [
         ["我买的那件是什么材质", "{order_id}"],
@@ -178,8 +178,8 @@
       "name": "ask_product_name_lookup",
       "entity_source": "product",
       "counts": {
-        "train": 20,
-        "dev": 6
+        "train": 28,
+        "dev": 8
       },
       "turn_templates": [
         ["这件商品有什么颜色", "{product_name}"],
@@ -195,8 +195,8 @@
       "name": "ask_product_name_lookup_short",
       "entity_source": "product",
       "counts": {
-        "train": 16,
-        "dev": 6
+        "train": 24,
+        "dev": 8
       },
       "turn_templates": [
         ["这个是什么材质", "{product_name}"],
@@ -205,6 +205,96 @@
         ["这个有多大尺码", "{product_name}"],
         ["这个面料是什么", "{product_name}"],
         ["这个有什么规格", "{product_name}"]
+      ]
+    },
+    {
+      "name": "ask_order_id_logistics_pronoun_heavy",
+      "entity_source": "order",
+      "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "turn_templates": [
+        ["帮我看下快递到哪了", "{order_id}"],
+        ["物流进度帮我查一下", "{order_id}"],
+        ["我买的东西发到哪了", "{order_id}"],
+        ["我这单发到哪一步了", "{order_id}"],
+        ["帮我查下运单号", "{order_id}"],
+        ["快递现在走到哪里了", "{order_id}"],
+        ["帮我看下配送进度", "{order_id}"],
+        ["我这单物流更新了吗", "{order_id}"]
+      ]
+    },
+    {
+      "name": "ask_order_id_order_policy_pronoun_heavy",
+      "entity_source": "order",
+      "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "turn_templates": [
+        ["我买的包有保修吗", "{order_id}"],
+        ["我买的杯子有保修吗", "{order_id}"],
+        ["我买的这件能退吗", "{order_id}"],
+        ["我买的这单退货怎么处理", "{order_id}"],
+        ["我订单里的商品能开票吗", "{order_id}"],
+        ["我买的那个有保修吗", "{order_id}"],
+        ["这个商品能退吗", "{order_id}"],
+        ["这个有保修吗", "{order_id}"]
+      ]
+    },
+    {
+      "name": "ask_order_id_order_product_policy_pronoun_heavy",
+      "entity_source": "order",
+      "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "turn_templates": [
+        ["我买的商品是什么材质，能退吗？", "{order_id}"],
+        ["我买的那件要怎么洗，能退吗", "{order_id}"],
+        ["我订单里的东西是什么材质，退货规则是什么", "{order_id}"],
+        ["我买的那件商品能退吗，材质是什么？", "{order_id}"],
+        ["我买的那个是什么材质，能退吗", "{order_id}"],
+        ["我这单买的商品材质是什么，可以退吗", "{order_id}"],
+        ["这件商品是什么材质，能换货吗？", "{order_id}"],
+        ["我买的东西怎么洗，能退吗？", "{order_id}"]
+      ]
+    },
+    {
+      "name": "ask_order_id_order_product_lookup_pronoun_heavy",
+      "entity_source": "order",
+      "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "turn_templates": [
+        ["我买的那件是什么材质", "{order_id}"],
+        ["我订单里的商品有什么颜色", "{order_id}"],
+        ["我买的那个怎么洗", "{order_id}"],
+        ["我买的那件参数是什么", "{order_id}"],
+        ["我买的那只杯子是什么颜色", "{order_id}"],
+        ["这条裤子是什么材质", "{order_id}"],
+        ["这件衣服有啥颜色", "{order_id}"],
+        ["这款枕头有什么颜色", "{order_id}"]
+      ]
+    },
+    {
+      "name": "ask_product_name_lookup_pronoun_heavy",
+      "entity_source": "product",
+      "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "turn_templates": [
+        ["这个商品有什么颜色", "{product_name}"],
+        ["这个有啥颜色", "{product_name}"],
+        ["这个是什么材质", "{product_name}"],
+        ["这款商品是什么材质", "{product_name}"],
+        ["这个商品怎么清洁", "{product_name}"],
+        ["这个有多大尺码", "{product_name}"],
+        ["这款怎么洗", "{product_name}"],
+        ["这个面料是什么", "{product_name}"]
       ]
     },
     {

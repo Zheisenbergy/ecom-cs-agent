@@ -233,4 +233,5 @@ ecom-cs-agent synthesize-episodes \
 - [Trace 工作流](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/trace_workflow.md)
 - [LLaMA-Factory 导出说明](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/llamafactory_export.md)
 - [AutoDL 训练与评测流程](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/autodl_workflow.md)
+- [实验记录与踩坑总结](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/experiment_log.md)
 - [详细学习文档](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/project_guide.md)

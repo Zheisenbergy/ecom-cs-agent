@@ -1039,3 +1039,7 @@ ecom-cs-agent synthesize-episodes \
 - 先做小而准的数据，不要一开始堆几千条
 - 第一轮可用验证，目标是 60 到 150 条 train episode
 - 现在仓库里的数据够学习，不够正式训练
+
+如果你想继续看“我们已经真实做了哪些实验、loss 怎么变化、benchmark 指标怎么变化、踩过哪些坑”，可以继续看：
+
+- [实验记录与踩坑总结](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/experiment_log.md)

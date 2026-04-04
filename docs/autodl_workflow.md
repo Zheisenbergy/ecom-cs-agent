@@ -224,3 +224,7 @@ bash training/autodl/train_router_lora.sh
 - Router LLaMA-Factory dev：[router_sft.dev.lf.json](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/router_sft.dev.lf.json)
 - Answer LLaMA-Factory train：[answer_sft.train.lf.json](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/answer_sft.train.lf.json)
 - Answer LLaMA-Factory dev：[answer_sft.dev.lf.json](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/answer_sft.dev.lf.json)
+
+如果你想看目前已经实际做过哪些训练、指标怎么变化、踩过哪些坑，可以继续看：
+
+- [实验记录与踩坑总结](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/experiment_log.md)
