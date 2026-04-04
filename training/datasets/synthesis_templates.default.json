@@ -211,90 +211,86 @@
       "name": "ask_order_id_logistics_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 18,
+        "dev": 6
       },
       "turn_templates": [
-        ["帮我看下快递到哪了", "{order_id}"],
-        ["物流进度帮我查一下", "{order_id}"],
-        ["我买的东西发到哪了", "{order_id}"],
-        ["我这单发到哪一步了", "{order_id}"],
-        ["帮我查下运单号", "{order_id}"],
-        ["快递现在走到哪里了", "{order_id}"],
-        ["帮我看下配送进度", "{order_id}"],
-        ["我这单物流更新了吗", "{order_id}"]
+        ["我买的那个送到哪了", "{order_id}"],
+        ["我那件东西寄到哪了", "{order_id}"],
+        ["我那个包裹现在在哪", "{order_id}"],
+        ["我买的那个发到哪一步了", "{order_id}"],
+        ["那个快递到哪儿了", "{order_id}"],
+        ["我那单东西现在到哪了", "{order_id}"],
+        ["我买的那个物流呢", "{order_id}"],
+        ["我那个件现在什么位置", "{order_id}"]
       ]
     },
     {
       "name": "ask_order_id_order_policy_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 18,
+        "dev": 6
       },
       "turn_templates": [
         ["我买的包有保修吗", "{order_id}"],
         ["我买的杯子有保修吗", "{order_id}"],
-        ["我买的这件能退吗", "{order_id}"],
-        ["我买的这单退货怎么处理", "{order_id}"],
-        ["我订单里的商品能开票吗", "{order_id}"],
+        ["我那件东西能退不", "{order_id}"],
+        ["我这个能不能换货", "{order_id}"],
         ["我买的那个有保修吗", "{order_id}"],
-        ["这个商品能退吗", "{order_id}"],
-        ["这个有保修吗", "{order_id}"]
+        ["那个东西能开发票吗", "{order_id}"],
+        ["我这个退货咋弄", "{order_id}"],
+        ["我买的这个售后怎么算", "{order_id}"]
       ]
     },
     {
       "name": "ask_order_id_order_product_policy_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 18,
+        "dev": 6
       },
       "turn_templates": [
-        ["我买的商品是什么材质，能退吗？", "{order_id}"],
-        ["我买的那件要怎么洗，能退吗", "{order_id}"],
-        ["我订单里的东西是什么材质，退货规则是什么", "{order_id}"],
-        ["我买的那件商品能退吗，材质是什么？", "{order_id}"],
         ["我买的那个是什么材质，能退吗", "{order_id}"],
-        ["我这单买的商品材质是什么，可以退吗", "{order_id}"],
-        ["这件商品是什么材质，能换货吗？", "{order_id}"],
-        ["我买的东西怎么洗，能退吗？", "{order_id}"]
+        ["我这个东西怎么洗，能退吗", "{order_id}"],
+        ["我那件到底啥面料，能退不", "{order_id}"],
+        ["我这个买的东西能退吗，材质呢", "{order_id}"],
+        ["我那个要怎么清洗，可以退吗", "{order_id}"],
+        ["我这件东西能换货吗，是什么料子", "{order_id}"]
       ]
     },
     {
       "name": "ask_order_id_order_product_lookup_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 18,
+        "dev": 6
       },
       "turn_templates": [
-        ["我买的那件是什么材质", "{order_id}"],
-        ["我订单里的商品有什么颜色", "{order_id}"],
         ["我买的那个怎么洗", "{order_id}"],
-        ["我买的那件参数是什么", "{order_id}"],
         ["我买的那只杯子是什么颜色", "{order_id}"],
         ["这条裤子是什么材质", "{order_id}"],
         ["这件衣服有啥颜色", "{order_id}"],
-        ["这款枕头有什么颜色", "{order_id}"]
+        ["这款枕头有什么颜色", "{order_id}"],
+        ["我那个东西啥材质", "{order_id}"],
+        ["我这个买的有啥颜色", "{order_id}"]
       ]
     },
     {
       "name": "ask_product_name_lookup_pronoun_heavy",
       "entity_source": "product",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 18,
+        "dev": 6
       },
       "turn_templates": [
-        ["这个商品有什么颜色", "{product_name}"],
         ["这个有啥颜色", "{product_name}"],
         ["这个是什么材质", "{product_name}"],
-        ["这款商品是什么材质", "{product_name}"],
-        ["这个商品怎么清洁", "{product_name}"],
         ["这个有多大尺码", "{product_name}"],
         ["这款怎么洗", "{product_name}"],
-        ["这个面料是什么", "{product_name}"]
+        ["这个面料是什么", "{product_name}"],
+        ["这个都有啥颜色", "{product_name}"],
+        ["这个料子是什么", "{product_name}"]
       ]
     },
     {
