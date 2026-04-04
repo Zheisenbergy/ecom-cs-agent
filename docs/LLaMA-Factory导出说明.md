@@ -119,4 +119,4 @@ cd /Users/zheisenbergy/code/agent/ecom-cs-agent
 
 如果你要在 AutoDL 上直接跑训练和 benchmark，可以继续看：
 
-- [AutoDL 训练与评测流程](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/autodl_workflow.md)
+- [AutoDL 训练与评测流程](/Users/zheisenbergy/code/agent/ecom-cs-agent/docs/AutoDL工作流.md)

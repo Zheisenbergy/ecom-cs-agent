@@ -256,6 +256,7 @@ def _write_alpaca_dataset_info(path: Path, dataset_name: str, file_name: str) ->
 
 
 def build_router_input(user_query: str, state_before: Dict[str, Any]) -> str:
+    # Router 训练和 benchmark 共享同一套输入骨架，避免“训练题”和“考试题”长得不一样。
     return (
         f"user_query:\n{user_query}\n\n"
         f"state_before:\n{json.dumps(state_before, ensure_ascii=False, indent=2)}\n\n"
@@ -295,4 +296,5 @@ def build_answer_input(query: str, route: str, intent: str, tool_steps: List[Dic
 
 
 def _compact_state(state: Dict[str, Any]) -> Dict[str, Any]:
+    # 去掉空字段，减少 prompt 里的状态噪声，让模型更聚焦于真正可用的上下文。
     return {key: value for key, value in state.items() if value not in (None, "", [], {})}

@@ -326,6 +326,7 @@ def load_jsonl(path: Path, limit: Optional[int] = None) -> List[dict[str, Any]]:
 
 def _extract_json_object(text: str) -> Optional[dict[str, Any]]:
     stripped = _strip_thinking_blocks(text).strip()
+    # 尽量兼容模型输出的几种常见形态：纯 JSON、代码块 JSON、前面带说明的 JSON。
     candidates = [stripped]
     fenced = re.findall(r"```(?:json)?\s*(\{.*?\})\s*```", stripped, flags=re.DOTALL)
     candidates.extend(fenced)
@@ -351,6 +352,7 @@ def _strip_thinking_blocks(text: str) -> str:
 
 
 def _normalize_router_prediction(parsed: dict[str, Any]) -> dict[str, Any]:
+    # benchmark 允许先做轻量归一化，避免模型把占位符或脏字段直接带进最终评分。
     raw_route = str(parsed.get("route", "direct")).strip()
     intent = str(parsed.get("intent", "general_direct_answer")).strip() or "general_direct_answer"
     tool_name = str(parsed.get("tool_name", "")).strip()
@@ -391,6 +393,7 @@ def _coerce_route(
     if raw_route in ROUTES:
         return raw_route
 
+    # 有些模型会抄提示里的占位文本；这里优先把“半合法” route 拉回标准标签。
     route_hits = [route for route in ROUTES if route in raw_route]
     if len(route_hits) == 1:
         return route_hits[0]
