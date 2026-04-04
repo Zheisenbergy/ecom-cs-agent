@@ -7,7 +7,14 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Protocol
 from urllib import error, request
 
-from app.exporters.training_data import ANSWER_SYSTEM_PROMPT, ROUTER_SYSTEM_PROMPT
+from app.exporters.training_data import (
+    ANSWER_INSTRUCTION,
+    ANSWER_SYSTEM_PROMPT,
+    ROUTER_INSTRUCTION,
+    ROUTER_SYSTEM_PROMPT,
+    build_answer_input,
+    build_router_input,
+)
 
 ROUTES = ["direct", "internal_tool", "handoff"]
 TOOLS = ["get_product_info", "get_policy", "get_order_status", "get_logistics_status", ""]
@@ -250,40 +257,13 @@ class BaselineBenchmarkService:
 {ROUTER_SYSTEM_PROMPT}
 
 指令:
-请根据用户问题和当前状态，输出电商客服 router JSON。
-只允许输出一个 JSON 对象，不要输出解释，不要输出 markdown。
-
-route 只能是下面三个之一：
-- direct
-- internal_tool
-- handoff
-
-tool_name 只能是下面五个之一：
-- get_product_info
-- get_policy
-- get_order_status
-- get_logistics_status
-- ""
+{ROUTER_INSTRUCTION}
 
 输入:
-user_query:
-{json.dumps(row.get("user_query", ""), ensure_ascii=False)}
-
-state_before:
-{json.dumps(row.get("state_before", {}), ensure_ascii=False, indent=2)}
-
-输出字段要求:
-- route: string
-- intent: string
-- tool_name: string
-- tool_arguments: object
-- missing_slots: string[]
-- need_clarification: boolean
-- rewrite_query: string
-
-如果缺少关键信息：
-- need_clarification 必须为 true
-- missing_slots 需要明确写出缺失字段，例如 ["order_id"] 或 ["product_id"]
+{build_router_input(
+    user_query=str(row.get("user_query", "")),
+    state_before=row.get("state_before", {}) if isinstance(row.get("state_before", {}), dict) else {},
+)}
 
 输出示例:
 {{
@@ -307,29 +287,15 @@ state_before:
 {ANSWER_SYSTEM_PROMPT}
 
 指令:
-请根据 query、route、intent 和结构化 tool_steps 输出电商客服 answer JSON。
-只允许输出一个 JSON 对象，不要输出解释，不要输出 markdown。
-
-输出字段要求：
-- answer 必须是用户可见回答
-- citations 填写实际依赖的工具名列表
-- grounded 表示回答是否基于 observation
-- escalation_required 表示是否需要转人工
-- waiting_for_user: boolean
-- episode_done: boolean
+{ANSWER_INSTRUCTION}
 
 输入:
-query:
-{json.dumps(row.get("query", ""), ensure_ascii=False)}
-
-route:
-{json.dumps(row.get("route", ""), ensure_ascii=False)}
-
-intent:
-{json.dumps(row.get("intent", ""), ensure_ascii=False)}
-
-tool_steps:
-{json.dumps(row.get("tool_steps", []), ensure_ascii=False, indent=2)}
+{build_answer_input(
+    query=str(row.get("query", "")),
+    route=str(row.get("route", "")),
+    intent=str(row.get("intent", "")),
+    tool_steps=row.get("tool_steps", []) if isinstance(row.get("tool_steps", []), list) else [],
+)}
 
 输出示例:
 {{

@@ -13,10 +13,20 @@ ROUTER_SYSTEM_PROMPT = (
     "是否调用工具，以及工具参数。输出必须是 JSON 对象，不要输出解释。"
 )
 
+ROUTER_INSTRUCTION = (
+    "请根据用户问题和当前状态，输出电商客服 router JSON。"
+    "只允许输出 JSON 对象，不要输出解释。"
+)
+
 ANSWER_SYSTEM_PROMPT = (
     "你是电商客服场景下的回答模型。"
     "你需要根据 query、route、intent 和结构化 tool observation 输出 JSON。"
     "输出必须遵守字段要求，不要输出解释，不要输出 markdown。"
+)
+
+ANSWER_INSTRUCTION = (
+    "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。"
+    "只允许输出 JSON 对象，不要输出解释。"
 )
 
 
@@ -113,11 +123,8 @@ def export_router_sft_llamafactory(
             route_decision = turn.route_decision
             rows.append(
                 {
-                    "instruction": (
-                        "请根据用户问题和当前状态，输出电商客服 router JSON。"
-                        "只允许输出 JSON 对象，不要输出解释。"
-                    ),
-                    "input": _router_input(
+                    "instruction": ROUTER_INSTRUCTION,
+                    "input": build_router_input(
                         user_query=turn.request.query,
                         state_before=_compact_state(turn.state_before.model_dump(mode="json") if turn.state_before else {}),
                     ),
@@ -166,11 +173,8 @@ def export_answer_sft_llamafactory(
         for turn_index, turn in enumerate(episode.turns, start=1):
             rows.append(
                 {
-                    "instruction": (
-                        "请根据 query、route、intent 和 tool_steps 输出电商客服 answer JSON。"
-                        "只允许输出 JSON 对象，不要输出解释。"
-                    ),
-                    "input": _answer_input(
+                    "instruction": ANSWER_INSTRUCTION,
+                    "input": build_answer_input(
                         query=turn.request.query,
                         route=turn.response.route.value,
                         intent=turn.response.intent,
@@ -251,12 +255,20 @@ def _write_alpaca_dataset_info(path: Path, dataset_name: str, file_name: str) ->
         json.dump(existing, handle, ensure_ascii=False, indent=2)
 
 
-def _router_input(user_query: str, state_before: Dict[str, Any]) -> str:
+def build_router_input(user_query: str, state_before: Dict[str, Any]) -> str:
     return (
         f"user_query:\n{user_query}\n\n"
         f"state_before:\n{json.dumps(state_before, ensure_ascii=False, indent=2)}\n\n"
+        "决策约束:\n"
+        "- route 只能是 direct / internal_tool / handoff\n"
+        '- tool_name 只能是 get_product_info / get_policy / get_order_status / get_logistics_status / ""\n'
+        "- 必须结合 state_before 判断当前是否已经具备 order_id 或 product_id\n"
+        "- 如果用户要求人工、投诉、赔偿或人工审核，route 应为 handoff\n"
+        "- 如果问题需要查订单、物流、订单商品或售后进度，但当前没有 order_id，route 仍应为 internal_tool，且 need_clarification=true、missing_slots=[\"order_id\"]\n"
+        "- 如果问题需要查商品属性，但当前没有 product_id 且也没有可用订单上下文，route 仍应为 internal_tool，且 need_clarification=true、missing_slots=[\"product_id\"]\n"
+        "- 不要编造 order_id、product_id 或其他 tool_arguments\n\n"
         "输出字段要求:\n"
-        "- route: direct|internal_tool|handoff\n"
+        "- route: string\n"
         "- intent: string\n"
         "- tool_name: string\n"
         "- tool_arguments: object\n"
@@ -266,7 +278,7 @@ def _router_input(user_query: str, state_before: Dict[str, Any]) -> str:
     )
 
 
-def _answer_input(query: str, route: str, intent: str, tool_steps: List[Dict[str, Any]]) -> str:
+def build_answer_input(query: str, route: str, intent: str, tool_steps: List[Dict[str, Any]]) -> str:
     return (
         f"query:\n{query}\n\n"
         f"route:\n{route}\n\n"

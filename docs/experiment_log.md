@@ -149,6 +149,60 @@ benchmark：
 
 原因不是训练失败，而是 benchmark prompt 本身存在不对齐问题，见第 5 节。
 
+### 3.4 mixed v2：校准 benchmark prompt 后重新评测
+
+在 benchmark prompt 改成更接近训练格式之后，同一版 `mixed v2` 的结果变成：
+
+| 指标 | mixed v2 校准后 |
+|---|---:|
+| `route_accuracy` | 0.5100 |
+| `route_macro_f1` | 0.4308 |
+| `intent_accuracy` | 0.4350 |
+| `intent_macro_f1` | 0.3264 |
+| `tool_accuracy` | 0.4900 |
+| `tool_macro_f1` | 0.4029 |
+| `ask_user_f1` | 0.0784 |
+| `handoff_f1` | 0.5000 |
+| `missing_slots_exact_match` | 0.7650 |
+| `tool_arguments_exact_match` | 0.6900 |
+
+这轮结论：
+
+- `handoff` 终于明显起来了
+- `route / tool` 也比第一次评测结果更可信
+- 但 `ask_user recall` 反而暴露得更清楚了
+- 说明当时真正的主问题已经从 `handoff` 转成了 `ask_user`
+
+### 3.5 mixed v3：继续扩模板后的训练
+
+训练日志：
+
+- `train_loss = 0.1494`
+- `eval_loss = 0.0052`
+- dev 样本数：288
+
+benchmark：
+
+| 指标 | mixed v3 |
+|---|---:|
+| `route_accuracy` | 0.6736 |
+| `route_macro_f1` | 0.6000 |
+| `intent_accuracy` | 0.4062 |
+| `intent_macro_f1` | 0.3222 |
+| `tool_accuracy` | 0.4722 |
+| `tool_macro_f1` | 0.4341 |
+| `ask_user_f1` | 0.0652 |
+| `handoff_f1` | 0.7429 |
+| `missing_slots_exact_match` | 0.7014 |
+| `tool_arguments_exact_match` | 0.6493 |
+
+这轮结论：
+
+- `route` 和 `handoff` 明显更强了
+- `handoff_f1` 达到目前最好结果
+- 但 `ask_user_f1` 依然很差，甚至略低于校准后的 `mixed v2`
+- 这说明单纯扩模板数量不够，模型还是没有稳定学会“看状态再决定是否追问”
+
 ## 4. 训练 loss 的变化怎么看
 
 目前几轮 router 训练里，loss 变化如下：
@@ -157,12 +211,24 @@ benchmark：
 |---|---:|---:|---|
 | mixed v1 | 0.2652 | 0.0197 | 第一次大规模 mixed 数据 |
 | mixed v2 | 0.2001 | 0.0103 | 加强 handoff / ask_user 模板后 |
+| mixed v3 | 0.1494 | 0.0052 | 继续扩模板后 |
 
 怎么理解：
 
 - `loss` 下降说明模型对当前训练分布拟合得更好了
 - 但 `loss` 变好不代表业务指标一定变好
 - 对 router 这类结构化任务，最后还是要看 benchmark 指标
+
+`mixed v3` 就是一个很典型的例子：
+
+- `loss` 继续下降
+- `route / handoff` 继续提升
+- 但 `ask_user` 没有同步提升
+
+这说明：
+
+- 训练并没有坏
+- 但当前训练分布还没有足够强地约束 ask_user 这个边界行为
 
 所以项目当前的基本原则是：
 
@@ -293,9 +359,94 @@ export HF_HUB_OFFLINE=1
 - 对结构化任务，训练 prompt 和 benchmark prompt 的对齐非常重要
 - 否则你测出来的可能不是“模型能力”，而是“模型是否被考试题模板带偏”
 
-### 5.5 `handoff` 仍然是当前最大短板
+### 5.5 ask_user 的真正问题不是“样本太少”，而是“状态对照不够强”
 
-在误差分析里，`handoff` 样本经常被预测为：
+在 `mixed v3` 的误差分析里，最常见的 ask_user 漏判是：
+
+- `这件衣服有啥颜色`
+- `这个有啥颜色`
+- `我买的那个有保修吗`
+- `帮我看下快递到哪了`
+
+这些样本的共同点是：
+
+- 句子本身很短
+- 带明显指代词
+- 真正决定要不要追问的，不是句面，而是 `state_before`
+
+例如同一句：
+
+- `帮我看下快递到哪了`
+
+如果 `state_before.order_id = null`：
+
+- 应该 `need_clarification = true`
+- `missing_slots = ["order_id"]`
+
+如果 `state_before.order_id = "A1005"`：
+
+- 就不该再追问
+- 应该直接进入工具查询
+
+所以这一轮的修正方向不是只补更多 ask_user 模板，而是补：
+
+- **同一句模糊问法**
+- **有上下文时不追问**
+- **没上下文时必须追问**
+
+这种成对对照样本。
+
+对应改动：
+
+- [training_data.py](/Users/zheisenbergy/code/agent/ecom-cs-agent/app/exporters/training_data.py)
+- [baseline_benchmark.py](/Users/zheisenbergy/code/agent/ecom-cs-agent/app/services/baseline_benchmark.py)
+- [synthesis_templates.default.json](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/synthesis_templates.default.json)
+
+### 5.6 这次是怎么修 ask_user 的
+
+这轮主要做了两件事：
+
+1. 把 router 训练 prompt 和 benchmark prompt 统一成同一套规则
+   - 都强调必须看 `state_before`
+   - 都明确写清楚缺 `order_id / product_id` 时要 `need_clarification=true`
+   - 都明确禁止编造工具参数
+2. 在 synthetic 模板里加入上下文对照样本
+   - 新增 `context_only_order_pronoun_queries`
+   - 新增 `context_only_product_pronoun_queries`
+   - 让同一句模糊问法同时出现在：
+     - 无上下文版本
+     - 有 `order_id` 或 `product_id` 版本
+
+本地验证时，新的 synthetic-only router 样本里：
+
+- train `ask_user` 占比约 `0.3308`
+- dev `ask_user` 占比约 `0.3168`
+
+而且已经能明确看到这种对照：
+
+- `帮我看下快递到哪了`
+  - 有 `order_id` 时不追问
+  - 无 `order_id` 时追问
+- `这个有啥颜色`
+  - 有 `product_id` 时不追问
+  - 无 `product_id` 时追问
+
+这类样本比单纯扩数量更重要，因为它训练的是：
+
+- “是否要问”的**条件边界**
+
+而不只是“哪些词像是 ask_user”。
+
+### 5.7 `handoff` 不再是唯一最大短板
+
+在前几轮里，`handoff` 一直是最明显的问题。
+
+但到 `mixed v3` 之后，更准确的说法应该是：
+
+- `handoff` 已经明显改善
+- 当前第一优先级变成了 `ask_user recall`
+
+`handoff` 之前经常被预测为：
 
 - `route = direct`
 - `intent = general_direct_answer`
@@ -305,7 +456,7 @@ export HF_HUB_OFFLINE=1
 - 模型对人工介入意图仍然不敏感
 - 当前 router 的保守默认行为还是太偏 `direct`
 
-这也是为什么项目后面优先扩了：
+这也是为什么项目前一阶段优先扩了：
 
 - `handoff_manual_support`
 - `handoff_robot_refusal`
@@ -318,22 +469,23 @@ export HF_HUB_OFFLINE=1
 
 1. 训练链路已经跑通
 2. synthetic 数据流水线已经跑通
-3. `ask_user` 在 mixed v1 上确实出现了提升
-4. `handoff` 仍然没有被稳定学会
-5. benchmark 本身也需要持续校准，不能只看第一次输出
+3. benchmark prompt 对齐后，评测信号更可信了
+4. `handoff` 在 `mixed v2` 校准后和 `mixed v3` 上都明显改善
+5. 当前最难补稳的其实是 `ask_user recall`
+6. benchmark 本身也需要持续校准，不能只看第一次输出
 
 ## 7. 现在最推荐的下一步
 
 当前最推荐的顺序仍然是：
 
-1. 先把 router benchmark 信号校准好
-2. 再确认 `handoff` 和 `ask_user` 的真实提升情况
-3. 只有 router 稳了，再进入 answer 第二轮训练
+1. 用新的 prompt 对齐 + ask_user 对照样本，继续训下一版 router
+2. 重点看 `ask_user_f1` 能不能明显高于 `mixed v3`
+3. 如果 ask_user 稳了，再决定是否继续训 answer
 
 换句话说：
 
 - 当前还不建议急着继续训 `answer`
 - 更值得优先解决的是：
-  - `handoff`
   - `ask_user recall`
   - benchmark 对齐
+  - 上下文条件下的缺槽位决策

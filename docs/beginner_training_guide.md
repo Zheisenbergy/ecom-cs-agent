@@ -929,6 +929,77 @@ ecom-cs-agent synthesize-episodes \
 5. 再用规则系统重新跑 trace
 6. 最后用 judge 规则或人工 spot check 过滤明显脏数据
 
+### 13.5 这轮我们为什么要专门补 ask_user 的“上下文对照样本”
+
+这是这次迭代里最重要的一个学习点。
+
+很多 ask_user 问题，不是“句子一看就该追问”，而是：
+
+- 要看 `state_before`
+- 看当前到底有没有 `order_id`
+- 有没有 `product_id`
+
+比如同一句：
+
+- `帮我看下快递到哪了`
+
+如果当前状态里：
+
+- 没有 `order_id`
+
+那就应该：
+
+- `route = internal_tool`
+- `need_clarification = true`
+- `missing_slots = ["order_id"]`
+
+但如果当前状态里：
+
+- 已经有 `order_id = A1005`
+
+那就不应该再问用户，而应该直接查物流。
+
+再比如：
+
+- `这个有啥颜色`
+
+如果没有 `product_id`：
+
+- 应该 ask_user
+
+如果已有 `product_id`：
+
+- 就应该直接查商品信息
+
+这说明 ask_user 的核心不是：
+
+- 识别“颜色”“物流”“保修”这些关键词
+
+而是：
+
+- 学会在**同一句模糊问法**下，根据 `state_before` 决定到底要不要追问
+
+所以这次数据改进不是只做“扩更多 ask_user 模板”，而是专门加入两类对照场景：
+
+- 无上下文版本：必须追问
+- 有上下文版本：不能追问
+
+你可以把它理解成：
+
+- 我们不是在教模型“哪些句子像 ask_user”
+- 而是在教模型“什么时候该 ask_user”
+
+这也是为什么这次同时改了两边：
+
+- 训练 prompt：更明确要求看 `state_before`
+- benchmark prompt：也用同一套规则
+
+如果训练时这么教，评测时却换另一种说法，模型就很可能在 benchmark 里表现失真。
+
+所以这一轮的目标不是单纯把 loss 压低，而是：
+
+- 让 `ask_user_f1` 真正反映模型有没有学会“缺槽位时先问用户”
+
 例如：
 
 - 原始 seed：`帮我看下 A1002 到哪了`

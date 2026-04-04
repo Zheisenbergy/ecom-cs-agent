@@ -94,8 +94,8 @@
       "name": "ask_order_id_logistics",
       "entity_source": "order",
       "counts": {
-        "train": 30,
-        "dev": 10
+        "train": 36,
+        "dev": 12
       },
       "turn_templates": [
         ["帮我看下快递到哪了", "{order_id}"],
@@ -112,8 +112,8 @@
       "name": "ask_order_id_order_status",
       "entity_source": "order",
       "counts": {
-        "train": 26,
-        "dev": 8
+        "train": 30,
+        "dev": 10
       },
       "turn_templates": [
         ["帮我看下订单状态", "{order_id}"],
@@ -129,7 +129,7 @@
       "name": "ask_order_id_order_product_policy",
       "entity_source": "order",
       "counts": {
-        "train": 36,
+        "train": 40,
         "dev": 12
       },
       "turn_templates": [
@@ -146,8 +146,8 @@
       "name": "ask_order_id_order_policy_short",
       "entity_source": "order",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 30,
+        "dev": 10
       },
       "turn_templates": [
         ["我买的这件能退吗", "{order_id}"],
@@ -162,8 +162,8 @@
       "name": "ask_order_id_order_product_lookup_short",
       "entity_source": "order",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 30,
+        "dev": 10
       },
       "turn_templates": [
         ["我买的那件是什么材质", "{order_id}"],
@@ -178,8 +178,8 @@
       "name": "ask_product_name_lookup",
       "entity_source": "product",
       "counts": {
-        "train": 28,
-        "dev": 8
+        "train": 32,
+        "dev": 10
       },
       "turn_templates": [
         ["这件商品有什么颜色", "{product_name}"],
@@ -195,8 +195,8 @@
       "name": "ask_product_name_lookup_short",
       "entity_source": "product",
       "counts": {
-        "train": 24,
-        "dev": 8
+        "train": 30,
+        "dev": 10
       },
       "turn_templates": [
         ["这个是什么材质", "{product_name}"],
@@ -211,8 +211,8 @@
       "name": "ask_order_id_logistics_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 18,
-        "dev": 6
+        "train": 28,
+        "dev": 10
       },
       "turn_templates": [
         ["我买的那个送到哪了", "{order_id}"],
@@ -229,8 +229,8 @@
       "name": "ask_order_id_order_policy_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 18,
-        "dev": 6
+        "train": 28,
+        "dev": 10
       },
       "turn_templates": [
         ["我买的包有保修吗", "{order_id}"],
@@ -247,8 +247,8 @@
       "name": "ask_order_id_order_product_policy_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 18,
-        "dev": 6
+        "train": 24,
+        "dev": 8
       },
       "turn_templates": [
         ["我买的那个是什么材质，能退吗", "{order_id}"],
@@ -263,8 +263,8 @@
       "name": "ask_order_id_order_product_lookup_pronoun_heavy",
       "entity_source": "order",
       "counts": {
-        "train": 18,
-        "dev": 6
+        "train": 28,
+        "dev": 10
       },
       "turn_templates": [
         ["我买的那个怎么洗", "{order_id}"],
@@ -280,17 +280,57 @@
       "name": "ask_product_name_lookup_pronoun_heavy",
       "entity_source": "product",
       "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "turn_templates": [
+        ["这款具体有哪几种配色", "{product_name}"],
+        ["这个到底是什么料子", "{product_name}"],
+        ["这款最大做到什么尺码", "{product_name}"],
+        ["这个平时该怎么打理", "{product_name}"],
+        ["这件摸起来是什么材质", "{product_name}"],
+        ["这款配色具体有哪些", "{product_name}"],
+        ["这个清洁的时候要注意啥", "{product_name}"]
+      ]
+    },
+    {
+      "name": "context_only_order_pronoun_queries",
+      "entity_source": "order",
+      "top_level_fields": ["order_id"],
+      "counts": {
+        "train": 24,
+        "dev": 8
+      },
+      "query_templates": [
+        "帮我看下快递到哪了",
+        "我这单发到哪一步了",
+        "帮我看看这单退款到哪了",
+        "我买的那个有保修吗",
+        "我买的这件能退吗",
+        "我订单里的商品能开票吗",
+        "我买的那件是什么材质",
+        "我买的那个怎么洗",
+        "我订单里的商品有什么颜色",
+        "我买的商品是什么材质，能退吗？"
+      ]
+    },
+    {
+      "name": "context_only_product_pronoun_queries",
+      "entity_source": "product",
+      "top_level_fields": ["product_id"],
+      "counts": {
         "train": 18,
         "dev": 6
       },
-      "turn_templates": [
-        ["这个有啥颜色", "{product_name}"],
-        ["这个是什么材质", "{product_name}"],
-        ["这个有多大尺码", "{product_name}"],
-        ["这款怎么洗", "{product_name}"],
-        ["这个面料是什么", "{product_name}"],
-        ["这个都有啥颜色", "{product_name}"],
-        ["这个料子是什么", "{product_name}"]
+      "query_templates": [
+        "这个有啥颜色",
+        "这个是什么材质",
+        "这个有多大尺码",
+        "这款怎么洗",
+        "这个面料是什么",
+        "这个都有啥颜色",
+        "这个料子是什么",
+        "这个怎么清洗"
       ]
     },
     {
