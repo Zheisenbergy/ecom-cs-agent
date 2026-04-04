@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Protocol
 from urllib import error, request
 
+from app.exporters.training_data import ANSWER_SYSTEM_PROMPT, ROUTER_SYSTEM_PROMPT
 
 ROUTES = ["direct", "internal_tool", "handoff"]
 TOOLS = ["get_product_info", "get_policy", "get_order_status", "get_logistics_status", ""]
@@ -107,17 +108,9 @@ class BaselineBenchmarkService:
                 )
                 continue
 
-            predictions.append(
-                {
-                    "route": str(parsed.get("route", "direct")),
-                    "intent": str(parsed.get("intent", "general_direct_answer")),
-                    "tool_name": str(parsed.get("tool_name", "")),
-                    "tool_arguments": parsed.get("tool_arguments", {}) if isinstance(parsed.get("tool_arguments"), dict) else {},
-                    "missing_slots": parsed.get("missing_slots", []) if isinstance(parsed.get("missing_slots"), list) else [],
-                    "need_clarification": bool(parsed.get("need_clarification", False)),
-                    "raw_output": raw,
-                }
-            )
+            prediction = _normalize_router_prediction(parsed)
+            prediction["raw_output"] = raw
+            predictions.append(prediction)
 
         gold_routes = [str(row.get("route", "")) for row in cases]
         pred_routes = [pred["route"] for pred in predictions]
@@ -253,64 +246,102 @@ class BaselineBenchmarkService:
     def _router_prompt(row: dict[str, Any]) -> str:
         return f"""/no_think
 
-你是电商客服 agent 的路由器。请根据输入输出一个 JSON 对象，不要输出解释，不要输出 markdown。
+系统:
+{ROUTER_SYSTEM_PROMPT}
 
-可选 route:
+指令:
+请根据用户问题和当前状态，输出电商客服 router JSON。
+只允许输出一个 JSON 对象，不要输出解释，不要输出 markdown。
+
+route 只能是下面三个之一：
 - direct
 - internal_tool
 - handoff
 
-可选工具:
+tool_name 只能是下面五个之一：
 - get_product_info
 - get_policy
 - get_order_status
 - get_logistics_status
 - ""
 
-如果缺少关键信息，需要：
-- need_clarification = true
-- missing_slots 填写缺失字段，例如 ["order_id"] 或 ["product_id"]
-
 输入:
-user_query: {json.dumps(row.get("user_query", ""), ensure_ascii=False)}
-state_before: {json.dumps(row.get("state_before", {}), ensure_ascii=False)}
+user_query:
+{json.dumps(row.get("user_query", ""), ensure_ascii=False)}
 
-输出格式:
+state_before:
+{json.dumps(row.get("state_before", {}), ensure_ascii=False, indent=2)}
+
+输出字段要求:
+- route: string
+- intent: string
+- tool_name: string
+- tool_arguments: object
+- missing_slots: string[]
+- need_clarification: boolean
+- rewrite_query: string
+
+如果缺少关键信息：
+- need_clarification 必须为 true
+- missing_slots 需要明确写出缺失字段，例如 ["order_id"] 或 ["product_id"]
+
+输出示例:
 {{
-  "route": "direct|internal_tool|handoff",
-  "intent": "intent_name",
-  "tool_name": "tool_name_or_empty",
+  "route": "handoff",
+  "intent": "complaint_or_manual_support",
+  "tool_name": "",
   "tool_arguments": {{}},
   "missing_slots": [],
-  "need_clarification": false
+  "need_clarification": false,
+  "rewrite_query": "请转人工客服"
 }}
+
+只输出 JSON 对象本身。
 """
 
     @staticmethod
     def _answer_prompt(row: dict[str, Any]) -> str:
         return f"""/no_think
 
-你是电商客服回答模块。请根据 query、route、intent 和结构化 tool_steps 输出 JSON，不要输出解释，不要输出 markdown。
+系统:
+{ANSWER_SYSTEM_PROMPT}
 
-要求：
+指令:
+请根据 query、route、intent 和结构化 tool_steps 输出电商客服 answer JSON。
+只允许输出一个 JSON 对象，不要输出解释，不要输出 markdown。
+
+输出字段要求：
 - answer 必须是用户可见回答
 - citations 填写实际依赖的工具名列表
 - grounded 表示回答是否基于 observation
 - escalation_required 表示是否需要转人工
+- waiting_for_user: boolean
+- episode_done: boolean
 
 输入:
-query: {json.dumps(row.get("query", ""), ensure_ascii=False)}
-route: {json.dumps(row.get("route", ""), ensure_ascii=False)}
-intent: {json.dumps(row.get("intent", ""), ensure_ascii=False)}
-tool_steps: {json.dumps(row.get("tool_steps", []), ensure_ascii=False)}
+query:
+{json.dumps(row.get("query", ""), ensure_ascii=False)}
 
-输出格式:
+route:
+{json.dumps(row.get("route", ""), ensure_ascii=False)}
+
+intent:
+{json.dumps(row.get("intent", ""), ensure_ascii=False)}
+
+tool_steps:
+{json.dumps(row.get("tool_steps", []), ensure_ascii=False, indent=2)}
+
+输出示例:
 {{
   "answer": "string",
   "citations": [],
   "grounded": false,
-  "escalation_required": false
+  "escalation_required": false,
+  "waiting_for_user": false,
+  "episode_done": true
 }}
+
+只输出 JSON 对象本身。
 """
 
 
@@ -351,6 +382,63 @@ def _strip_thinking_blocks(text: str) -> str:
     # Qwen reasoning models may emit visible thinking blocks before the final JSON.
     without_tags = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
     return without_tags.strip()
+
+
+def _normalize_router_prediction(parsed: dict[str, Any]) -> dict[str, Any]:
+    raw_route = str(parsed.get("route", "direct")).strip()
+    intent = str(parsed.get("intent", "general_direct_answer")).strip() or "general_direct_answer"
+    tool_name = str(parsed.get("tool_name", "")).strip()
+    tool_arguments = parsed.get("tool_arguments", {}) if isinstance(parsed.get("tool_arguments"), dict) else {}
+    missing_slots = parsed.get("missing_slots", []) if isinstance(parsed.get("missing_slots"), list) else []
+    need_clarification = bool(parsed.get("need_clarification", False))
+
+    normalized_route = _coerce_route(
+        raw_route=raw_route,
+        intent=intent,
+        tool_name=tool_name,
+        tool_arguments=tool_arguments,
+        missing_slots=missing_slots,
+        need_clarification=need_clarification,
+    )
+
+    if intent in {"none", "direct", "direct_answer"}:
+        intent = "general_direct_answer"
+
+    return {
+        "route": normalized_route,
+        "intent": intent,
+        "tool_name": tool_name,
+        "tool_arguments": tool_arguments,
+        "missing_slots": missing_slots,
+        "need_clarification": need_clarification,
+    }
+
+
+def _coerce_route(
+    raw_route: str,
+    intent: str,
+    tool_name: str,
+    tool_arguments: dict[str, Any],
+    missing_slots: list[Any],
+    need_clarification: bool,
+) -> str:
+    if raw_route in ROUTES:
+        return raw_route
+
+    route_hits = [route for route in ROUTES if route in raw_route]
+    if len(route_hits) == 1:
+        return route_hits[0]
+
+    if intent == "complaint_or_manual_support":
+        return "handoff"
+
+    if tool_name in TOOLS and tool_name:
+        return "internal_tool"
+
+    if need_clarification or missing_slots or tool_arguments:
+        return "internal_tool"
+
+    return "direct"
 
 
 def _accuracy(gold: List[str], pred: List[str]) -> dict[str, Any]:
