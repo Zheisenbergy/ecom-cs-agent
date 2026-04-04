@@ -253,7 +253,7 @@ ecom-cs-agent benchmark-router \
 ```bash
 ecom-cs-agent benchmark-answer \
   --input training/datasets/answer_sft.dev.generated.jsonl \
-  --model Qwen/Qwen3-4B-Instruct \
+  --model Qwen/Qwen3-4B-Instruct-2507 \
   --base-url http://127.0.0.1:8000/v1 \
   --api-key EMPTY \
   --output training/datasets/answer_benchmark.base.dev.json

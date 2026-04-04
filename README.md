@@ -182,7 +182,7 @@ ecom-cs-agent benchmark-router \
 
 ecom-cs-agent benchmark-answer \
   --input training/datasets/answer_sft.dev.generated.jsonl \
-  --model Qwen/Qwen3-4B-Instruct \
+  --model Qwen/Qwen3-4B-Instruct-2507 \
   --base-url http://127.0.0.1:8000/v1 \
   --api-key EMPTY \
   --output training/datasets/answer_benchmark.base.dev.json
@@ -209,7 +209,7 @@ ecom-cs-agent benchmark-answer \
 当前推荐模型分工：
 
 - `router`: `Qwen/Qwen3-1.7B`
-- `answer`: `Qwen/Qwen3-4B-Instruct`
+- `answer`: `Qwen/Qwen3-4B-Instruct-2507`
 
 ## 关键文档
 

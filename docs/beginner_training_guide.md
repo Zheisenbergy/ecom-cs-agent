@@ -436,7 +436,7 @@ ecom-cs-agent benchmark-router \
 再测 answer baseline：
 
 ```bash
-vllm serve Qwen/Qwen3-4B-Instruct \
+vllm serve Qwen/Qwen3-4B-Instruct-2507 \
   --host 0.0.0.0 \
   --port 8000 \
   --api-key EMPTY
@@ -445,7 +445,7 @@ vllm serve Qwen/Qwen3-4B-Instruct \
 ```bash
 ecom-cs-agent benchmark-answer \
   --input training/datasets/answer_sft.dev.generated.jsonl \
-  --model Qwen/Qwen3-4B-Instruct \
+  --model Qwen/Qwen3-4B-Instruct-2507 \
   --base-url http://127.0.0.1:8000/v1 \
   --api-key EMPTY \
   --output training/datasets/answer_benchmark.base.dev.json
@@ -477,7 +477,7 @@ ecom-cs-agent benchmark-answer \
 当前项目推荐：
 
 - `router`：`Qwen/Qwen3-1.7B`
-- `answer`：`Qwen/Qwen3-4B-Instruct`
+- `answer`：`Qwen/Qwen3-4B-Instruct-2507`
 
 不要一开始就把两者都设成同一个大模型。
 

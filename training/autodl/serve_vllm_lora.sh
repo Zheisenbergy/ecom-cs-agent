@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE_MODEL=${BASE_MODEL:-Qwen/Qwen3-4B-Instruct}
+BASE_MODEL=${BASE_MODEL:-Qwen/Qwen3-4B-Instruct-2507}
 API_KEY=${API_KEY:-EMPTY}
 HOST=${HOST:-0.0.0.0}
 PORT=${PORT:-8000}

@@ -5,7 +5,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 PROJECT_ROOT=$(cd "$SCRIPT_DIR/../.." && pwd)
 
 LLAMAFACTORY_CLI=${LLAMAFACTORY_CLI:-llamafactory-cli}
-BASE_MODEL=${BASE_MODEL:-Qwen/Qwen3-4B-Instruct}
+BASE_MODEL=${BASE_MODEL:-Qwen/Qwen3-4B-Instruct-2507}
 DATASET_DIR=${DATASET_DIR:-"$SCRIPT_DIR/lf_data/answer"}
 OUTPUT_DIR=${OUTPUT_DIR:-"$PROJECT_ROOT/outputs/answer-qwen3-4b-lora"}
 

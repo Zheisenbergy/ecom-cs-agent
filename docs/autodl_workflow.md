@@ -68,7 +68,7 @@ bash training/autodl/train_router_lora.sh
 ## 4. 训练 Answer LoRA
 
 ```bash
-BASE_MODEL=Qwen/Qwen3-4B-Instruct \
+BASE_MODEL=Qwen/Qwen3-4B-Instruct-2507 \
 OUTPUT_DIR=/root/autodl-tmp/outputs/answer-qwen3-4b-lora \
 bash training/autodl/train_answer_lora.sh
 ```
@@ -90,7 +90,7 @@ bash training/autodl/serve_vllm_lora.sh
 或者起 answer：
 
 ```bash
-BASE_MODEL=Qwen/Qwen3-4B-Instruct \
+BASE_MODEL=Qwen/Qwen3-4B-Instruct-2507 \
 ADAPTER_ALIAS=answer-lora \
 ADAPTER_PATH=/root/autodl-tmp/outputs/answer-qwen3-4b-lora \
 API_KEY=EMPTY \
@@ -130,7 +130,7 @@ bash training/autodl/run_answer_benchmark.sh
 当前推荐的模型分工：
 
 - `router`：`Qwen/Qwen3-1.7B`
-- `answer`：`Qwen/Qwen3-4B-Instruct`
+- `answer`：`Qwen/Qwen3-4B-Instruct-2507`
 
 这样做的原因是：
 
