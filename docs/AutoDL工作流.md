@@ -209,6 +209,59 @@ bash training/autodl/run_answer_benchmark.sh
 - router 更偏结构化决策，小模型更省显存和推理成本
 - answer 更偏生成和收口，4B 更稳
 
+## 7.1 模型版端到端联调
+
+如果你已经分别把 `router-lora` 和 `answer-lora` 挂成 OpenAI-compatible 服务，可以直接用项目 CLI 跑完整链路：
+
+```bash
+ecom-cs-agent ask-model "A1001 到哪了" \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8001/v1
+```
+
+看完整结构化轨迹：
+
+```bash
+ecom-cs-agent trace-model "这单里的商品怎么洗，还能退吗" \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8001/v1
+```
+
+做多轮补槽位联调：
+
+```bash
+ecom-cs-agent chat-model \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8001/v1
+```
+
+这一套命令复用了训练和 benchmark 的同一套 prompt 规则：
+
+- router 仍然看 `user_query + state_before`
+- answer 仍然看 `query + route + intent + tool_steps`
+- router 输出仍会经过同一层轻量 JSON 归一化
+
+这样联调时看到的问题，会更接近真实训练分布，而不是另起一套临时 prompt。
+
+## 7.2 单卡注意事项
+
+如果你只有一张 24G 左右的卡，通常不要默认认为可以同时稳定挂：
+
+- `router-lora`
+- `answer-lora`
+
+更稳妥的办法是：
+
+1. 把它们挂在不同机器或不同 GPU
+2. 或者先单独验证 router，再单独验证 answer
+3. 如果必须单卡联调，优先尝试更小的 batch / 更保守的 vLLM 配置，并提前用 `nvidia-smi` 看显存
+
 ## 8. 第二轮最推荐怎么跑
 
 如果你现在已经有第一轮训练结果，又想继续提升 router，我建议你在 AutoDL 上按这个顺序做：

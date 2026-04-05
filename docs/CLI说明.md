@@ -80,6 +80,83 @@ ecom-cs-agent trace "帮我查订单 A1001 到哪了"
 ecom-cs-agent trace "这件衣服是什么材质？"
 ```
 
+### `ecom-cs-agent ask-model "<query>"`
+
+用 OpenAI-compatible 的 `router` 和 `answer` 模型跑单轮联调。
+
+它会：
+
+- 先调用 `router` 模型产出结构化决策
+- 如果需要，再执行本地 mock 内部工具
+- 再把 `tool_steps` 交给 `answer` 模型生成最终 JSON answer
+
+示例：
+
+```bash
+ecom-cs-agent ask-model "我买的那个有保修吗" \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8000/v1
+```
+
+常用参数：
+
+- `--router-model`
+- `--answer-model`
+- `--router-base-url`
+- `--answer-base-url`
+- `--router-api-key`
+- `--answer-api-key`
+- `--router-max-tokens`
+- `--answer-max-tokens`
+- `--json`
+- `--show-debug`
+
+### `ecom-cs-agent trace-model "<query>"`
+
+输出模型版单条问题的完整 trace，适合排查：
+
+- router 是否判对 `route / intent / missing_slots`
+- 工具链有没有按预期执行
+- answer 模型有没有正确消费 `tool_steps`
+
+示例：
+
+```bash
+ecom-cs-agent trace-model "A1001 到哪了" \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8000/v1
+```
+
+### `ecom-cs-agent chat-model`
+
+进入模型版多轮会话。
+
+特点：
+
+- 会保留当前 episode state
+- 如果第一轮缺 `order_id / product_id`，下一轮会继续同一任务
+- 适合直接验证 `ask_user -> 用户补槽位 -> 再查工具 -> 最终回答` 这条完整链路
+
+示例：
+
+```bash
+ecom-cs-agent chat-model \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8000/v1
+```
+
+如果你只有一张卡，通常不适合同时挂两个大模型服务。
+更现实的方式是：
+
+- router 和 answer 分别挂在不同机器/不同端口
+- 或者先做单模型单命令验证，再做完整联调
+
 ### `ecom-cs-agent run`
 
 批量运行 episode 样本并导出 episode trace。

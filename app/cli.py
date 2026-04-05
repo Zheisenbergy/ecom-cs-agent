@@ -15,7 +15,9 @@ from app.exporters.training_data import (
     export_router_sft_llamafactory,
 )
 from app.models import ChatRequest, ChatResponse, EpisodeRecord, EpisodeState, TraceRecord
-from app.services.baseline_benchmark import BaselineBenchmarkService, OpenAICompatibleModelClient, load_jsonl
+from app.services.baseline_benchmark import BaselineBenchmarkService, load_jsonl
+from app.services.model_io import OpenAICompatibleModelClient
+from app.services.model_orchestrator import build_model_orchestrator
 from app.services.evaluator import EpisodeEvaluator
 from app.services.orchestrator import get_orchestrator
 from app.services.seed_synthesis import synthesize_episode_seeds
@@ -47,6 +49,29 @@ def build_parser() -> argparse.ArgumentParser:
     trace_parser.add_argument("--shop-id", default=None, help="覆盖默认店铺 ID")
     trace_parser.add_argument("--product-id", default=None, help="显式提供商品 ID")
     trace_parser.add_argument("--order-id", default=None, help="显式提供订单号")
+
+    chat_model_parser = subparsers.add_parser("chat-model", help="进入基于 router/answer 模型的交互式会话")
+    chat_model_parser.add_argument("--shop-id", default=None, help="覆盖默认店铺 ID")
+    chat_model_parser.add_argument("--product-id", default=None, help="会话级商品 ID 上下文")
+    chat_model_parser.add_argument("--order-id", default=None, help="会话级订单号上下文")
+    chat_model_parser.add_argument("--show-debug", action="store_true", help="显示调试信息")
+    _add_model_runtime_args(chat_model_parser)
+
+    ask_model_parser = subparsers.add_parser("ask-model", help="使用 router/answer 模型执行单轮提问")
+    ask_model_parser.add_argument("query", help="用户问题")
+    ask_model_parser.add_argument("--shop-id", default=None, help="覆盖默认店铺 ID")
+    ask_model_parser.add_argument("--product-id", default=None, help="显式提供商品 ID")
+    ask_model_parser.add_argument("--order-id", default=None, help="显式提供订单号")
+    ask_model_parser.add_argument("--json", action="store_true", help="以 JSON 输出完整结果")
+    ask_model_parser.add_argument("--show-debug", action="store_true", help="显示调试信息")
+    _add_model_runtime_args(ask_model_parser)
+
+    trace_model_parser = subparsers.add_parser("trace-model", help="输出模型版单条问题的完整工具调用轨迹")
+    trace_model_parser.add_argument("query", help="用户问题")
+    trace_model_parser.add_argument("--shop-id", default=None, help="覆盖默认店铺 ID")
+    trace_model_parser.add_argument("--product-id", default=None, help="显式提供商品 ID")
+    trace_model_parser.add_argument("--order-id", default=None, help="显式提供订单号")
+    _add_model_runtime_args(trace_model_parser)
 
     run_parser = subparsers.add_parser("run", help="批量运行 episode JSONL 样本并导出 episode trace")
     run_parser.add_argument("--input", required=True, help="输入 JSONL 文件路径")
@@ -183,6 +208,47 @@ def main() -> None:
         print(json.dumps(trace.model_dump(mode="json"), ensure_ascii=False, indent=2))
         return
 
+    if args.command == "ask-model":
+        response = _run_model_query(
+            args.query,
+            shop_id=args.shop_id,
+            product_id=args.product_id,
+            order_id=args.order_id,
+            router_model=args.router_model,
+            answer_model=args.answer_model,
+            router_base_url=args.router_base_url,
+            answer_base_url=args.answer_base_url,
+            router_api_key=args.router_api_key,
+            answer_api_key=args.answer_api_key,
+            timeout_seconds=args.timeout_seconds,
+            router_max_tokens=args.router_max_tokens,
+            answer_max_tokens=args.answer_max_tokens,
+        )
+        if args.json:
+            print(json.dumps(response.model_dump(mode="json"), ensure_ascii=False, indent=2))
+        else:
+            print(_format_response(response, show_debug=args.show_debug))
+        return
+
+    if args.command == "trace-model":
+        trace = _run_model_trace(
+            args.query,
+            shop_id=args.shop_id,
+            product_id=args.product_id,
+            order_id=args.order_id,
+            router_model=args.router_model,
+            answer_model=args.answer_model,
+            router_base_url=args.router_base_url,
+            answer_base_url=args.answer_base_url,
+            router_api_key=args.router_api_key,
+            answer_api_key=args.answer_api_key,
+            timeout_seconds=args.timeout_seconds,
+            router_max_tokens=args.router_max_tokens,
+            answer_max_tokens=args.answer_max_tokens,
+        )
+        print(json.dumps(trace.model_dump(mode="json"), ensure_ascii=False, indent=2))
+        return
+
     if args.command == "run":
         summary = _run_batch(
             input_path=Path(args.input),
@@ -294,6 +360,24 @@ def main() -> None:
         )
         return
 
+    if args.command == "chat-model":
+        _interactive_model_chat(
+            shop_id=args.shop_id,
+            product_id=args.product_id,
+            order_id=args.order_id,
+            show_debug=args.show_debug,
+            router_model=args.router_model,
+            answer_model=args.answer_model,
+            router_base_url=args.router_base_url,
+            answer_base_url=args.answer_base_url,
+            router_api_key=args.router_api_key,
+            answer_api_key=args.answer_api_key,
+            timeout_seconds=args.timeout_seconds,
+            router_max_tokens=args.router_max_tokens,
+            answer_max_tokens=args.answer_max_tokens,
+        )
+        return
+
     parser.error("未知命令")
 
 
@@ -365,6 +449,93 @@ def _interactive_chat(
             )
 
 
+def _interactive_model_chat(
+    shop_id: Optional[str],
+    product_id: Optional[str],
+    order_id: Optional[str],
+    show_debug: bool,
+    router_model: str,
+    answer_model: str,
+    router_base_url: str,
+    answer_base_url: str,
+    router_api_key: str,
+    answer_api_key: str,
+    timeout_seconds: int,
+    router_max_tokens: int,
+    answer_max_tokens: int,
+) -> None:
+    settings = get_settings()
+    resolved_shop_id = shop_id or settings.default_shop_id
+    orchestrator = _build_model_runtime_orchestrator(
+        router_model=router_model,
+        answer_model=answer_model,
+        router_base_url=router_base_url,
+        answer_base_url=answer_base_url,
+        router_api_key=router_api_key,
+        answer_api_key=answer_api_key,
+        timeout_seconds=timeout_seconds,
+        router_max_tokens=router_max_tokens,
+        answer_max_tokens=answer_max_tokens,
+    )
+    current_state = EpisodeState(
+        shop_id=resolved_shop_id,
+        product_id=product_id,
+        order_id=order_id,
+    )
+    print("电商客服模型联调 CLI")
+    print(f"店铺 ID: {resolved_shop_id}")
+    print(f"router model: {router_model}")
+    print(f"answer model: {answer_model}")
+    print("输入 /meta 查看当前配置，/state 查看当前 episode 状态，/reset 清空当前任务，/exit 退出。")
+
+    while True:
+        try:
+            query = input("\n你> ").strip()
+        except EOFError:
+            print("\n会话结束。")
+            return
+        except KeyboardInterrupt:
+            print("\n会话中断。")
+            return
+
+        if not query:
+            continue
+        if query in {"/exit", "exit", "quit"}:
+            print("会话结束。")
+            return
+        if query == "/meta":
+            print(_meta_output())
+            continue
+        if query == "/state":
+            print(json.dumps(current_state.model_dump(mode="json"), ensure_ascii=False, indent=2))
+            continue
+        if query == "/reset":
+            current_state = EpisodeState(
+                shop_id=resolved_shop_id,
+                product_id=product_id,
+                order_id=order_id,
+            )
+            print("当前任务状态已清空。")
+            continue
+
+        trace = _run_model_trace_with_orchestrator(
+            orchestrator=orchestrator,
+            query=query,
+            shop_id=resolved_shop_id,
+            product_id=product_id,
+            order_id=order_id,
+            state=current_state,
+        )
+        print(_format_response(trace.response, show_debug=show_debug))
+        current_state = trace.state_after or EpisodeState(shop_id=resolved_shop_id)
+        if trace.response.episode_done:
+            current_state = EpisodeState(
+                shop_id=resolved_shop_id,
+                product_id=product_id,
+                order_id=order_id,
+            )
+
+
 def _run_query(
     query: str,
     shop_id: Optional[str] = None,
@@ -396,6 +567,96 @@ def _run_trace(
         order_id=order_id,
     )
     return get_orchestrator().handle_trace(request, state=state)
+
+
+def _run_model_query(
+    query: str,
+    shop_id: Optional[str],
+    product_id: Optional[str],
+    order_id: Optional[str],
+    router_model: str,
+    answer_model: str,
+    router_base_url: str,
+    answer_base_url: str,
+    router_api_key: str,
+    answer_api_key: str,
+    timeout_seconds: int,
+    router_max_tokens: int,
+    answer_max_tokens: int,
+) -> ChatResponse:
+    response, _ = _build_model_runtime_orchestrator(
+        router_model=router_model,
+        answer_model=answer_model,
+        router_base_url=router_base_url,
+        answer_base_url=answer_base_url,
+        router_api_key=router_api_key,
+        answer_api_key=answer_api_key,
+        timeout_seconds=timeout_seconds,
+        router_max_tokens=router_max_tokens,
+        answer_max_tokens=answer_max_tokens,
+    ).handle_query(
+        ChatRequest(
+            query=query,
+            shop_id=shop_id,
+            product_id=product_id,
+            order_id=order_id,
+        )
+    )
+    return response
+
+
+def _run_model_trace(
+    query: str,
+    shop_id: Optional[str],
+    product_id: Optional[str],
+    order_id: Optional[str],
+    router_model: str,
+    answer_model: str,
+    router_base_url: str,
+    answer_base_url: str,
+    router_api_key: str,
+    answer_api_key: str,
+    timeout_seconds: int,
+    router_max_tokens: int,
+    answer_max_tokens: int,
+    state: Optional[EpisodeState] = None,
+) -> TraceRecord:
+    orchestrator = _build_model_runtime_orchestrator(
+        router_model=router_model,
+        answer_model=answer_model,
+        router_base_url=router_base_url,
+        answer_base_url=answer_base_url,
+        router_api_key=router_api_key,
+        answer_api_key=answer_api_key,
+        timeout_seconds=timeout_seconds,
+        router_max_tokens=router_max_tokens,
+        answer_max_tokens=answer_max_tokens,
+    )
+    return _run_model_trace_with_orchestrator(
+        orchestrator=orchestrator,
+        query=query,
+        shop_id=shop_id,
+        product_id=product_id,
+        order_id=order_id,
+        state=state,
+    )
+
+
+def _run_model_trace_with_orchestrator(
+    orchestrator,
+    query: str,
+    shop_id: Optional[str],
+    product_id: Optional[str],
+    order_id: Optional[str],
+    state: Optional[EpisodeState] = None,
+) -> TraceRecord:
+    request = ChatRequest(
+        query=query,
+        shop_id=shop_id,
+        product_id=product_id,
+        order_id=order_id,
+    )
+    return orchestrator.handle_trace(request, state=state)
 
 
 def _run_batch(input_path: Path, output_path: Path, limit: Optional[int]) -> dict[str, object]:
@@ -594,7 +855,8 @@ def _meta_output() -> str:
             "get_order_status",
             "get_logistics_status",
         ],
-        "trace_commands": ["trace", "run"],
+        "trace_commands": ["trace", "trace-model", "run"],
+        "runtime_commands": ["ask", "ask-model", "chat", "chat-model"],
         "export_commands": [
             "export-sft",
             "export-router-sft",
@@ -606,6 +868,55 @@ def _meta_output() -> str:
         "data_commands": ["synthesize-episodes"],
     }
     return json.dumps(payload, ensure_ascii=False, indent=2)
+
+
+def _add_model_runtime_args(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--router-model", required=True, help="router 的 OpenAI-compatible 模型名，例如 router-lora")
+    parser.add_argument("--answer-model", required=True, help="answer 的 OpenAI-compatible 模型名，例如 answer-lora")
+    parser.add_argument(
+        "--router-base-url",
+        default="http://127.0.0.1:8000/v1",
+        help="router OpenAI-compatible 服务地址",
+    )
+    parser.add_argument(
+        "--answer-base-url",
+        default="http://127.0.0.1:8000/v1",
+        help="answer OpenAI-compatible 服务地址",
+    )
+    parser.add_argument("--router-api-key", default="EMPTY", help="router OpenAI-compatible API key")
+    parser.add_argument("--answer-api-key", default="EMPTY", help="answer OpenAI-compatible API key")
+    parser.add_argument("--timeout-seconds", type=int, default=120, help="单条模型请求超时秒数")
+    parser.add_argument("--router-max-tokens", type=int, default=256, help="router 最大输出 token 数")
+    parser.add_argument("--answer-max-tokens", type=int, default=256, help="answer 最大输出 token 数")
+
+
+def _build_model_runtime_orchestrator(
+    router_model: str,
+    answer_model: str,
+    router_base_url: str,
+    answer_base_url: str,
+    router_api_key: str,
+    answer_api_key: str,
+    timeout_seconds: int,
+    router_max_tokens: int,
+    answer_max_tokens: int,
+):
+    return build_model_orchestrator(
+        router_client=OpenAICompatibleModelClient(
+            model=router_model,
+            base_url=router_base_url,
+            api_key=router_api_key,
+            timeout_seconds=timeout_seconds,
+            max_tokens=router_max_tokens,
+        ),
+        answer_client=OpenAICompatibleModelClient(
+            model=answer_model,
+            base_url=answer_base_url,
+            api_key=answer_api_key,
+            timeout_seconds=timeout_seconds,
+            max_tokens=answer_max_tokens,
+        ),
+    )
 
 
 def _format_response(response: ChatResponse, show_debug: bool) -> str:

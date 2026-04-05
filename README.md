@@ -94,6 +94,26 @@ ecom-cs-agent ask "我想投诉商家并申请赔偿"
 ecom-cs-agent trace "帮我查订单 A1001 到哪了"
 ```
 
+模型版单轮联调：
+
+```bash
+ecom-cs-agent ask-model "我买的那个有保修吗" \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8001/v1
+```
+
+模型版完整 trace：
+
+```bash
+ecom-cs-agent trace-model "这单里的商品怎么洗，还能退吗" \
+  --router-model router-lora \
+  --answer-model answer-lora \
+  --router-base-url http://127.0.0.1:8000/v1 \
+  --answer-base-url http://127.0.0.1:8001/v1
+```
+
 批量运行 episode：
 
 ```bash

@@ -5,6 +5,7 @@ from typing import Iterable, Optional
 from uuid import uuid4
 
 from app.config import get_settings
+from app.exporters.training_data import compact_state
 from app.models import (
     ChatRequest,
     ChatResponse,
@@ -181,13 +182,16 @@ class QueryOrchestrator:
 
     @staticmethod
     def _merge_request_with_state(request: ChatRequest, state: EpisodeState) -> ChatRequest:
+        metadata = dict(request.metadata)
+        # 把当前状态快照带给模型版 router，保证运行时提示和训练/benchmark 使用同一份 state_before。
+        metadata["_state_before"] = compact_state(state.model_dump(mode="json"))
         return ChatRequest(
             query=request.query,
             user_id=request.user_id,
             shop_id=request.shop_id or state.shop_id,
             product_id=request.product_id or state.product_id,
             order_id=request.order_id or state.order_id,
-            metadata=request.metadata,
+            metadata=metadata,
         )
 
     @staticmethod

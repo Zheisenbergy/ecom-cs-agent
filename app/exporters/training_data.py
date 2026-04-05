@@ -44,7 +44,7 @@ def export_router_sft_jsonl(
                     "episode_id": episode.episode_id,
                     "turn_index": turn_index,
                     "user_query": turn.request.query,
-                    "state_before": _compact_state(turn.state_before.model_dump(mode="json") if turn.state_before else {}),
+                    "state_before": compact_state(turn.state_before.model_dump(mode="json") if turn.state_before else {}),
                     "route": turn.route_decision.route.value,
                     "intent": turn.route_decision.intent,
                     "need_clarification": turn.route_decision.need_clarification,
@@ -126,7 +126,7 @@ def export_router_sft_llamafactory(
                     "instruction": ROUTER_INSTRUCTION,
                     "input": build_router_input(
                         user_query=turn.request.query,
-                        state_before=_compact_state(turn.state_before.model_dump(mode="json") if turn.state_before else {}),
+                        state_before=compact_state(turn.state_before.model_dump(mode="json") if turn.state_before else {}),
                     ),
                     "output": json.dumps(
                         {
@@ -295,6 +295,6 @@ def build_answer_input(query: str, route: str, intent: str, tool_steps: List[Dic
     )
 
 
-def _compact_state(state: Dict[str, Any]) -> Dict[str, Any]:
+def compact_state(state: Dict[str, Any]) -> Dict[str, Any]:
     # 去掉空字段，减少 prompt 里的状态噪声，让模型更聚焦于真正可用的上下文。
     return {key: value for key, value in state.items() if value not in (None, "", [], {})}
