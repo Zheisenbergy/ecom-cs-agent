@@ -153,6 +153,23 @@ API_KEY=EMPTY \
 bash training/autodl/run_router_benchmark.sh
 ```
 
+如果你想进一步验证泛化，而不是只看当前 mixed dev，可以直接跑项目里新增的 `holdout` 集：
+
+```bash
+BENCHMARK_VARIANT=holdout \
+MODEL_NAME=router-lora \
+BASE_URL=http://127.0.0.1:8000/v1 \
+API_KEY=EMPTY \
+bash training/autodl/run_router_benchmark.sh
+```
+
+这套 `holdout` 的目标不是复读训练模板，而是专门测：
+
+- 新说法下的 `ask_user`
+- 新说法下的 `handoff`
+- 同一句模糊问法在不同 `state_before` 下是否还能做对
+- `route / intent / tool / missing_slots` 是否还能保持稳定
+
 Answer benchmark：
 
 ```bash
@@ -219,6 +236,7 @@ bash training/autodl/train_router_lora.sh
 ## 9. 当前项目里的关键文件
 
 - Router benchmark 输入：[router_sft.dev.generated.jsonl](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/router_sft.dev.generated.jsonl)
+- Router holdout benchmark 输入：[router_sft.dev.holdout.jsonl](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/router_sft.dev.holdout.jsonl)
 - Answer benchmark 输入：[answer_sft.dev.generated.jsonl](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/answer_sft.dev.generated.jsonl)
 - Router LLaMA-Factory train：[router_sft.train.lf.json](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/router_sft.train.lf.json)
 - Router LLaMA-Factory dev：[router_sft.dev.lf.json](/Users/zheisenbergy/code/agent/ecom-cs-agent/training/datasets/router_sft.dev.lf.json)

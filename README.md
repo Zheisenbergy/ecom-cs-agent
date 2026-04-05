@@ -199,6 +199,17 @@ ecom-cs-agent benchmark-answer \
 - `grounded_f1`
 - `escalation_f1`
 
+如果你已经把 router 训到较高分，不想只看同分布 dev，也可以直接评测更难的 holdout 集：
+
+```bash
+ecom-cs-agent benchmark-router \
+  --input training/datasets/router_sft.dev.holdout.jsonl \
+  --model router-lora \
+  --base-url http://127.0.0.1:8000/v1 \
+  --api-key EMPTY \
+  --output training/datasets/router_benchmark.holdout.json
+```
+
 这里的 benchmark 现在默认走 OpenAI-compatible 接口，例如 `vLLM`。
 也就是说：
 

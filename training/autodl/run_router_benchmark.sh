@@ -11,19 +11,31 @@ API_KEY=${API_KEY:-EMPTY}
 BENCHMARK_VARIANT=${BENCHMARK_VARIANT:-seed}
 
 if [[ -z "${INPUT_PATH:-}" ]]; then
-  if [[ "$BENCHMARK_VARIANT" == "mixed" ]]; then
-    INPUT_PATH="$PROJECT_ROOT/training/datasets/router_sft.dev.mixed.generated.jsonl"
-  else
-    INPUT_PATH="$PROJECT_ROOT/training/datasets/router_sft.dev.generated.jsonl"
-  fi
+  case "$BENCHMARK_VARIANT" in
+    mixed)
+      INPUT_PATH="$PROJECT_ROOT/training/datasets/router_sft.dev.mixed.generated.jsonl"
+      ;;
+    holdout)
+      INPUT_PATH="$PROJECT_ROOT/training/datasets/router_sft.dev.holdout.jsonl"
+      ;;
+    *)
+      INPUT_PATH="$PROJECT_ROOT/training/datasets/router_sft.dev.generated.jsonl"
+      ;;
+  esac
 fi
 
 if [[ -z "${OUTPUT_PATH:-}" ]]; then
-  if [[ "$BENCHMARK_VARIANT" == "mixed" ]]; then
-    OUTPUT_PATH="$PROJECT_ROOT/training/datasets/router_benchmark.autodl.mixed.json"
-  else
-    OUTPUT_PATH="$PROJECT_ROOT/training/datasets/router_benchmark.autodl.json"
-  fi
+  case "$BENCHMARK_VARIANT" in
+    mixed)
+      OUTPUT_PATH="$PROJECT_ROOT/training/datasets/router_benchmark.autodl.mixed.json"
+      ;;
+    holdout)
+      OUTPUT_PATH="$PROJECT_ROOT/training/datasets/router_benchmark.autodl.holdout.json"
+      ;;
+    *)
+      OUTPUT_PATH="$PROJECT_ROOT/training/datasets/router_benchmark.autodl.json"
+      ;;
+  esac
 fi
 
 "$PYTHON_BIN" -m app.cli benchmark-router \
