@@ -157,6 +157,18 @@ ecom-cs-agent chat-model \
 - router 和 answer 分别挂在不同机器/不同端口
 - 或者先做单模型单命令验证，再做完整联调
 
+如果你在 AutoDL 上想少敲一点参数，也可以直接用：
+
+```bash
+COMMAND=ask-model \
+QUERY="A1001 到哪了" \
+ROUTER_MODEL=router-lora \
+ANSWER_MODEL=answer-lora \
+ROUTER_BASE_URL=http://127.0.0.1:8000/v1 \
+ANSWER_BASE_URL=http://127.0.0.1:8001/v1 \
+bash training/autodl/run_model_demo.sh
+```
+
 ### `ecom-cs-agent run`
 
 批量运行 episode 样本并导出 episode trace。

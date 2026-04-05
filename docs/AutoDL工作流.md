@@ -241,6 +241,30 @@ ecom-cs-agent chat-model \
   --answer-base-url http://127.0.0.1:8001/v1
 ```
 
+如果你不想每次手敲长命令，也可以直接用脚本：
+
+```bash
+COMMAND=ask-model \
+QUERY="A1001 到哪了" \
+ROUTER_MODEL=router-lora \
+ANSWER_MODEL=answer-lora \
+ROUTER_BASE_URL=http://127.0.0.1:8000/v1 \
+ANSWER_BASE_URL=http://127.0.0.1:8001/v1 \
+bash training/autodl/run_model_demo.sh
+```
+
+看完整 trace：
+
+```bash
+COMMAND=trace-model \
+QUERY="这单里的商品怎么洗，还能退吗" \
+ROUTER_MODEL=router-lora \
+ANSWER_MODEL=answer-lora \
+ROUTER_BASE_URL=http://127.0.0.1:8000/v1 \
+ANSWER_BASE_URL=http://127.0.0.1:8001/v1 \
+bash training/autodl/run_model_demo.sh
+```
+
 这一套命令复用了训练和 benchmark 的同一套 prompt 规则：
 
 - router 仍然看 `user_query + state_before`
